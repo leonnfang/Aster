@@ -21,6 +21,16 @@
       <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/FloristApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/BouquetController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/FloristController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/ProductController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/UserController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/Bouquet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/Florist.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/classes/java/test/com/Aster/FloristApplicationTests.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/BouquetController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/FloristController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/ProductController.java" afterDir="false" />
@@ -256,7 +266,7 @@
       <workItem from="1582156243286" duration="1730000" />
       <workItem from="1582309220178" duration="31000" />
       <workItem from="1582309276212" duration="6000" />
-      <workItem from="1582312532338" duration="1198000" />
+      <workItem from="1582312532338" duration="1525000" />
     </task>
     <servers />
   </component>
