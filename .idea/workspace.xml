@@ -2,50 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileContent/fileContent.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/FloristApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/BouquetController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/FloristController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/ProductController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/controller/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/Bouquet.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/Florist.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/Product.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/main/com/Aster/domain/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/classes/java/test/com/Aster/FloristApplicationTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/BouquetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/FloristController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Bouquet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Florist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/Aster/florist/FloristApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/test/com/Aster/florist/FloristApplicationTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/florist/FloristApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/FloristApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/Aster/florist/FloristApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/Aster/FloristApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/domain/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +18,45 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="florist" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="florist" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="florist" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="florist" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+                <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="florist" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="florist" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -267,6 +261,7 @@
       <workItem from="1582309220178" duration="31000" />
       <workItem from="1582309276212" duration="6000" />
       <workItem from="1582312532338" duration="1525000" />
+      <workItem from="1582403830851" duration="1395000" />
     </task>
     <servers />
   </component>
@@ -292,22 +287,34 @@
     </state>
     <state x="229" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.793@0.23.1440.793" timestamp="1582158220441" />
     <state x="267" y="191" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027/-1371.-1669.3008.1669@0.23.1680.1027" timestamp="1581713757140" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1582246228819">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1582404574574">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582404574574" />
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1582341611402">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1582246228819" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1582246228819">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582314724079" />
+    <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611402" />
+    <state width="1398" height="230" key="GridCell.Tab.0.center" timestamp="1582341611401">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1582246228819" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1582246228818">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582314724078" />
+    <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611401" />
+    <state width="1398" height="230" key="GridCell.Tab.0.left" timestamp="1582341611400">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1582246228818" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1582246228819">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582314724078" />
+    <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611400" />
+    <state width="1398" height="230" key="GridCell.Tab.0.right" timestamp="1582341611401">
+      <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1582246228819" />
+    <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582314724078" />
+    <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611401" />
     <state width="1398" height="203" key="GridCell.Tab.1.bottom" timestamp="1582246228820">
       <screen x="0" y="23" width="1440" height="793" />
     </state>
@@ -324,9 +331,18 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.1.right/0.23.1440.793@0.23.1440.793" timestamp="1582246228820" />
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1582309276859">
-      <screen x="0" y="23" width="1440" height="793" />
+    <state x="397" y="276" key="com.intellij.ide.util.TipDialog" timestamp="1582403833073">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.793@0.23.1440.793" timestamp="1582309276859" />
+    <state x="397" y="276" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1582403833073" />
+    <state x="503" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582403873346">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="503" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877@0.23.1440.877" timestamp="1582403873346" />
+    <state x="424" y="260" key="git4idea.merge.GitPullDialog" timestamp="1582403884570">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="424" y="260" key="git4idea.merge.GitPullDialog/0.23.1440.877@0.23.1440.877" timestamp="1582403884570" />
   </component>
 </project>
