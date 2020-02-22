@@ -1,4 +1,4 @@
-package com.Aster.domain;
+package com.Aster.Repository;
 
 public class Customer extends User {
 }

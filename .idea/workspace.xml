@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Bouquet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Bouquet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Florist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Florist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,17 +47,6 @@
                 <item name="florist" type="f1a62948:ProjectNode" />
                 <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
                 <item name="test" type="396b929e:GradleViewContributor$SourceSetNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="florist" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="florist" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />

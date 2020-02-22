@@ -1,6 +1,4 @@
-package com.Aster.domain;
-
-import org.springframework.expression.spel.ast.NullLiteral;
+package com.Aster.Repository;
 
 public class User {
     private String user_name;
