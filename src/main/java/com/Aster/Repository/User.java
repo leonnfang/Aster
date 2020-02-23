@@ -8,7 +8,7 @@ public class User {
     private String address;
     private String lastName;
     private String firstName;
-
+    private History history;
     User(UserBuilder ub) {
         if(ub.user_name == null || ub.password == null){
             throw new NullPointerException("The information is not complete");
@@ -19,6 +19,7 @@ public class User {
         this.email = ub.email;
         this.address = ub.address;
         this.password = ub.password;
+        this.history = ub.history;
     }
 
     String get_Username() {
@@ -39,6 +40,7 @@ public class User {
     String getFirstName(){
         return firstName;
     }
+    History getHistory(){return history; }
     static class UserBuilder {
         String user_name;
         String password;
@@ -46,7 +48,7 @@ public class User {
         String address;
         String lastName;
         String firstName;
-
+        History history;
         public UserBuilder withid(String id) {
             this.user_name = id;
             return this;
@@ -69,6 +71,10 @@ public class User {
         }
         public UserBuilder withfirstName(String firstName){
             this.firstName = firstName;
+            return this;
+        }
+        public UserBuilder withHistory(History history){
+            this.history = history;
             return this;
         }
         public User build(){
