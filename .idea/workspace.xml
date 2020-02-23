@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/History.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/EmailList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Service/MakeOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Service/Notification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Bouquet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Bouquet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +317,7 @@
       <workItem from="1582403830851" duration="1395000" />
       <workItem from="1582406998207" duration="912000" />
       <workItem from="1582408971529" duration="17000" />
-      <workItem from="1582409053190" duration="4005000" />
+      <workItem from="1582409053190" duration="4793000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;fix subclass&quot;">
       <created>1582407089071</created>
@@ -339,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582413476268</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="&quot;update the repo&quot;">
+      <created>1582424070530</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582424070530</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +360,8 @@
     <MESSAGE value="&quot;fix subclass&quot;" />
     <MESSAGE value="&quot;add test files&quot;" />
     <MESSAGE value="&quot;test files&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;test files&quot;" />
+    <MESSAGE value="&quot;update the repo&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;update the repo&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="391" y="64" key="#Aster" timestamp="1582158212343">
@@ -377,14 +386,14 @@
     </state>
     <state x="229" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.793@0.23.1440.793" timestamp="1582158220441" />
     <state x="267" y="191" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027/-1371.-1669.3008.1669@0.23.1680.1027" timestamp="1581713757140" />
-    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1582404574574">
+    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1582424678576">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582404574574" />
-    <state x="303" y="64" key="CommitChangelistDialog2" timestamp="1582413476074">
+    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582424678576" />
+    <state x="303" y="64" key="CommitChangelistDialog2" timestamp="1582424070199">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582413476074" />
+    <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582424070199" />
     <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1582412982162">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
