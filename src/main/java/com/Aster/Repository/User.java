@@ -1,6 +1,9 @@
 package com.Aster.Repository;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     private String user_name;
     private String password;
@@ -9,7 +12,27 @@ public class User {
     private String lastName;
     private String firstName;
     private History history;
-    User(UserBuilder ub) {
+
+    public User(@JsonProperty("user_name") String user_name,@JsonProperty("password") String password,@JsonProperty("email") String email) {
+        this.user_name = user_name;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User(String user_name, String password, String email, String address, String lastName, String firstName, History history) {
+        this.user_name = user_name;
+        this.password = password;
+        this.email = email;
+        this.address = address;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.history = history;
+    }
+    public String getEmail(){
+        return email;
+    }
+    public String getUser_name(){return user_name;}
+    /*User(UserBuilder ub) {
         if(ub.user_name == null || ub.password == null){
             throw new NullPointerException("The information is not complete");
         }
@@ -21,8 +44,8 @@ public class User {
         this.password = ub.password;
         this.history = ub.history;
     }
-
-    String get_Username() {
+*/
+    /*String get_Username() {
         return user_name;
     }
     String getPassword() {
@@ -80,5 +103,9 @@ public class User {
         public User build(){
             return new User(this);
         }
-    }
+    }*/
 }
+
+/*
+
+ */
