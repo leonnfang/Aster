@@ -19,7 +19,13 @@ public class User {
         this.email = email;
     }
 
-    public User(String user_name, String password, String email, String address, String lastName, String firstName, History history) {
+    public User(@JsonProperty String user_name,
+                @JsonProperty String password,
+                @JsonProperty String email,
+                @JsonProperty String address,
+                @JsonProperty String lastName,
+                @JsonProperty String firstName,
+                @JsonProperty History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
@@ -32,78 +38,54 @@ public class User {
         return email;
     }
     public String getUser_name(){return user_name;}
-    /*User(UserBuilder ub) {
-        if(ub.user_name == null || ub.password == null){
-            throw new NullPointerException("The information is not complete");
-        }
-        this.user_name = ub.user_name;
-        this.lastName = ub.lastName;
-        this.firstName = ub.firstName;
-        this.email = ub.email;
-        this.address = ub.address;
-        this.password = ub.password;
-        this.history = ub.history;
-    }
-*/
-    /*String get_Username() {
-        return user_name;
-    }
-    String getPassword() {
+
+    public String getPassword() {
         return password;
     }
-    String getEmail() {
-        return email;
-    }
-    String getAddress() {
+
+    public String getAddress() {
         return address;
     }
-    String getLastName(){
-        return lastName;
-    }
-    String getFirstName(){
+
+    public String getFirstName() {
         return firstName;
     }
-    History getHistory(){return history; }
-    static class UserBuilder {
-        String user_name;
-        String password;
-        String email;
-        String address;
-        String lastName;
-        String firstName;
-        History history;
-        public UserBuilder withid(String id) {
-            this.user_name = id;
-            return this;
-        }
-        public UserBuilder withPassword(String password){
-            this.password = password;
-            return this;
-        }
-        public UserBuilder withEmail(String email){
-            this.email = email;
-            return this;
-        }
-        public UserBuilder withaddress(String address){
-            this.address = address;
-            return this;
-        }
-        public UserBuilder withlastName(String lastName){
-            this.lastName = lastName;
-            return this;
-        }
-        public UserBuilder withfirstName(String firstName){
-            this.firstName = firstName;
-            return this;
-        }
-        public UserBuilder withHistory(History history){
-            this.history = history;
-            return this;
-        }
-        public User build(){
-            return new User(this);
-        }
-    }*/
+
+    public History getHistory() {
+        return history;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
 }
 
 /*
