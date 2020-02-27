@@ -39,25 +39,15 @@ public class User {
     }
     public String getUser_name(){return user_name;}
 
-    public String getPassword() {
-        return password;
-    }
+    public String getPassword() { return password; }
 
-    public String getAddress() {
-        return address;
-    }
+    public String getAddress() { return address; }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() { return firstName; }
 
-    public History getHistory() {
-        return history;
-    }
+    public History getHistory() { return history; }
 
-    public String getLastName() {
-        return lastName;
-    }
+    public String getLastName() { return lastName; }
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
@@ -79,13 +69,9 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setHistory(History history) {
-        this.history = history;
-    }
+    public void setHistory(History history) { this.history = history; }
 }
 
 /*

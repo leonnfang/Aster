@@ -18,8 +18,13 @@ public class UserDatabaseController {
     // Constructor of UserDatabaseController
 
     @PostMapping("/ADD_USER")
-    public int Add_User(@RequestBody User user){
+    public int Add_User(@RequestBody User user) throws Exception {
         return userdb.AddUser(user);
+    }
+    @GetMapping("/GET_username")
+    public String Get_username(@RequestBody String email) throws Exception{
+        System.out.println("getting username");
+        return userdb.Get_username(email);
     }
 
 }
