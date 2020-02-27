@@ -21,8 +21,8 @@ public class UserDB implements CollectionOfUserDBAPI{
         System.out.println(user.getEmail());
         return 0;
     }
-    public String Get_username(@JsonProperty String email) throws Exception{
-        // Error!!! need to convert json object back to java object
+    @Override
+    public String Get_username(String email) throws Exception{
         if(email == null){
             throw new Exception("Email is not valid");
         }else if(!UserMap.containsKey(email)){

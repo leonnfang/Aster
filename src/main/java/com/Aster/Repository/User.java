@@ -13,7 +13,9 @@ public class User {
     private String firstName;
     private History history;
 
-    public User(@JsonProperty("user_name") String user_name,@JsonProperty("password") String password,@JsonProperty("email") String email) {
+    public User(@JsonProperty("user_name") String user_name,
+                @JsonProperty("password") String password,
+                @JsonProperty("email") String email) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
