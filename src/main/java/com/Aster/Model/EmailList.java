@@ -18,13 +18,7 @@ public class EmailList {
         this.floristList = floristList;
     }
     public void iterateFlorist(){
-        for(Customer e : customersList){
-
-        }
     }
     public void iterateCustomer(){
-        for(Florist e : floristList){
-
-        }
     }
 }
