@@ -32,4 +32,7 @@ public class UserDB implements CollectionOfUserDBAPI{
             return UserMap.get(email).getUser_name();
         }
     }
+    public User Get_user(String email){
+        return UserMap.get(email);
+    }
 }
