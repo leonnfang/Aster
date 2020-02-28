@@ -1,4 +1,4 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 
 public class Florist extends User{
     private Inventory inventory;

@@ -1,7 +1,6 @@
 package com.Aster.Database;
 import java.util.*;
-import com.Aster.Repository.User;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.Aster.Model.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

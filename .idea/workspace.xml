@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="">
+    <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="&quot;minor updates&quot;">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/SearchFlowers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/SerarchFlorist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Database/CustomerDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Database/FloristDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/CustomerDatabaseAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/CustomerDatabaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/FloristDatabaseAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/FloristDatabaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/UserDatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/UserDatabaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Database/CollectionOfUserDBAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Database/CollectionOfUserDBAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Database/UserDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Database/UserDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Bouquet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Bouquet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/EmailList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/EmailList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Florist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Florist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Repository/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +95,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -373,7 +391,8 @@
       <workItem from="1582409053190" duration="5748000" />
       <workItem from="1582583205696" duration="6822000" />
       <workItem from="1582752731778" duration="8413000" />
-      <workItem from="1582862376734" duration="1399000" />
+      <workItem from="1582862376734" duration="2006000" />
+      <workItem from="1582919318864" duration="769000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;fix subclass&quot;">
       <created>1582407089071</created>
@@ -452,7 +471,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582862661297</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="&quot;minor updates&quot;">
+      <created>1582864355218</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1582864355218</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -499,13 +525,13 @@
     <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582591854261" />
     <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582753962199" />
     <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1582762111786" />
-    <state x="354" y="71" key="CommitChangelistDialog2" timestamp="1582862660761">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="1844" y="-761" key="CommitChangelistDialog2" timestamp="1582920496797">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582593265811" />
-    <state x="1844" y="-761" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582753978290" />
+    <state x="1844" y="-761" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582920496797" />
     <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1582766930580" />
-    <state x="354" y="71" key="CommitChangelistDialog2/0.23.1680.1027/-1408.-1669.3008.1669@0.23.1680.1027" timestamp="1582862660761" />
+    <state x="354" y="71" key="CommitChangelistDialog2/0.23.1680.1027/-1408.-1669.3008.1669@0.23.1680.1027" timestamp="1582864354873" />
     <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1582772616457">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -558,11 +584,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="220" y="100" key="SettingsEditor/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582409078054" />
-    <state x="463" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1582862376723">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="397" y="276" key="com.intellij.ide.util.TipDialog" timestamp="1582919344918">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.793@0.23.1440.793" timestamp="1582309276859" />
-    <state x="397" y="276" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582752732435" />
+    <state x="397" y="276" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582919344918" />
     <state x="397" y="276" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1582583206108" />
     <state x="463" y="319" key="com.intellij.ide.util.TipDialog/0.23.1680.1027/-1408.-1669.3008.1669@0.23.1680.1027" timestamp="1582862376723" />
     <state x="503" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582403873346">

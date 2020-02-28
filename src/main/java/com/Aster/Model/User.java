@@ -1,7 +1,6 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {

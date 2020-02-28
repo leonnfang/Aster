@@ -1,4 +1,4 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 
 public class Customer extends User {
     public Customer(String user_name, String password, String email) {
