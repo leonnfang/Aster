@@ -24,5 +24,9 @@ public class UserDatabaseController {
         System.out.println("getting username");
         return userdb.Get_username(email);
     }
+    @GetMapping("/GET_user")
+    public User Get_user(@RequestParam String email){
+        return userdb.Get_user(email);
+    }
 
 }
