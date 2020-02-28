@@ -1,4 +1,4 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 import javafx.util.Pair;
 
 import java.util.*;

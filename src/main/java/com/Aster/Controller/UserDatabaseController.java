@@ -1,11 +1,8 @@
 package com.Aster.Controller;
 import com.Aster.Database.UserDB;
-import com.Aster.Repository.User;
+import com.Aster.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
-import java.util.List;
 
 @RestController
 public class UserDatabaseController {

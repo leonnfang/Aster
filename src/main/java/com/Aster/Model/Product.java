@@ -1,4 +1,4 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 
 public class Product {
     private String name;

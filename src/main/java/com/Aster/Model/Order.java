@@ -1,4 +1,4 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 
 public class Order {
     private Florist florist;

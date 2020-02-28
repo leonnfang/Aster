@@ -1,4 +1,4 @@
-package com.Aster.Repository;
+package com.Aster.Model;
 import java.util.*;
 public class EmailList {
     private List<Customer> customersList = new ArrayList<>();
