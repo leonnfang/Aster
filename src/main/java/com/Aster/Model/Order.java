@@ -1,10 +1,22 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
     private Florist florist;
     private Customer customer;
     private String date;
     private Product product;
+
+    public Order(@JsonProperty Florist florist,
+                 @JsonProperty Customer customer,
+                 @JsonProperty String date,
+                 @JsonProperty Product product) {
+        this.florist = florist;
+        this.customer = customer;
+        this.date = date;
+        this.product = product;
+    }
 
     public Florist getFlorist() {
         return florist;

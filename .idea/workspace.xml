@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/florist-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/florist-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/com.Aster.FloristApplicationTests.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/com.Aster.FloristApplicationTests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/com.Aster.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/com.Aster.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-com.Aster.FloristApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/TEST-com.Aster.FloristApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Controller/UserDatabaseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Service/MakeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Service/MakeOrder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +134,7 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RunManager" selected="Gradle.Aster [bootRun]">
+  <component name="RunManager" selected="Gradle.Aster [build]">
     <configuration name="Aster [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -374,7 +394,7 @@
       <workItem from="1582583205696" duration="6822000" />
       <workItem from="1582752731778" duration="8413000" />
       <workItem from="1582862376734" duration="2006000" />
-      <workItem from="1582919318864" duration="1948000" />
+      <workItem from="1582919318864" duration="4308000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;fix subclass&quot;">
       <created>1582407089071</created>
@@ -481,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582921803537</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="&quot;minor updates&quot;">
+      <created>1582922471781</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1582922471781</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,6 +531,10 @@
       <screen x="0" y="23" width="1440" height="793" />
     </state>
     <state x="391" y="64" key="#Aster/0.23.1440.793@0.23.1440.793" timestamp="1582158212343" />
+    <state x="2004" y="-627" key="#Inspections" timestamp="1582923234088">
+      <screen x="1440" y="-810" width="1920" height="1057" />
+    </state>
+    <state x="2004" y="-627" key="#Inspections/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582923234088" />
     <state x="141" y="127" width="989" height="669" key="#Project_Structure" timestamp="1582408899506">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -522,17 +553,17 @@
     </state>
     <state x="229" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.793@0.23.1440.793" timestamp="1582158220441" />
     <state x="267" y="191" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027/-1371.-1669.3008.1669@0.23.1680.1027" timestamp="1581713757140" />
-    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1582762111786">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser" timestamp="1582924443172">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582591854261" />
-    <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582753962199" />
+    <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582924443172" />
     <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1582762111786" />
-    <state x="1844" y="-761" key="CommitChangelistDialog2" timestamp="1582921803343">
+    <state x="1844" y="-761" key="CommitChangelistDialog2" timestamp="1582922471583">
       <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582593265811" />
-    <state x="1844" y="-761" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582921803343" />
+    <state x="1844" y="-761" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582922471583" />
     <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1582766930580" />
     <state x="354" y="71" key="CommitChangelistDialog2/0.23.1680.1027/-1408.-1669.3008.1669@0.23.1680.1027" timestamp="1582864354873" />
     <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1582772616457">
