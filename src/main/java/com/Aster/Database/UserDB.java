@@ -25,17 +25,29 @@ public class UserDB {
     }
     public String getUsername(String email) throws Exception{
         if(email == null){
-            throw new Exception("Email is not valid");
-        }else if(!UserMap.containsKey(email)){
-            System.out.println("checking if the email exits or not"+email);
+            throw new Exception("It is not a valid email");
+        }
+        else if(!UserMap.containsKey(email)){
+            System.out.println("checking if the email exists: " + email);
             throw new Exception("Email dose not exist");
-        }else{
-            return UserMap.get(email).getUser_name();
+        }
+        else{
+            return UserMap.get(email).getUsername();
         }
     }
     public int deleteUser(String email) throws Exception {
-        return 0;
+        if (email == null) {
+            throw new Exception("It is not a valid email");
+        } else if (!UserMap.containsKey(email)) {
+            System.out.println("checking if the email exists: " + email);
+            throw new Exception("Email dose not exist");
+        } else {
+            UserMap.remove(email);
+            System.out.println("The account was deleted successively");
+            return 0;
+        }
     }
+
     public int addOrder(Order order){
         return 0;
     }
@@ -52,7 +64,7 @@ public class UserDB {
         return new Emaillist();
     }
     public List<Product> getProduct(){
-        return new ArrayList<>();
+        return new ArrayList<Product>();
     }
 
 }
