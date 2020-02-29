@@ -1,6 +1,6 @@
 package com.Aster.Model;
 import java.util.*;
-public class EmailList {
+public class Emaillist {
     private List<Customer> customersList = new ArrayList<>();
     private List<Florist> floristList = new ArrayList<>();
     public List<Customer> getCustomersList() {

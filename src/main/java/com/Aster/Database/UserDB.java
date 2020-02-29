@@ -1,13 +1,16 @@
 package com.Aster.Database;
 import java.util.*;
-import com.Aster.Model.User;
+
+import com.Aster.Model.*;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.*;
+
 @Repository
-public class UserDB implements CollectionOfUserDBAPI{
+public class UserDB {
     Map<String,User> UserMap = new HashMap<>();
-    @Override
-    public int AddUser(User user) throws Exception {
+
+    public int addUser(User user) throws Exception {
         if(UserMap.containsKey(user.getEmail())){
             throw new Exception("User already exits");
         }
@@ -20,8 +23,7 @@ public class UserDB implements CollectionOfUserDBAPI{
         System.out.println(user.getEmail());
         return 0;
     }
-    @Override
-    public String Get_username(String email) throws Exception{
+    public String getUsername(String email) throws Exception{
         if(email == null){
             throw new Exception("Email is not valid");
         }else if(!UserMap.containsKey(email)){
@@ -31,7 +33,26 @@ public class UserDB implements CollectionOfUserDBAPI{
             return UserMap.get(email).getUser_name();
         }
     }
-    public User Get_user(String email){
-        return UserMap.get(email);
+    public int deleteUser(String email){
+        return 0;
     }
+    public int addOrder(Order order){
+        return 0;
+    }
+    public int cancelOrder(Order order){
+        return 0;
+    }
+    public History getHistory(User user){
+        return user.getHistory();
+    }
+    public Inventory getInventory(Florist florist){
+        return florist.getInventory();
+    }
+    public Emaillist getEmaillist(){
+        return new Emaillist();
+    }
+    public List<Product> getProduct(){
+        return new ArrayList<>();
+    }
+
 }
