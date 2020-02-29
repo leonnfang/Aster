@@ -1,12 +1,20 @@
 package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import java.util.*;
 
 public class Order {
     private Florist florist;
     private Customer customer;
     private String date;
     private Product product;
+
+    public Order() {
+    }
 
     public Order(@JsonProperty Florist florist,
                  @JsonProperty Customer customer,

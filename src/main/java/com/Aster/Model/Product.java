@@ -1,5 +1,7 @@
 package com.Aster.Model;
 
+import org.springframework.stereotype.Component;
+
 public class Product {
     private String name;
     private double price;

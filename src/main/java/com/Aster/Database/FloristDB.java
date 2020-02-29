@@ -1,5 +1,10 @@
 package com.Aster.Database;
 
-public class FloristDB extends UserDB {
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class FloristDB extends UserDB {
+    public int addOrder(){
+        return 0;
+    }
 }

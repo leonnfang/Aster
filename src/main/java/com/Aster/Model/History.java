@@ -1,5 +1,8 @@
 package com.Aster.Model;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
+
 public class History {
     private List<Order> orderList = new ArrayList<>();
 

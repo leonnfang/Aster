@@ -1,23 +1,13 @@
 package com.Aster.Controller;
-import com.Aster.Database.UserDB;
-import com.Aster.Model.Order;
-import com.Aster.Model.User;
-import com.Aster.Service.MakeOrder;
+import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 @RestController
 public class OrderController {
-    private MakeOrder orderbuilder;
-
-    //Error!!
+    private OrderService orderbuilder;
     @Autowired
-    public OrderController(MakeOrder order){
+    public OrderController(OrderService order){
         this.orderbuilder = order;
     }
 
-    @PostMapping("/PLACE_order")
-    public int Place_order(@RequestBody Order order){
-        orderbuilder.Add_order();
-        return 0;
-    }
 }
