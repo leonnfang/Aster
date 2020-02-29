@@ -5,6 +5,8 @@ import com.Aster.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
+
 @RestController
 public class UserController {
     private UserDB userdb;
@@ -14,12 +16,19 @@ public class UserController {
     // Constructor of UserDatabaseController
 
     @PostMapping("/ADD_USER")
-    public int Add_User(@RequestBody User user) throws Exception {
+    public int addUser(@RequestBody User user) throws Exception {
         return userdb.addUser(user);
     }
-    @GetMapping("/GET_username")
-    public String Get_username(@RequestParam String email) throws Exception{
+
+    @GetMapping("/GET_USERNAME")
+    public String getUsername(@RequestParam String email) throws Exception{
         System.out.println("getting username");
         return userdb.getUsername(email);
+    }
+
+    @GetMapping("/DELETE_USER")
+    public int deleteUser(@RequestParam String email) throws Exception{
+        System.out.println("deleting user with email: " + email);
+        return userdb.deleteUser(email);
     }
 }
