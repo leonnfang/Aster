@@ -5,6 +5,7 @@ public class Order {
     private Customer customer;
     private String date;
     private Product product;
+    private int quantity;
 
     public Florist getFlorist() {
         return florist;
@@ -36,5 +37,13 @@ public class Order {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
