@@ -24,4 +24,6 @@ public class CustomerService {
     public int deleteCustomer(String email) throws Exception{
         return customerDB.deleteUser(email);
     }
+
+
 }
