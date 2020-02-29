@@ -2,8 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7742f5d2-edca-432f-83af-787d8d9f6b6d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Model/EmailList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/EmailList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.0.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/florist-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/florist-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/classes/com.Aster.FloristApplicationTests.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/classes/com.Aster.FloristApplicationTests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/packages/com.Aster.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/packages/com.Aster.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/TEST-com.Aster.FloristApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/TEST-com.Aster.FloristApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Service/MakeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Service/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/Aster/Service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/Aster/Service/test.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +133,7 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RunManager" selected="Gradle.Aster [bootRun]">
+  <component name="RunManager" selected="Gradle.Aster [build]">
     <configuration name="Aster [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -509,11 +527,11 @@
     </state>
     <state x="229" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.793@0.23.1440.793" timestamp="1582158220441" />
     <state x="267" y="191" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027/-1371.-1669.3008.1669@0.23.1680.1027" timestamp="1581713757140" />
-    <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1582762111786">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser" timestamp="1583006276990">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582591854261" />
-    <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582753962199" />
+    <state x="2151" y="-616" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1583006276990" />
     <state x="533" y="184" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1582762111786" />
     <state x="1844" y="-761" key="CommitChangelistDialog2" timestamp="1582921699413">
       <screen x="1440" y="-810" width="1920" height="1057" />
@@ -522,36 +540,36 @@
     <state x="1844" y="-761" key="CommitChangelistDialog2/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582921699413" />
     <state x="303" y="64" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1582766930580" />
     <state x="354" y="71" key="CommitChangelistDialog2/0.23.1680.1027/-1408.-1669.3008.1669@0.23.1680.1027" timestamp="1582864354873" />
-    <state width="1398" height="230" key="GridCell.Tab.0.bottom" timestamp="1582772616457">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1488" height="247" key="GridCell.Tab.0.bottom" timestamp="1583006325797">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.793@0.23.1440.793" timestamp="1582246228819" />
     <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582593393488" />
-    <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582756548951" />
+    <state width="1488" height="247" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1583006325797" />
     <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582772616457" />
     <state width="1398" height="230" key="GridCell.Tab.0.bottom/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611402" />
-    <state width="1398" height="230" key="GridCell.Tab.0.center" timestamp="1582772616457">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1488" height="247" key="GridCell.Tab.0.center" timestamp="1583006325796">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.793@0.23.1440.793" timestamp="1582246228819" />
     <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582593393485" />
-    <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582756548950" />
+    <state width="1488" height="247" key="GridCell.Tab.0.center/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1583006325796" />
     <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582772616457" />
     <state width="1398" height="230" key="GridCell.Tab.0.center/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611401" />
-    <state width="1398" height="230" key="GridCell.Tab.0.left" timestamp="1582772616456">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1488" height="247" key="GridCell.Tab.0.left" timestamp="1583006325795">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.793@0.23.1440.793" timestamp="1582246228818" />
     <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582593393484" />
-    <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582756548950" />
+    <state width="1488" height="247" key="GridCell.Tab.0.left/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1583006325795" />
     <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582772616456" />
     <state width="1398" height="230" key="GridCell.Tab.0.left/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611400" />
-    <state width="1398" height="230" key="GridCell.Tab.0.right" timestamp="1582772616457">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state width="1488" height="247" key="GridCell.Tab.0.right" timestamp="1583006325797">
+      <screen x="1440" y="-810" width="1920" height="1057" />
     </state>
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.793@0.23.1440.793" timestamp="1582246228819" />
     <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1440.877/1440.-810.1920.1057@0.23.1440.877" timestamp="1582593393487" />
-    <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1582756548951" />
+    <state width="1488" height="247" key="GridCell.Tab.0.right/0.23.1440.877/1440.-810.1920.1057@1440.-810.1920.1057" timestamp="1583006325797" />
     <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582772616457" />
     <state width="1398" height="230" key="GridCell.Tab.0.right/0.23.1680.1027/-3008.-1089.3008.1669@0.23.1680.1027" timestamp="1582341611401" />
     <state width="1398" height="203" key="GridCell.Tab.1.bottom" timestamp="1582246228820">

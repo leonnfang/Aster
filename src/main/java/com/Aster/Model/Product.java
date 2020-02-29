@@ -3,13 +3,13 @@ package com.Aster.Model;
 public class Product {
     private String name;
     private double price;
-    private String descirption;
+    private String description;
     private String storeName;
 
     public Product(String name, double price, String descirption, String storeName) {
         this.name = name;
         this.price = price;
-        this.descirption = descirption;
+        this.description = descirption;
         this.storeName = storeName;
     }
 
@@ -29,12 +29,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getDescirption() {
-        return descirption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescirption(String descirption) {
-        this.descirption = descirption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStoreName() {
