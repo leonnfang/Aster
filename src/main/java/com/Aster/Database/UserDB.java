@@ -34,4 +34,8 @@ public class UserDB implements CollectionOfUserDBAPI{
     public User Get_user(String email){
         return UserMap.get(email);
     }
+    public int deleteUser(String email){
+        return 0;
+    }
+
 }
