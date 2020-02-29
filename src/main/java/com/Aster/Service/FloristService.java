@@ -13,7 +13,9 @@ public class FloristService {
     public FloristService(FloristDB floristDB) {
         this.floristDB = floristDB;
     }
+
     public int addFlorist(Florist florist) throws Exception {
+        System.out.println("in Service layer");
         floristDB.addUser(florist);
         return 0;
     }

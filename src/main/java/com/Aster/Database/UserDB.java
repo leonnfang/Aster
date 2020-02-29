@@ -33,7 +33,7 @@ public class UserDB {
             return UserMap.get(email).getUser_name();
         }
     }
-    public int deleteUser(String email){
+    public int deleteUser(String email) throws Exception {
         return 0;
     }
     public int addOrder(Order order){
