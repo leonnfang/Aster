@@ -28,7 +28,7 @@ public class UserDB {
             throw new Exception("It is not a valid email");
         }
         else if(!UserMap.containsKey(email)){
-            System.out.println("checking if the email exits or not"+email);
+            System.out.println("checking if the email exists: " + email);
             throw new Exception("Email dose not exist");
         }
         else{
@@ -39,7 +39,7 @@ public class UserDB {
         if (email == null) {
             throw new Exception("It is not a valid email");
         } else if (!UserMap.containsKey(email)) {
-            System.out.println("checking if the email exits or not" + email);
+            System.out.println("checking if the email exists: " + email);
             throw new Exception("Email dose not exist");
         } else {
             UserMap.remove(email);
