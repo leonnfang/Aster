@@ -38,7 +38,7 @@ public class User {
     public String getEmail(){
         return email;
     }
-    public String getUser_name(){return user_name;}
+    public String getUsername(){return user_name;}
 
     public String getPassword() { return password; }
 
