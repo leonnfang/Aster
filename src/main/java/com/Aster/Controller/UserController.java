@@ -1,4 +1,5 @@
 package com.Aster.Controller;
+import com.Aster.Database.FloristDB;
 import com.Aster.Database.UserDB;
 import com.Aster.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLOutput;
 
 @RestController
-public class UserDatabaseController {
+public class UserController {
     private UserDB userdb;
     // Local Variable of UserDatabaseController
     @Autowired
-    public UserDatabaseController(UserDB userdb){this.userdb = userdb;}
+    public UserController(FloristDB userdb){this.userdb = userdb;}
     // Constructor of UserDatabaseController
 
     @PostMapping("/ADD_USER")
@@ -30,6 +31,4 @@ public class UserDatabaseController {
         System.out.println("deleting user with email: " + email);
         return userdb.deleteUser(email);
     }
-
-
 }
