@@ -93,5 +93,19 @@ public class CustomerDB {
     }
 
 
+    public List<Order> viewHistory(String email){
+        Customer customer = customerMap.get(email);
+        List<Order> cur_history = customer.getHistory().getOrderList();
+        for(Order order : cur_history){
+            System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
+            System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
+        }
+        return cur_history;
+    }
+    public int updateHistory(String email, int opt){
+        return 0;
+    }
+
+
 
 }

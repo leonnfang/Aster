@@ -48,6 +48,8 @@ public class CustomerService {
 
         //send order to florist
 
+        //update history
+
         //empty cart
         customerDB.emptyCart(email);
         return 0;
