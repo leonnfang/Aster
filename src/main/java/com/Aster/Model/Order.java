@@ -7,6 +7,14 @@ public class Order {
     private Product product;
     private int quantity;
 
+    public Order(Florist florist, Customer customer, String date, Product product, int quantity){
+        this.florist = florist;
+        this.customer = customer;
+        this.date = date;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Florist getFlorist() {
         return florist;
     }
