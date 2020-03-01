@@ -13,8 +13,7 @@ public class Order {
                  @JsonProperty Customer customer,
                  @JsonProperty String date,
                  @JsonProperty Product product,
-                 @JsonProperty int quantity) {
-        System.out.println("in constructor");
+                 @JsonProperty int quantity){
         this.florist = florist;
         this.customer = customer;
         this.date = date;

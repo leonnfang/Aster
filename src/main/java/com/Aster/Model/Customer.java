@@ -1,10 +1,13 @@
 package com.Aster.Model;
 
 public class Customer extends User {
+    private Cart cart;
+
     public Customer(String user_name, String password, String email) {
         super(user_name, password, email);
     }
-    /*Customer(UserBuilder ub) {
-        super(ub);
-    }*/
+
+    public Cart getCart(){
+        return cart;
+    }
 }
