@@ -2,7 +2,6 @@ package com.Aster.Service;
 
 import com.Aster.Database.CustomerDB;
 import com.Aster.Model.Customer;
-import com.Aster.Model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,21 +13,20 @@ public class CustomerService {
     public CustomerService(CustomerDB customerDB){this.customerDB = customerDB;}
 
     public int addCustomer(Customer customer) throws Exception{
-        customerDB.addUser(customer);
+        customerDB.addCustomer(customer);
         return 0;
     }
 
     public String getCustomername(String email) throws Exception{
-        return customerDB.getUsername(email);
+        return customerDB.getCustomername(email);
     }
 
     public int deleteCustomer(String email) throws Exception{
-        return customerDB.deleteUser(email);
+        return customerDB.deleteCustomer(email);
     }
 
-    public int addtoCart(String email, Order order) throws Exception{
-
-        return customerDB.addtoCart(email, order);
-    }
+    /*public int addCart(String email, Order order) throws Exception{
+        return customerDB.addCart(email, order);
+    }*/
 
 }

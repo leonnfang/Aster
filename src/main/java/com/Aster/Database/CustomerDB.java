@@ -5,19 +5,55 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class CustomerDB extends UserDB {
+public class CustomerDB {
     Map<String,Customer> customerMap = new HashMap<>();
 
-    public int addCostomer(Customer customer) throws Exception {
-        if(customer == null || customerMap.containsKey(customer.getEmail())){
-            throw new Exception("Invalid customer");
+    public int addCustomer(Customer customer) throws Exception {
+        if(customer == null){
+            throw new Exception("Invalid Customer");
         }
-        customerMap.put(customer.getEmail(),customer);
-        System.out.println("Florist was created successfully");
+        if(customerMap.containsKey(customer.getEmail())){
+            throw new Exception("User already exits");
+        }
+
+        customerMap.put(customer.getEmail(), customer);
+        System.out.println("Customer was created successfully");
+        System.out.println(customer.getEmail());
+        return 0;
+    }
+    public String getCustomername(String email) throws Exception{
+        if(email == null){
+            throw new Exception("It is not a valid email");
+        }
+        else if(!customerMap.containsKey(email)){
+            System.out.println("checking if the email exists: " + email);
+            throw new Exception("Email dose not exist");
+        }
+        else{
+            return customerMap.get(email).getUser_name();
+        }
+    }
+    public int deleteCustomer(String email) throws Exception {
+        if (email == null) {
+            throw new Exception("It is not a valid email");
+        } else if (!customerMap.containsKey(email)) {
+            System.out.println("checking if the email exists: " + email);
+            throw new Exception("Email dose not exist");
+        } else {
+            customerMap.remove(email);
+            System.out.println("The account was deleted successively");
+            return 0;
+        }
+    }
+
+    public int addOrder(Order order){
+        return 0;
+    }
+    public int cancelOrder(Order order){
         return 0;
     }
 
-    public int addtoCart(String email, Order order){
+    public int addCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -27,7 +63,7 @@ public class CustomerDB extends UserDB {
         return 0;
     }
 
-    public int removefromCart(String email, Order order){
+    public int removeCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -52,32 +88,6 @@ public class CustomerDB extends UserDB {
         }
     }
 
-    @Override
-    public int addOrder(Order order){
-        if(order == null){
-            throw new NullPointerException("order pointer is null");
-        }
 
-        return 0;
-    }
-    @Override
-    public int cancelOrder(Order order){
-
-        return 0;
-    }
-    @Override
-    public History getHistory(User user){
-
-        return user.getHistory();
-    }
-    @Override
-    public Inventory getInventory(Florist florist){
-
-        return florist.getInventory();
-    }
-    @Override
-    public List<Product> getProduct(){
-        return new ArrayList<Product>();
-    }
 
 }
