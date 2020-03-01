@@ -46,12 +46,14 @@ public class CustomerDB {
         }
     }
 
+
     public int addOrder(Order order){
         return 0;
     }
     public int cancelOrder(Order order){
         return 0;
     }
+
 
     public int addCart(String email, Order order){
         if(order == null) {
@@ -62,30 +64,32 @@ public class CustomerDB {
         cur_cart.add(order);
         return 0;
     }
-
     public int removeCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
-        cur_cart.remove(order);
+        if(!cur_cart.contains(order)){
+            System.out.println("Such Order does not exist in your cart");
+            return 1;
+        }
+        else cur_cart.remove(order);
         return 0;
     }
-
     public int emptyCart(String email){
         Customer customer = customerMap.get(email);
         customer.getCart().getCartList().clear();
         return 0;
     }
-
-    public void viewCart(String email){
+    public List<Order> viewCart(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
         for(Order order : cur_cart){
             System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
             System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
         }
+        return cur_cart;
     }
 
 

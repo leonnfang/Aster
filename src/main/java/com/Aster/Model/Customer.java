@@ -7,33 +7,27 @@ public class Customer{
     private String password;
     private String email;
     private String address;
-    private String lastName;
-    private String firstName;
     private History history;
     private Cart cart;
 
     public Customer(@JsonProperty("user_name") String user_name,
-                @JsonProperty("password") String password,
-                @JsonProperty("email") String email) {
+                    @JsonProperty("password") String password,
+                    @JsonProperty("email") String email) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
     }
 
     public Customer(@JsonProperty("user_name") String user_name,
-                @JsonProperty("password") String password,
-                @JsonProperty("email") String email,
-                @JsonProperty("address") String address,
-                @JsonProperty("lastName") String lastName,
-                @JsonProperty("firstName") String firstName,
-                @JsonProperty("history") History history,
-                @JsonProperty("cart") Cart cart) {
+                    @JsonProperty("password") String password,
+                    @JsonProperty("email") String email,
+                    @JsonProperty("address") String address,
+                    @JsonProperty("history") History history,
+                    @JsonProperty("cart") Cart cart) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
-        this.lastName = lastName;
-        this.firstName = firstName;
         this.history = history;
         this.cart = cart;
     }
@@ -68,22 +62,6 @@ public class Customer{
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public History getHistory() {

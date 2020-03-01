@@ -5,6 +5,8 @@ import com.Aster.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -21,26 +23,35 @@ public class CustomerController {
         System.out.println("controller layer");
         return customerService.addCustomer(customer);
     }
-
     @GetMapping("/get")
     public String getCustomername(@RequestParam String email) throws Exception{
         System.out.println("getting username");
         return customerService.getCustomername(email);
     }
-
-    @DeleteMapping("/delete")
-    public int deleteCustomer(@RequestParam String email) throws Exception{
+    @DeleteMapping("/{email}/delete")
+    public int deleteCustomer(@PathVariable String email) throws Exception{
         System.out.println("deleting user with email: " + email);
         return customerService.deleteCustomer(email);
     }
 
-    /*@PostMapping("/cart/add")
-    public int addCart(@RequestBody Order order, @RequestParam String email) throws Exception{
+
+    @PostMapping("/{email}/cart/add")
+    public int addCart(@PathVariable String email, @RequestBody Order order) throws Exception{
         System.out.println("adding to cart");
         return customerService.addCart(email, order);
-    }*/
-
-
-
-
+    }
+    @GetMapping("/{email}/cart/view")
+    @ResponseBody
+    public List<Order> viewCart(@PathVariable String email) throws Exception{
+        return customerService.viewCart(email);
+    }
+    @DeleteMapping("/{email}/cart/empty")
+    public int emptyCart(@PathVariable String email) throws Exception{
+        System.out.println("emptying cart");
+        return customerService.emptyCart(email);
+    }
+    @DeleteMapping("/{email}/cart/remove")
+    public int removeCart(@PathVariable String email, @RequestBody Order order) throws Exception{
+        return customerService.removeCart(email, order);
+    }
 }
