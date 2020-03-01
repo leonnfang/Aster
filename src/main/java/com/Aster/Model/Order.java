@@ -1,5 +1,7 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
     private Florist florist;
     private Customer customer;
@@ -7,7 +9,11 @@ public class Order {
     private Product product;
     private int quantity;
 
-    public Order(Florist florist, Customer customer, String date, Product product, int quantity){
+    public Order(@JsonProperty Florist florist,
+                 @JsonProperty Customer customer,
+                 @JsonProperty String date,
+                 @JsonProperty Product product,
+                 @JsonProperty int quantity){
         this.florist = florist;
         this.customer = customer;
         this.date = date;
