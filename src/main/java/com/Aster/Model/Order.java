@@ -9,11 +9,11 @@ public class Order {
     private Product product;
     private int quantity;
 
-    public Order(@JsonProperty Florist florist,
-                 @JsonProperty Customer customer,
-                 @JsonProperty String date,
-                 @JsonProperty Product product,
-                 @JsonProperty int quantity){
+    public Order(@JsonProperty("florist") Florist florist,
+                 @JsonProperty("customer") Customer customer,
+                 @JsonProperty("date") String date,
+                 @JsonProperty("product") Product product,
+                 @JsonProperty("quantity") int quantity){
         this.florist = florist;
         this.customer = customer;
         this.date = date;
