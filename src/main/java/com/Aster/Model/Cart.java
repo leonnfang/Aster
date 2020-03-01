@@ -4,11 +4,11 @@ import java.util.*;
 public class Cart {
     private List<Order> cart = new ArrayList<>();
 
-    public List<Order> getOrderList() {
+    public List<Order> getCartList() {
         return cart;
     }
 
-    public void setOrderList(List<Order> orderList) {
+    public void setCartList(List<Order> orderList) {
         this.cart = orderList;
     }
 }

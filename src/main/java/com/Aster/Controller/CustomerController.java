@@ -36,9 +36,9 @@ public class CustomerController {
     }
 
     @PostMapping("/add_to_cart")
-    public int addtoCart(@RequestBody Order order) throws Exception{
+    public int addtoCart(@RequestBody Order order, @RequestParam String email) throws Exception{
         System.out.println("adding to cart");
-        return customerService.addtoCart(order);
+        return customerService.addtoCart(email, order);
     }
 
 
