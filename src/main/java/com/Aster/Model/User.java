@@ -20,13 +20,13 @@ public class User {
         this.email = email;
     }
 
-    public User(@JsonProperty String user_name,
-                @JsonProperty String password,
-                @JsonProperty String email,
-                @JsonProperty String address,
-                @JsonProperty String lastName,
-                @JsonProperty String firstName,
-                @JsonProperty History history) {
+    public User(@JsonProperty("user_name") String user_name,
+                @JsonProperty("password") String password,
+                @JsonProperty("email") String email,
+                @JsonProperty("address") String address,
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("firstName") String firstName,
+                @JsonProperty("history") History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
