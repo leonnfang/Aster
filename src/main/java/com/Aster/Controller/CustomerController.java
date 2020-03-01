@@ -1,5 +1,6 @@
 package com.Aster.Controller;
 import com.Aster.Model.Customer;
+import com.Aster.Model.Order;
 import com.Aster.Model.User;
 import com.Aster.Service.CustomerService;
 import com.Aster.Service.OrderService;
@@ -33,6 +34,13 @@ public class CustomerController {
         System.out.println("deleting user with email: " + email);
         return customerService.deleteCustomer(email);
     }
+
+    @PostMapping("/add_to_cart")
+    public int addtoCart(@RequestBody Order order) throws Exception{
+        System.out.println("adding to cart");
+        return customerService.addtoCart(order);
+    }
+
 
 
 }
