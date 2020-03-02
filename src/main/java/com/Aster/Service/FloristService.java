@@ -2,6 +2,7 @@ package com.Aster.Service;
 
 import com.Aster.Database.FloristDB;
 import com.Aster.Model.Florist;
+import com.Aster.Model.Order;
 import com.Aster.Model.Product;
 import com.Aster.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,10 @@ public class FloristService {
     }
 
     public int addFlorist(Florist florist) throws Exception {
-        System.out.println("in Service layer");
         floristDB.addFlorist(florist);
         return 0;
     }
+   
 
     public int deleteFlorist(String email) throws Exception {
         if(email == null || email.length() == 0){

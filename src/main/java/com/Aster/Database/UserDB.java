@@ -55,10 +55,7 @@ public class UserDB {
         return 0;
     }
     public History getHistory(User user){
-        return user.getHistory();
-    }
-    public Inventory getInventory(Florist florist){
-        return florist.getInventory();
+        return new History();
     }
     public Emaillist getEmaillist(){
         return new Emaillist();
