@@ -4,26 +4,27 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 @Repository
-public class FloristDB extends UserDB {
+public class FloristDB{
     Map<String,Florist> floristMap = new HashMap<>();
 
     public int addFlorist(Florist florist) throws Exception {
         System.out.println("in db layer");
+
         if(florist == null || floristMap.containsKey(florist.getEmail())){
             throw new Exception("Invalid florist");
         }
         floristMap.put(florist.getEmail(),florist);
         System.out.println("Florist was created successfully");
         return 0;
-
+    }
+    public int addUser(User user) throws Exception {
+        return 0;
     }
 
-    @Override
     public int deleteUser(String email) throws Exception {
-        return super.deleteUser(email);
+        return 0;
     }
 
-    @Override
     public int addOrder(Order order) {
         if(order == null){
             throw new NullPointerException("order pointer is null");
@@ -42,27 +43,23 @@ public class FloristDB extends UserDB {
         return 0;
     }
 
-    @Override
     public int cancelOrder(Order order) {
-        return super.cancelOrder(order);
+        return 0;
     }
 
-    @Override
     public History getHistory(User user) {
-        return super.getHistory(user);
+        return new History();
     }
 
-    @Override
     public Inventory getInventory(Florist florist) {
-        return super.getInventory(florist);
+        return new Inventory();
     }
 
-    @Override
     public List<Product> getProduct() {
-        return super.getProduct();
+        return new ArrayList<>();
     }
     public int updateInventory(Florist florist, Product product, int quantity) throws Exception {
-        if(UserMap.get(florist.getEmail()) == null){
+        if(floristMap.get(florist.getEmail()) == null){
             throw new Exception("Florist dose not exist");
         }
         Inventory inventory = florist.getInventory();

@@ -15,6 +15,7 @@ public class User {
     public User(@JsonProperty("user_name") String user_name,
                 @JsonProperty("password") String password,
                 @JsonProperty("email") String email) {
+        System.out.println("calling constructor");
         this.user_name = user_name;
         this.password = password;
         this.email = email;

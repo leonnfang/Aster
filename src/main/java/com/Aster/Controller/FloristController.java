@@ -7,6 +7,7 @@ import com.Aster.Model.User;
 import com.Aster.Service.FloristService;
 import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +30,7 @@ public class FloristController{
     public int cancelOrder(@RequestBody Order order) throws Exception {
         return orderService.cancelOrder(order);
     }
-    @PostMapping("/add_florist")
+    @RequestMapping(value = "add_florist",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public int addUser(@RequestBody Florist florist) throws Exception {
         System.out.println("in controller layer");
         return floristService.addFlorist(florist);
