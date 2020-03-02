@@ -23,4 +23,36 @@ public class CustomerDB {
     public int addOrder(Order order) {
         return 0;
     }
+
+    public int cancelOrder(Order order) {
+        return 0;
+    }
+
+    public int addCustomer(Customer customer) {
+        return 0;
+    }
+
+    public String getCustomername(String email) {
+        return null;
+    }
+
+    public int deleteCustomer(String email) {
+        return 0;
+    }
+
+    public int addCart(String email, Order order) {
+        return 0;
+    }
+
+    public List<Order> viewCart(String email) {
+        return null;
+    }
+
+    public int removeCart(String email, Order order) {
+        return 0;
+    }
+
+    public int emptyCart(String email) {
+        return 0;
+    }
 }
