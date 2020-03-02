@@ -1,5 +1,6 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Customer{
@@ -10,6 +11,7 @@ public class Customer{
     private History history;
     private Cart cart;
 
+    @JsonCreator
     public Customer(@JsonProperty("user_name") String user_name,
                     @JsonProperty("password") String password,
                     @JsonProperty("email") String email) {
