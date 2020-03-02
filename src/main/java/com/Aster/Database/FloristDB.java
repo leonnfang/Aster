@@ -17,11 +17,7 @@ public class FloristDB{
         System.out.println("Florist was created successfully");
         return 0;
     }
-    public int addUser(User user) throws Exception {
-        return 0;
-    }
-
-    public int deleteUser(String email) throws Exception {
+    public int deleteFlorist(String email) throws Exception {
         return 0;
     }
 
@@ -46,15 +42,12 @@ public class FloristDB{
     public int cancelOrder(Order order) {
         return 0;
     }
-
     public History getHistory(User user) {
         return new History();
     }
-
     public Inventory getInventory(Florist florist) {
         return new Inventory();
     }
-
     public List<Product> getProduct() {
         return new ArrayList<>();
     }
