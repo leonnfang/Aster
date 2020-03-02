@@ -8,14 +8,15 @@ import java.util.*;
 public class CustomerDB {
     Map<String,Customer> customerMap = new HashMap<>();
 
-    public int addCustomer(Customer customer) throws Exception {
+    public int addCustomer(Customer customer){
         if(customer == null){
-            throw new Exception("Invalid Customer");
+            System.out.println("Invalid Customer");
+            //throw new Exception("Invalid Customer");
         }
         if(customerMap.containsKey(customer.getEmail())){
-            throw new Exception("User already exits");
+            System.out.println("Customer already exists");
+            //throw new Exception("User already exits");
         }
-
         History newhistory = new History();
         Cart newcart = new Cart();
         Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(), customer.getEmail(), customer.getAddress(), newhistory, newcart);

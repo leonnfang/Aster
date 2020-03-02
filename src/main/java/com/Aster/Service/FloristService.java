@@ -25,7 +25,7 @@ public class FloristService {
         if(email == null || email.length() == 0){
             throw new Exception("Invalid Email address");
         }
-        if(floristDB.deleteUser(email) != 0){
+        if(floristDB.deleteFlorist(email) != 0){
             throw new Exception("Cannot delete the florist");
         }else{
             return 0;

@@ -13,10 +13,12 @@ public class Customer{
 
     /*public Customer(@JsonProperty("user_name") String user_name,
                     @JsonProperty("password") String password,
-                    @JsonProperty("email") String email) {
+                    @JsonProperty("email") String email,
+                    @JsonProperty("address") String address) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
+        this.address = address;
     }*/
 
     public Customer(@JsonProperty("user_name") String user_name,
@@ -31,10 +33,6 @@ public class Customer{
         this.address = address;
         this.history = history;
         this.cart = cart;
-    }
-
-    public Customer(){
-
     }
 
     public String getUser_name() {

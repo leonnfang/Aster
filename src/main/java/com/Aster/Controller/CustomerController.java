@@ -19,8 +19,8 @@ public class CustomerController {
     }
 
     @PostMapping("/add")
-    public int addCustomer(@RequestBody Customer customer) throws Exception {
-        System.out.println("controller layer");
+    public int addCustomer(@RequestBody Customer customer){
+        System.out.println(customer.getEmail());
         return customerService.addCustomer(customer);
     }
     @GetMapping("/get")
@@ -33,7 +33,6 @@ public class CustomerController {
         System.out.println("deleting user with email: " + email);
         return customerService.deleteCustomer(email);
     }
-
 
     @PostMapping("/{email}/cart/add")
     public int addCart(@PathVariable String email, @RequestBody Order order) throws Exception{
