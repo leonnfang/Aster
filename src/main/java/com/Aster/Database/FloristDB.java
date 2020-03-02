@@ -48,7 +48,7 @@ public class FloristDB{
     }
 
     public History getHistory(User user) {
-        return new History();
+        return user.getHistory();
     }
 
     public Inventory getInventory(Florist florist) {
