@@ -1,10 +1,25 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
     private Florist florist;
     private Customer customer;
     private String date;
     private Product product;
+    private int quantity;
+
+    public Order(@JsonProperty("florist") Florist florist,
+                 @JsonProperty("customer") Customer customer,
+                 @JsonProperty("date") String date,
+                 @JsonProperty("product") Product product,
+                 @JsonProperty("quantity") int quantity){
+        this.florist = florist;
+        this.customer = customer;
+        this.date = date;
+        this.product = product;
+        this.quantity = quantity;
+    }
 
     public Florist getFlorist() {
         return florist;
@@ -36,5 +51,13 @@ public class Order {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
