@@ -3,6 +3,7 @@ import com.Aster.Database.FloristDB;
 import com.Aster.Database.UserDB;
 import com.Aster.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLOutput;
@@ -12,7 +13,7 @@ public class UserController {
     private UserDB userdb;
     // Local Variable of UserDatabaseController
     @Autowired
-    public UserController(FloristDB userdb){this.userdb = userdb;}
+    public UserController(@Qualifier("userDB") UserDB userdb){this.userdb = userdb;}
     // Constructor of UserDatabaseController
 
     @PostMapping("/ADD_USER")

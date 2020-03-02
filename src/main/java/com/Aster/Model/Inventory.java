@@ -2,7 +2,8 @@ package com.Aster.Model;
 
 import java.util.*;
 public class Inventory {
-    // products + information
-    // bouquet + information
-    //List<Pair<Product,Integer>> list = new ArrayList<>();
+
+    //Map<Product,Integer> inventoryMap = new HashMap<>();
+    public Inventory() {
+    }
 }

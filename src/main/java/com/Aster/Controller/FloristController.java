@@ -18,15 +18,16 @@ public class FloristController{
     private FloristService floristService;
 
     @Autowired
-    public FloristController(OrderService orderService) {
+    public FloristController(OrderService orderService, FloristService floristService) {
         this.orderService = orderService;
+        this.floristService = floristService;
     }
-    @PostMapping("/makeorder")
+    @PostMapping("/make_order")
     public int makeOrder(@RequestBody Order order) throws Exception {
         return orderService.addOrder(order);
     }
-    @PostMapping("/addflorist")
-    public int Add_User(@RequestBody User user) throws Exception {
-        return floristService.addFlorist((Florist) user);
+    @PostMapping("/add_florist")
+    public int Add_Florist(@RequestBody Florist florist) throws Exception {
+        return floristService.addFlorist(florist);
     }
 }
