@@ -16,9 +16,13 @@ public class CustomerDB {
             throw new Exception("User already exits");
         }
 
-        customerMap.put(customer.getEmail(), customer);
+        History newhistory = new History();
+        Cart newcart = new Cart();
+        Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(), customer.getEmail(), customer.getAddress(), newhistory, newcart);
+
+        customerMap.put(newCustomer.getEmail(), newCustomer);
         System.out.println("Customer was created successfully");
-        System.out.println(customer.getEmail());
+        System.out.println(newCustomer.getEmail());
         return 0;
     }
     public String getCustomername(String email) throws Exception{
@@ -60,7 +64,7 @@ public class CustomerDB {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cur_cart = customer.getCart().getCartList();
+        List<Order> cur_cart = customer.getCart().getCart();
         cur_cart.add(order);
         return 0;
     }
@@ -69,7 +73,7 @@ public class CustomerDB {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cur_cart = customer.getCart().getCartList();
+        List<Order> cur_cart = customer.getCart().getCart();
         if(!cur_cart.contains(order)){
             System.out.println("Such Order does not exist in your cart");
             return 1;
@@ -79,12 +83,12 @@ public class CustomerDB {
     }
     public int emptyCart(String email){
         Customer customer = customerMap.get(email);
-        customer.getCart().getCartList().clear();
+        customer.getCart().getCart().clear();
         return 0;
     }
     public List<Order> viewCart(String email){
         Customer customer = customerMap.get(email);
-        List<Order> cur_cart = customer.getCart().getCartList();
+        List<Order> cur_cart = customer.getCart().getCart();
         for(Order order : cur_cart){
             System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
             System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");

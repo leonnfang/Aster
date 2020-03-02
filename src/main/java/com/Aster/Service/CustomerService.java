@@ -16,8 +16,7 @@ public class CustomerService {
     public CustomerService(CustomerDB customerDB){this.customerDB = customerDB;}
 
     public int addCustomer(Customer customer) throws Exception{
-        customerDB.addCustomer(customer);
-        return 0;
+        return customerDB.addCustomer(customer);
     }
     public String getCustomername(String email) throws Exception{
         return customerDB.getCustomername(email);
