@@ -100,7 +100,7 @@ public class CustomerDB {
 
     public List<Order> viewHistory(String email){
         Customer customer = customerMap.get(email);
-        List<Order> cur_history = customer.getHistory().getOrderList();
+        List<Order> cur_history = customer.getHistory().getHistory();
         for(Order order : cur_history){
             System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
             System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");

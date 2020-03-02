@@ -4,21 +4,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.*;
 public class History {
     //private List<Order> orderList = new ArrayList<>();
-    private List<Order> orderList;
+    private List<Order> history;
 
-    public History(@JsonProperty("orderList") List<Order> orderList) {
-        this.orderList = orderList;
+    public History(@JsonProperty("history") List<Order> history) {
+        this.history = history;
     }
 
     public History(){
 
     }
 
-    public List<Order> getOrderList() {
-        return orderList;
+    public List<Order> getHistory() {
+        return history;
     }
 
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
+    public void setHistory(List<Order> history) {
+        this.history = history;
     }
 }

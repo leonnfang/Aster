@@ -3,11 +3,12 @@ import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import com.Aster.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/customer")
+@RequestMapping(value = "/customer", produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON)
 @RestController
 public class CustomerController {
     //private OrderService orderService;
@@ -20,6 +21,7 @@ public class CustomerController {
 
     @PostMapping("/add")
     public int addCustomer(@RequestBody Customer customer){
+        System.out.println("in controller!!!!");
         System.out.println(customer.getEmail());
         return customerService.addCustomer(customer);
     }
