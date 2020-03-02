@@ -5,19 +5,57 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class CustomerDB extends UserDB {
+public class CustomerDB {
     Map<String,Customer> customerMap = new HashMap<>();
 
-    public int addCostomer(Customer customer) throws Exception {
-        if(customer == null || customerMap.containsKey(customer.getEmail())){
-            throw new Exception("Invalid customer");
+    public int addCustomer(Customer customer) throws Exception {
+        if(customer == null){
+            throw new Exception("Invalid Customer");
         }
-        customerMap.put(customer.getEmail(),customer);
-        System.out.println("Florist was created successfully");
+        if(customerMap.containsKey(customer.getEmail())){
+            throw new Exception("User already exits");
+        }
+
+        customerMap.put(customer.getEmail(), customer);
+        System.out.println("Customer was created successfully");
+        System.out.println(customer.getEmail());
+        return 0;
+    }
+    public String getCustomername(String email) throws Exception{
+        if(email == null){
+            throw new Exception("It is not a valid email");
+        }
+        else if(!customerMap.containsKey(email)){
+            System.out.println("checking if the email exists: " + email);
+            throw new Exception("Email dose not exist");
+        }
+        else{
+            return customerMap.get(email).getUser_name();
+        }
+    }
+    public int deleteCustomer(String email) throws Exception {
+        if (email == null) {
+            throw new Exception("It is not a valid email");
+        } else if (!customerMap.containsKey(email)) {
+            System.out.println("checking if the email exists: " + email);
+            throw new Exception("Email dose not exist");
+        } else {
+            customerMap.remove(email);
+            System.out.println("The account was deleted successively");
+            return 0;
+        }
+    }
+
+
+    public int addOrder(Order order){
+        return 0;
+    }
+    public int cancelOrder(Order order){
         return 0;
     }
 
-    public int addtoCart(String email, Order order){
+
+    public int addCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -26,58 +64,48 @@ public class CustomerDB extends UserDB {
         cur_cart.add(order);
         return 0;
     }
-
-    public int removefromCart(String email, Order order){
+    public int removeCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
-        cur_cart.remove(order);
+        if(!cur_cart.contains(order)){
+            System.out.println("Such Order does not exist in your cart");
+            return 1;
+        }
+        else cur_cart.remove(order);
         return 0;
     }
-
     public int emptyCart(String email){
         Customer customer = customerMap.get(email);
         customer.getCart().getCartList().clear();
         return 0;
     }
-
-    public void viewCart(String email){
+    public List<Order> viewCart(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
         for(Order order : cur_cart){
             System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
             System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
         }
+        return cur_cart;
     }
 
-    @Override
-    public int addOrder(Order order){
-        if(order == null){
-            throw new NullPointerException("order pointer is null");
+
+    public List<Order> viewHistory(String email){
+        Customer customer = customerMap.get(email);
+        List<Order> cur_history = customer.getHistory().getOrderList();
+        for(Order order : cur_history){
+            System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
+            System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
         }
-
+        return cur_history;
+    }
+    public int updateHistory(String email, int opt){
         return 0;
     }
-    @Override
-    public int cancelOrder(Order order){
 
-        return 0;
-    }
-    @Override
-    public History getHistory(User user){
 
-        return user.getHistory();
-    }
-    @Override
-    public Inventory getInventory(Florist florist){
-
-        return florist.getInventory();
-    }
-    @Override
-    public List<Product> getProduct(){
-        return new ArrayList<Product>();
-    }
 
 }
