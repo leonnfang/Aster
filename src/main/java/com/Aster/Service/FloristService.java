@@ -17,7 +17,7 @@ public class FloristService {
 
     public int addFlorist(Florist florist) throws Exception {
         System.out.println("in Service layer");
-        floristDB.addUser(florist);
+        floristDB.addFlorist(florist);
         return 0;
     }
 
