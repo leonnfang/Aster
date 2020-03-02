@@ -1,8 +1,6 @@
 package com.Aster.Controller;
-import com.Aster.Database.FloristDB;
 import com.Aster.Model.Florist;
 import com.Aster.Model.Order;
-import com.Aster.Model.User;
 import com.Aster.Service.FloristService;
 import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;

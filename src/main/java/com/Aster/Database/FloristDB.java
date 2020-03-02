@@ -12,7 +12,7 @@ public class FloristDB{
         }
         floristMap.put(florist.getEmail(),florist);
     }
-    public int deleteFlorist(){
+    public int deleteFlorist(String email){
         return 0;
     }
 
@@ -27,7 +27,7 @@ public class FloristDB{
         return 0;
     }
 
-    public History getHistory(User user){
+    public History getHistory(){
         return new History();
     }
     public int updateInventory(){
@@ -40,4 +40,7 @@ public class FloristDB{
         return new ArrayList<Product>();
     }
 
+    public int updateInventory(Florist florist, Product product, int quantity) {
+        return 0;
+    }
 }
