@@ -21,8 +21,6 @@ public class CustomerController {
 
     @PostMapping("/add")
     public int addCustomer(@RequestBody Customer customer){
-        System.out.println("in controller!!!!");
-        System.out.println(customer.getEmail());
         return customerService.addCustomer(customer);
     }
     @GetMapping("/get")
