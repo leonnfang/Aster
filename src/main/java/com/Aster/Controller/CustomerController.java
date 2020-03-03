@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(value = "/customer", produces = MediaType.APPLICATION_JSON, consumes = MediaType.APPLICATION_JSON)
+@RequestMapping("/customer")
 @RestController
 public class CustomerController {
     //private OrderService orderService;

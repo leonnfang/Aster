@@ -6,66 +6,41 @@ import java.util.*;
 @Repository
 public class FloristDB{
     Map<String,Florist> floristMap = new HashMap<>();
-
-    public int addFlorist(Florist florist) throws Exception {
-        System.out.println("in db layer");
-
-        if(florist == null || floristMap.containsKey(florist.getEmail())){
-            throw new Exception("Invalid florist");
+    public void addFlorist(Florist florist) throws Exception {
+        if(floristMap.containsKey(florist.getEmail())){
+            throw new Exception("florist has already existed");
         }
         floristMap.put(florist.getEmail(),florist);
-        System.out.println("Florist was created successfully");
+    }
+    public int deleteFlorist(String email){
         return 0;
     }
-    public int deleteFlorist(String email) throws Exception {
-        return 0;
+
+    public String getUser_name(String email){
+        return "";
     }
 
     public int addOrder(Order order) {
-        if(order == null){
-            throw new NullPointerException("order pointer is null");
-        }
-        int quantity = order.getQuantity();
-        Product soldProduct = order.getProduct();
-        Florist florist = order.getFlorist();
-        Map<Product,Integer> productIntegerMap = florist.getInventory().getProductIntegerMap();
-        //check if inventory
-        if(productIntegerMap.get(soldProduct) - quantity < 0){
-            //throw new Exception("Low Inventory");
-        }else{
-            productIntegerMap.put(soldProduct,productIntegerMap.get(soldProduct)-quantity);
-        }
-
+        return 0;
+    }
+    public int cancelOrder(Order order){
         return 0;
     }
 
-    public int cancelOrder(Order order) {
+    public History getHistory(){
+        return new History();
+    }
+    public int updateInventory(){
         return 0;
     }
-    public History getHistory(User user) {
-        return user.getHistory();
+    public Emaillist getEmaillist(){
+        return new Emaillist();
     }
-    public Inventory getInventory(Florist florist) {
-        return new Inventory();
+    public List<Product> getProduct(){
+        return new ArrayList<Product>();
     }
-    public List<Product> getProduct() {
-        return new ArrayList<>();
-    }
-    public int updateInventory(Florist florist, Product product, int quantity) throws Exception {
-        if(floristMap.get(florist.getEmail()) == null){
-            throw new Exception("Florist dose not exist");
-        }
-        Inventory inventory = florist.getInventory();
-        if(!inventory.getProductIntegerMap().containsKey(product)){
-            inventory.getProductIntegerMap().put(product,quantity);
-            return 0;
-        }
-        int newquantity = inventory.getProductIntegerMap().get(product) + quantity;
-        if(newquantity < 0){
-            throw new Exception("Update cannot be satisfied due to quantity");
-        }else{
-            inventory.getProductIntegerMap().put(product,newquantity);
-        }
+
+    public int updateInventory(Florist florist, Product product, int quantity) {
         return 0;
     }
 }

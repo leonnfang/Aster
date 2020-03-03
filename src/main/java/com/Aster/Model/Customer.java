@@ -1,38 +1,22 @@
 package com.Aster.Model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Customer{
     private String user_name;
     private String password;
     private String email;
     private String address;
+    private String lastName;
+    private String firstName;
     private History history;
-    private Cart cart;
 
-    /*public Customer(@JsonProperty("user_name") String user_name,
-                    @JsonProperty("password") String password,
-                    @JsonProperty("email") String email,
-                    @JsonProperty("address") String address) {
+    public Customer(String user_name, String password, String email, String address, String lastName, String firstName, History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
-    }*/
-
-    public Customer(@JsonProperty("user_name") String user_name,
-                    @JsonProperty("password") String password,
-                    @JsonProperty("email") String email,
-                    @JsonProperty("address") String address,
-                    @JsonProperty("history") History history,
-                    @JsonProperty("cart") Cart cart) {
-        this.user_name = user_name;
-        this.password = password;
-        this.email = email;
-        this.address = address;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.history = history;
-        this.cart = cart;
     }
 
     public String getUser_name() {
@@ -67,19 +51,27 @@ public class Customer{
         this.address = address;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public History getHistory() {
         return history;
     }
 
     public void setHistory(History history) {
         this.history = history;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }
