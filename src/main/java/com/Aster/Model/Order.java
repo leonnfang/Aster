@@ -11,7 +11,7 @@ public class Order {
     private String productName;
     private int quantity;
     private boolean complete;
-    private UUID id;
+    private String id;
 
     public Order(@JsonProperty("floristEmail") String floristEmail,
                  @JsonProperty("customerEmail") String customerEmail,
@@ -19,7 +19,7 @@ public class Order {
                  @JsonProperty("product") String productName,
                  @JsonProperty("quantity") int quantity,
                  @JsonProperty("complete") boolean complete,
-                 @JsonProperty("id") UUID id){
+                 @JsonProperty("id") String id){
         this.floristEmail = floristEmail;
         this.customerEmail = customerEmail;
         this.date = date;
@@ -77,11 +77,11 @@ public class Order {
         this.complete = complete;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
