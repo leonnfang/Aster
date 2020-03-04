@@ -10,11 +10,11 @@ public class Product {
 
     public Product(@JsonProperty String name,
                    @JsonProperty double price,
-                   @JsonProperty String discription,
+                   @JsonProperty String description,
                    @JsonProperty String storeName) {
         this.name = name;
         this.price = price;
-        this.description = discription;
+        this.description = description;
         this.storeName = storeName;
     }
 
