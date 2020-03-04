@@ -2,6 +2,7 @@ package com.Aster.Service;
 
 import com.Aster.Database.FloristDB;
 import com.Aster.Model.Florist;
+import com.Aster.Model.History;
 import com.Aster.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ public class FloristService {
     }
 
     public int addFlorist(Florist florist) throws Exception {
-        floristDB.addFlorist(florist);
-        return 0;
+        if(florist == null){
+            throw new Exception("Invalid Florist Input");
+        }
+        return floristDB.addFlorist(florist);
     }
     public int deleteFlorist(String email) throws Exception {
         if(email == null || email.length() == 0){
@@ -28,11 +31,28 @@ public class FloristService {
             return 0;
         }
     }
-    public int updateInventory(Florist florist, Product product, int quantity) throws Exception {
+    public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
         System.out.println("Updating the Inventory");
-        if(florist == null || product == null){
-            throw new Exception("Invalid product or florist information");
+
+        return floristDB.updateInventory(floristEmail,productName,quantity);
+    }
+
+    public String getUser_name(String email) throws Exception {
+        if(email == null || email.length() == 0){
+            throw new Exception("Invalid email address");
         }
-        return floristDB.updateInventory(florist,product,quantity);
+        return floristDB.getUser_name(email);
+    }
+
+    public History getHistory(String email) {
+        return floristDB.getHistory(email);
+    }
+
+    public int initInventory(String email) {
+        return floristDB.initInventory(email);
+    }
+
+    public Florist getFlorist(String email) {
+        return floristDB.getFlorist(email);
     }
 }
