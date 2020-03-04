@@ -8,22 +8,20 @@ import java.util.*;
 public class CustomerDB {
     Map<String,Customer> customerMap = new HashMap<>();
 
-    public int addCustomer(Customer customer){
+    public int addCustomer(Customer customer) throws Exception{
         if(customer == null){
-            System.out.println("Invalid Customer");
-            //throw new Exception("Invalid Customer");
+            throw new Exception("Invalid Customer");
         }
         if(customerMap.containsKey(customer.getEmail())){
-            System.out.println("Customer already exists");
-            //throw new Exception("User already exits");
+            throw new Exception("Customer already exits");
         }
         History newhistory = new History();
         Cart newcart = new Cart();
-        Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(), customer.getEmail(), customer.getAddress());
+        Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(),
+                                            customer.getEmail(), customer.getAddress(),
+                                            newhistory, newcart);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
-        System.out.println("Customer was created successfully");
-        System.out.println(newCustomer.getEmail());
         return 0;
     }
     public String getCustomername(String email) throws Exception{
@@ -31,7 +29,6 @@ public class CustomerDB {
             throw new Exception("It is not a valid email");
         }
         else if(!customerMap.containsKey(email)){
-            System.out.println("checking if the email exists: " + email);
             throw new Exception("Email dose not exist");
         }
         else{
@@ -42,21 +39,11 @@ public class CustomerDB {
         if (email == null) {
             throw new Exception("It is not a valid email");
         } else if (!customerMap.containsKey(email)) {
-            System.out.println("checking if the email exists: " + email);
             throw new Exception("Email dose not exist");
         } else {
             customerMap.remove(email);
-            System.out.println("The account was deleted successively");
             return 0;
         }
-    }
-
-
-    public int addOrder(Order order){
-        return 0;
-    }
-    public int cancelOrder(Order order){
-        return 0;
     }
 
 
@@ -110,7 +97,12 @@ public class CustomerDB {
     public int updateHistory(String email, int opt){
         return 0;
     }
-
+    public int addOrder(Order order){
+        return 0;
+    }
+    public int cancelOrder(Order order){
+        return 0;
+    }
 
 
 }

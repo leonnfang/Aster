@@ -15,7 +15,7 @@ public class CustomerService {
     @Autowired
     public CustomerService(CustomerDB customerDB){this.customerDB = customerDB;}
 
-    public int addCustomer(Customer customer){
+    public int addCustomer(Customer customer) throws Exception{
         return customerDB.addCustomer(customer);
     }
     public String getCustomername(String email) throws Exception{

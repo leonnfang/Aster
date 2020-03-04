@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Scanner;
 
 @RequestMapping("/customer")
 @RestController
@@ -20,19 +21,18 @@ public class CustomerController {
     }
 
     @PostMapping("/add")
-    public int addCustomer(@RequestBody Customer customer){
+    public int addCustomer(@RequestBody Customer customer) throws Exception{
         return customerService.addCustomer(customer);
     }
     @GetMapping("/get")
     public String getCustomername(@RequestParam String email) throws Exception{
-        System.out.println("getting username");
         return customerService.getCustomername(email);
     }
     @DeleteMapping("/{email}/delete")
     public int deleteCustomer(@PathVariable String email) throws Exception{
-        System.out.println("deleting user with email: " + email);
         return customerService.deleteCustomer(email);
     }
+
 
     @PostMapping("/{email}/cart/add")
     public int addCart(@PathVariable String email, @RequestBody Order order) throws Exception{
