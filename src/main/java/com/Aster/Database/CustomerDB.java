@@ -64,15 +64,14 @@ public class CustomerDB {
         cur_cart.add(order);
         return 0;
     }
-    public int removeCart(String email, Order order){
+    public int removeCart(String email, Order order) throws Exception{
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
         if(!cur_cart.contains(order)){
-            System.out.println("Such Order does not exist in your cart");
-            return 1;
+            throw new Exception("Such Order does not exist in your cart");
         }
         else cur_cart.remove(order);
         return 0;
@@ -80,13 +79,9 @@ public class CustomerDB {
     public int emptyCart(String email){
         Customer customer = customerMap.get(email);
         List<Order> cart = customer.getCart().getCartList();
-        System.out.println("1111");
         if(!cart.isEmpty()) {
-            System.out.println("33333");
             cart.clear();
-            System.out.println("44444");
         }
-        System.out.println("2222");
         return 0;
     }
     public List<Order> viewCart(String email){
@@ -104,7 +99,7 @@ public class CustomerDB {
         Customer customer = customerMap.get(email);
         List<Order> cur_history = customer.getHistory().getHistory();
         for(Order order : cur_history){
-            System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
+            System.out.println(order.getCustomerEmail() + "-------->" + order.getFloristEmail());
             System.out.println(order.getProductName() + "(" + order.getQuantity() + ")");
         }
         return cur_history;
