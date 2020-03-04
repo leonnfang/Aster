@@ -6,8 +6,10 @@ import java.util.*;
 public class Cart {
     //private List<Order> cart = new ArrayList<>();
     private List<Order> cart;
+    private int totalprice;
 
-    public Cart(@JsonProperty("cart") List<Order> cart){
+    public Cart(@JsonProperty("cart") List<Order> cart,
+                @JsonProperty("totalprice") int totalprice){
         this.cart = cart;
     }
 
@@ -21,5 +23,13 @@ public class Cart {
 
     public void setCart(List<Order> cart) {
         this.cart = cart;
+    }
+
+    public int getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(int totalprice) {
+        this.totalprice = totalprice;
     }
 }

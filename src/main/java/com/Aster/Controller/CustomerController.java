@@ -3,6 +3,7 @@ import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import com.Aster.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,6 @@ public class CustomerController {
 
     @PostMapping("/add")
     public int addCustomer(@RequestBody Customer customer){
-        System.out.println(customer.getEmail());
         return customerService.addCustomer(customer);
     }
     @GetMapping("/get")
