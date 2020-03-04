@@ -28,7 +28,7 @@ public class CustomerDB {
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return 0;
     }
-    public String getCustomername(String email) throws Exception{
+    public Customer getCustomer(String email) throws Exception{
         if(email == null){
             throw new Exception("It is not a valid email");
         }
@@ -36,7 +36,7 @@ public class CustomerDB {
             throw new Exception("Email dose not exist");
         }
         else{
-            return customerMap.get(email).getUser_name();
+            return customerMap.get(email);
         }
     }
     public int deleteCustomer(String email) throws Exception {
@@ -111,8 +111,11 @@ public class CustomerDB {
         }
         return cur_history;
     }
-    public int updateHistory(String email, int opt){
-
+    public int updateHistory(String email){
+        Customer customer = customerMap.get(email);
+        for(Order order : customer.getCart().getCartList()){
+            customer.getHistory().getHistory().add(order);
+        }
         return 0;
     }
 

@@ -4,7 +4,6 @@ import com.Aster.Database.CustomerDB;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +18,8 @@ public class CustomerService {
     public int addCustomer(Customer customer) throws Exception{
         return customerDB.addCustomer(customer);
     }
-    public String getCustomername(String email) throws Exception{
-        return customerDB.getCustomername(email);
+    public Customer getCustomer(String email) throws Exception{
+        return customerDB.getCustomer(email);
     }
     public int deleteCustomer(String email) throws Exception{
         return customerDB.deleteCustomer(email);
@@ -63,10 +62,16 @@ public class CustomerService {
             //send order to florist
 
             //update history both
-
+            customerDB.updateHistory(email);
             //empty cart
             customerDB.emptyCart(email);
             return 0;
+        }
+        else throw new Exception("Email does not exist");
+    }
+    public List<Order> viewHistory(String email) throws Exception{
+        if(customerDB.isvalid(email)) {
+            return customerDB.viewHistory(email);
         }
         else throw new Exception("Email does not exist");
     }
