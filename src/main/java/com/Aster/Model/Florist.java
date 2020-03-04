@@ -22,8 +22,8 @@ public class Florist {
                    @JsonProperty("lastName") String lastName,
                    @JsonProperty("firstName") String firstName,
                    @JsonProperty("address") String address,
-                   @JsonProperty("history") History history,
-                   @JsonProperty("inventory") Inventory inventory) {
+                   @JsonProperty("inventory") Inventory inventory,
+                   @JsonProperty("history") History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
@@ -33,13 +33,11 @@ public class Florist {
         this.inventory = inventory;
         this.history = history;
     }
+
     /*
-    public Florist(@JsonProperty("user_name") String user_name,
-                   @JsonProperty("password") String password,
-                   @JsonProperty("email") String email) {
-        this.user_name = user_name;
-        this.password = password;
-        this.email = email;
+    public Florist(@JsonProperty String user_name,
+                   @JsonProperty String password,
+                   @JsonProperty String email) {
     }
      */
 

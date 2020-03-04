@@ -1,14 +1,9 @@
 package com.Aster.Controller;
-import com.Aster.Model.Florist;
-import com.Aster.Model.History;
-import com.Aster.Model.Order;
+import com.Aster.Model.*;
 import com.Aster.Service.FloristService;
 import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/florist")
@@ -33,28 +28,35 @@ public class FloristController{
     public int addFlorist(@RequestBody Florist florist) throws Exception {
         return floristService.addFlorist(florist);
     }
-    @PostMapping("/get_florist")
-    public Florist getFlorist(@RequestBody String email) throws Exception{
+    @GetMapping("/{email}/get_florist")
+    public Florist getFlorist(@PathVariable String email) throws Exception{
         return floristService.getFlorist(email);
     }
-    @PostMapping("/delete_florist")
-    public int deleteFlorist(@RequestBody String email) throws Exception{
+    @PostMapping("/{email}/delete_florist")
+    public int deleteFlorist(@PathVariable String email) throws Exception{
         return floristService.deleteFlorist(email);
     }
-    @PostMapping("/getUser_name")
-    public String getUser_name(@RequestBody String email) throws Exception{
+    @GetMapping("/{email}/getUser_name")
+    public String getUser_name(@PathVariable String email) throws Exception{
         return floristService.getUser_name(email);
     }
-    @PostMapping("/getHistory")
-    public History getHistory(@RequestBody String email) throws Exception{
+    @GetMapping("/{email}/get_history")
+    public History getHistory(@PathVariable String email) throws Exception{
         return floristService.getHistory(email);
     }
-    @PostMapping("init_inventory")
-    public int initInventory(@RequestBody String email) throws Exception{
-        return floristService.initInventory(email);
+    @PostMapping("/{email}/update_inventory")
+    public int updateInventory(@PathVariable String email,@RequestParam String productName,@RequestParam int quantity) throws Exception{
+        return floristService.updateInventory(email,productName,quantity);
     }
-    @PostMapping("/update_inventory")
-    public int updateInventory(@RequestBody String email, String product, int quantity) throws Exception{
-        return floristService.updateInventory(email,product,quantity);
+    @PostMapping("/{email}/add_product")
+    public int add_product(@PathVariable String email,
+                           @RequestParam String productName,
+                           @RequestParam String floristName,
+                           @RequestParam String description){
+        return floristService.addProduct(email,productName,floristName,description);
+    }
+    @GetMapping("/{email}/get_inventory")
+    public Inventory getInventory(@PathVariable String email) throws Exception {
+        return floristService.getInventory(email);
     }
 }

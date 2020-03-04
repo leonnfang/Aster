@@ -8,11 +8,11 @@ public class Product {
     private String description;
     private String storeName;
 
-    public Product(@JsonProperty String name,
-                   @JsonProperty double price,
-                   @JsonProperty String description,
-                   @JsonProperty String storeName) {
-        this.name = name;
+    public Product(@JsonProperty("flowerName") String flowerName,
+                   @JsonProperty("price") double price,
+                   @JsonProperty("description") String description,
+                   @JsonProperty("storeName") String storeName) {
+        this.name = flowerName;
         this.price = price;
         this.description = description;
         this.storeName = storeName;

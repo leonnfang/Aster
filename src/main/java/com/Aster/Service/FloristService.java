@@ -3,6 +3,7 @@ package com.Aster.Service;
 import com.Aster.Database.FloristDB;
 import com.Aster.Model.Florist;
 import com.Aster.Model.History;
+import com.Aster.Model.Inventory;
 import com.Aster.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,6 @@ public class FloristService {
     }
     public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
         System.out.println("Updating the Inventory");
-
         return floristDB.updateInventory(floristEmail,productName,quantity);
     }
 
@@ -48,11 +48,15 @@ public class FloristService {
         return floristDB.getHistory(email);
     }
 
-    public int initInventory(String email) {
-        return floristDB.initInventory(email);
-    }
-
     public Florist getFlorist(String email) {
         return floristDB.getFlorist(email);
+    }
+
+    public Inventory getInventory(String email) throws Exception {
+        return floristDB.getInventory(email);
+    }
+
+    public int addProduct(String email, String productName, String floristName, String description) {
+        return floristDB.addProduct(email,productName,floristName,description);
     }
 }

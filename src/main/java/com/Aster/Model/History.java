@@ -5,7 +5,6 @@ import java.util.*;
 public class History {
     //private List<Order> orderList = new ArrayList<>();
     private List<Order> history;
-
     public History(@JsonProperty("history") List<Order> history) {
         this.history = history;
     }
