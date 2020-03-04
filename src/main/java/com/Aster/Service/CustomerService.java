@@ -40,12 +40,9 @@ public class CustomerService {
         }
         else throw new Exception("Email does not exist");
     }
-    public int removeCart(String email, Order order) throws Exception{
+    public int removeCart(String email, String orderID) throws Exception{
         if(customerDB.isvalid(email)) {
-            if(email.equals(order.getCustomerEmail())) {
-                return customerDB.removeCart(email, order);
-            }
-            else throw new Exception("Order detail does not match the Current User");
+            return customerDB.removeCart(email, orderID);
         }
         else throw new Exception("Email does not exist");
     }

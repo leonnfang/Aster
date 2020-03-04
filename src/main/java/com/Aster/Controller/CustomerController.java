@@ -48,7 +48,7 @@ public class CustomerController {
         return customerService.emptyCart(email);
     }
     @DeleteMapping("/{email}/cart/remove")
-    public int removeCart(@PathVariable String email, @RequestBody Order order) throws Exception{
-        return customerService.removeCart(email, order);
+    public int removeCart(@PathVariable String email, @RequestParam String orderID) throws Exception{
+        return customerService.removeCart(email, orderID);
     }
 }

@@ -61,25 +61,26 @@ public class CustomerDB {
         }
         Customer customer = customerMap.get(email);
         List<Order> cart = customer.getCart().getCartList();
-        cart.add(order);
+        String orderID = UUID.randomUUID().toString();
+        Order neworder = new Order(order.getFloristEmail(), order.getCustomerEmail(), order.getDate(),
+                                    order.getProductName(), order.getQuantity(), false, orderID);
+        cart.add(neworder);
         return 0;
     }
-    public int removeCart(String email, Order order) throws Exception{
-        if(order == null) {
+    public int removeCart(String email, String orderID) throws Exception{
+        if(orderID == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
         List<Order> cart = customer.getCart().getCartList();
 
-
-        System.out.println(cart.contains(order));
-        if(!cart.contains(order)){
-            System.out.println(order);
-            System.out.println(cart.get(0));
-            throw new Exception("Such Order does not exist in your cart");
+        for(Order cur_order : cart){
+            if(cur_order.getId().equals(orderID)){
+                cart.remove(cur_order);
+                return 0;
+            }
         }
-        else cart.remove(order);
-        return 0;
+        throw new Exception("Such Order does not exist");
     }
     public int emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
