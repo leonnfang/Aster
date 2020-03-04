@@ -90,7 +90,7 @@ public class CustomerDB {
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
         for(Order order : cur_cart){
-            System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
+            System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
             System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
         }
         return cur_cart;
@@ -101,7 +101,7 @@ public class CustomerDB {
         Customer customer = customerMap.get(email);
         List<Order> cur_history = customer.getHistory().getHistory();
         for(Order order : cur_history){
-            System.out.println(order.getFlorist().getEmail() + "-------->" + order.getCustomer().getEmail());
+            System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
             System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
         }
         return cur_history;
