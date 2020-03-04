@@ -1,15 +1,20 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Product {
     private String name;
     private double price;
     private String description;
     private String storeName;
 
-    public Product(String name, double price, String descirption, String storeName) {
+    public Product(@JsonProperty String name,
+                   @JsonProperty double price,
+                   @JsonProperty String discription,
+                   @JsonProperty String storeName) {
         this.name = name;
         this.price = price;
-        this.description = descirption;
+        this.description = discription;
         this.storeName = storeName;
     }
 

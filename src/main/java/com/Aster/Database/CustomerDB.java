@@ -91,7 +91,7 @@ public class CustomerDB {
         List<Order> cur_cart = customer.getCart().getCartList();
         for(Order order : cur_cart){
             System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
-            System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
+            System.out.println(order.getProductName().getName() + "(" + order.getQuantity() + ")");
         }
         return cur_cart;
     }
@@ -102,7 +102,7 @@ public class CustomerDB {
         List<Order> cur_history = customer.getHistory().getHistory();
         for(Order order : cur_history){
             System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
-            System.out.println(order.getProduct().getName() + "(" + order.getQuantity() + ")");
+            System.out.println(order.getProductName().getName() + "(" + order.getQuantity() + ")");
         }
         return cur_history;
     }
