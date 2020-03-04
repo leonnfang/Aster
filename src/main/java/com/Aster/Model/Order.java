@@ -2,26 +2,31 @@ package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.UUID;
+
 public class Order {
     private String floristEmail;
     private String customerEmail;
     private String date;
     private String productName;
     private int quantity;
-    private boolean isComplete;
+    private boolean complete;
+    private UUID id;
 
     public Order(@JsonProperty("floristEmail") String floristEmail,
                  @JsonProperty("customerEmail") String customerEmail,
                  @JsonProperty("date") String date,
                  @JsonProperty("product") String productName,
                  @JsonProperty("quantity") int quantity,
-                 @JsonProperty("isComplete") boolean isComplete){
+                 @JsonProperty("complete") boolean complete,
+                 @JsonProperty("id") UUID id){
         this.floristEmail = floristEmail;
         this.customerEmail = customerEmail;
         this.date = date;
         this.productName = productName;
         this.quantity = quantity;
-        this.isComplete = false;
+        this.complete = false;
+        this.id = id;
     }
 
     public String getFloristEmail() {
@@ -65,10 +70,18 @@ public class Order {
     }
 
     public boolean isComplete() {
-        return isComplete;
+        return complete;
     }
 
     public void setComplete(boolean complete) {
-        isComplete = complete;
+        this.complete = complete;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 }

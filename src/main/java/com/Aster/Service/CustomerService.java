@@ -42,7 +42,7 @@ public class CustomerService {
     }
     public int removeCart(String email, Order order) throws Exception{
         if(customerDB.isvalid(email)) {
-            if(email == order.getCustomerEmail()) {
+            if(email.equals(order.getCustomerEmail())) {
                 return customerDB.removeCart(email, order);
             }
             else throw new Exception("Order detail does not match the Current User");
