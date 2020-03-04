@@ -14,14 +14,14 @@ public class Customer{
     private History history;
     private Cart cart;
 
-    public Customer(@JsonProperty String user_name,
-                    @JsonProperty String password,
-                    @JsonProperty String email,
-                    @JsonProperty String address,
-                    @JsonProperty String lastName,
-                    @JsonProperty String firstName,
-                    @JsonProperty History history,
-                    @JsonProperty Cart cart) {
+    public Customer(@JsonProperty("user_name") String user_name,
+                    @JsonProperty("password") String password,
+                    @JsonProperty("email") String email,
+                    @JsonProperty("address") String address,
+                    @JsonProperty("lastName") String lastName,
+                    @JsonProperty("firstName") String firstName,
+                    @JsonProperty("history") History history,
+                    @JsonProperty("cart") Cart cart) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;

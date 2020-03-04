@@ -10,8 +10,8 @@ public class Order {
     private int quantity;
     private boolean isComplete;
 
-    public Order(@JsonProperty("florist") String floristEmail,
-                 @JsonProperty("customer") String customerEmail,
+    public Order(@JsonProperty("floristEmail") String floristEmail,
+                 @JsonProperty("customerEmail") String customerEmail,
                  @JsonProperty("date") String date,
                  @JsonProperty("product") String productName,
                  @JsonProperty("quantity") int quantity,

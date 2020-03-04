@@ -28,6 +28,7 @@ public class CustomerService {
 
 
     public int addCart(String email, Order order) throws Exception{
+        //TODO Have to add Checking whether stock exists
         if(customerDB.isvalid(email)) {
             return customerDB.addCart(email, order);
         }
@@ -41,7 +42,10 @@ public class CustomerService {
     }
     public int removeCart(String email, Order order) throws Exception{
         if(customerDB.isvalid(email)) {
-            return customerDB.removeCart(email, order);
+            if(email == order.getCustomerEmail()) {
+                return customerDB.removeCart(email, order);
+            }
+            else throw new Exception("Order detail does not match the Current User");
         }
         else throw new Exception("Email does not exist");
     }
