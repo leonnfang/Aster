@@ -8,6 +8,8 @@ public class Customer{
     private String user_name;
     private String password;
     private String email;
+    private String lastName;
+    private String firstName;
     private String address;
     private History history;
     private Cart cart;
@@ -18,26 +20,17 @@ public class Customer{
                     @JsonProperty String address,
                     @JsonProperty String lastName,
                     @JsonProperty String firstName,
-                    @JsonProperty History history) {
+                    @JsonProperty History history,
+                    @JsonProperty Cart cart) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
-    }
-
-    /*public Customer(@JsonProperty("user_name") String user_name,
-                    @JsonProperty("password") String password,
-                    @JsonProperty("email") String email,
-                    @JsonProperty("address") String address,
-                    @JsonProperty("history") History history,
-                    @JsonProperty("cart") Cart cart) {
-        this.user_name = user_name;
-        this.password = password;
-        this.email = email;
-        this.address = address;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.history = history;
         this.cart = cart;
-    }*/
+    }
 
     public String getUser_name() {
         return user_name;
@@ -85,5 +78,21 @@ public class Customer{
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

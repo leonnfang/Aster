@@ -11,13 +11,14 @@ public class Cart {
     public Cart(@JsonProperty("cart") List<Order> cart,
                 @JsonProperty("totalprice") int totalprice){
         this.cart = cart;
+        this.totalprice = totalprice;
     }
 
     public Cart(){
 
     }
 
-    public List<Order> getCart() {
+    public List<Order> getCartList() {
         return cart;
     }
 
