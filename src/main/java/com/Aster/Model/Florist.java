@@ -82,6 +82,7 @@ public class Florist {
     }
 
     public History getHistory() {
+        System.out.println("getHistory");
         return history;
     }
 

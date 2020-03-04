@@ -1,6 +1,7 @@
 package com.Aster.Service;
 
 import com.Aster.Database.CustomerDB;
+import com.Aster.Database.FloristDB;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,13 @@ import java.util.List;
 @Service
 public class CustomerService {
     private CustomerDB customerDB;
+    private FloristDB floristDB;
 
     @Autowired
-    public CustomerService(CustomerDB customerDB){this.customerDB = customerDB;}
+    public CustomerService(CustomerDB customerDB, FloristDB floristDB){
+        this.customerDB = customerDB;
+        this.floristDB = floristDB;
+    }
 
     public int addCustomer(Customer customer) throws Exception{
         return customerDB.addCustomer(customer);
@@ -29,7 +34,10 @@ public class CustomerService {
     public int addCart(String email, Order order) throws Exception{
         //TODO Have to add Checking whether stock exists
         if(customerDB.isvalid(email)) {
-            return customerDB.addCart(email, order);
+            if(floristDB.isvalid(order.getFloristEmail())) {
+                return customerDB.addCart(email, order);
+            }
+            else throw new Exception("Florsit does not exist");
         }
         else throw new Exception("Email does not exist");
     }
@@ -59,10 +67,11 @@ public class CustomerService {
             customerDB.viewCart(email);
             //make payment
 
-            //send order to florist
-
-            //update history both
-            customerDB.updateHistory(email);
+            //send order to florist & update history both
+            List<Order> cur_cart = customerDB.updateHistory(email);
+            for(Order order : cur_cart){
+                floristDB.updateHistory(order, order.getFloristEmail());
+            }
             //empty cart
             customerDB.emptyCart(email);
             return 0;

@@ -10,8 +10,10 @@ public class FloristDB{
         if(floristMap.containsKey(florist.getEmail())){
             throw new Exception("This Florist Has Already Existed");
         }
+        List<Order> newHistoryList = new ArrayList<>();
+
         Inventory newInventory = new Inventory(new HashMap<>(),true,0);
-        History newHistory = new History(new ArrayList<>());
+        History newHistory = new History(newHistoryList);
         Florist newflorist = new Florist(florist.getUser_name(),
                 florist.getPassword(),
                 florist.getEmail(),
@@ -41,6 +43,10 @@ public class FloristDB{
             throw new Exception("Invalid Email Address(Dose Not Exist)");
         }
         return floristMap.get(email).getUser_name();
+    }
+    public boolean isvalid(String email){
+        if(floristMap.containsKey(email)) return true;
+        else return false;
     }
 
     public Map<String,Integer> getProduct(String email){
@@ -75,7 +81,13 @@ public class FloristDB{
         }
         return floristMap.get(email).getInventory();
     }
-    public int updateHistory(Order order){
+    public int updateHistory(Order order, String email){
+
+        Florist florist = floristMap.get(email);
+
+        florist.getHistory().getHistory().add(order);
+
+        System.out.println("worked!!!");
         return 0;
     }
     public History getHistory(String email){
