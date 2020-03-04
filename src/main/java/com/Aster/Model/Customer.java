@@ -1,7 +1,8 @@
 package com.Aster.Model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.web.bind.annotation.RequestBody;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 public class Customer{
     private String user_name;
@@ -11,10 +12,13 @@ public class Customer{
     private History history;
     private Cart cart;
 
-    public Customer(@JsonProperty("user_name") String user_name,
-                    @JsonProperty("password") String password,
-                    @JsonProperty("email") String email,
-                    @JsonProperty("address") String address) {
+    public Customer(@JsonProperty String user_name,
+                    @JsonProperty String password,
+                    @JsonProperty String email,
+                    @JsonProperty String address,
+                    @JsonProperty String lastName,
+                    @JsonProperty String firstName,
+                    @JsonProperty History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
