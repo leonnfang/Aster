@@ -8,17 +8,20 @@ public class Order {
     private String date;
     private Product product;
     private int quantity;
+    private boolean isComplete;
 
     public Order(@JsonProperty("florist") String floristEmail,
                  @JsonProperty("customer") String customerEmail,
                  @JsonProperty("date") String date,
                  @JsonProperty("product") Product product,
-                 @JsonProperty("quantity") int quantity){
+                 @JsonProperty("quantity") int quantity,
+                 @JsonProperty("isComplete") boolean isComplete){
         this.floristEmail = floristEmail;
         this.customerEmail = customerEmail;
         this.date = date;
         this.product = product;
         this.quantity = quantity;
+        this.isComplete = false;
     }
 
     public String getFloristEmail() {
@@ -59,5 +62,13 @@ public class Order {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 }
