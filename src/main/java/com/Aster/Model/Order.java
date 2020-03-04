@@ -3,38 +3,41 @@ package com.Aster.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Order {
-    private Florist florist;
-    private Customer customer;
+    private String floristEmail;
+    private String customerEmail;
     private String date;
     private Product product;
     private int quantity;
+    private boolean isComplete;
 
-    public Order(@JsonProperty("florist") Florist florist,
-                 @JsonProperty("customer") Customer customer,
+    public Order(@JsonProperty("florist") String floristEmail,
+                 @JsonProperty("customer") String customerEmail,
                  @JsonProperty("date") String date,
                  @JsonProperty("product") Product product,
-                 @JsonProperty("quantity") int quantity){
-        this.florist = florist;
-        this.customer = customer;
+                 @JsonProperty("quantity") int quantity,
+                 @JsonProperty("isComplete") boolean isComplete){
+        this.floristEmail = floristEmail;
+        this.customerEmail = customerEmail;
         this.date = date;
         this.product = product;
         this.quantity = quantity;
+        this.isComplete = false;
     }
 
-    public Florist getFlorist() {
-        return florist;
+    public String getFloristEmail() {
+        return floristEmail;
     }
 
-    public void setFlorist(Florist florist) {
-        this.florist = florist;
+    public void setFloristEmail(String floristEmail) {
+        this.floristEmail = floristEmail;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
     public String getDate() {
@@ -59,5 +62,13 @@ public class Order {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 }
