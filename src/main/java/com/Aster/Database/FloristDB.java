@@ -51,20 +51,21 @@ public class FloristDB{
         Florist florist = floristMap.get(floristEmail);
         Inventory floristInventory = florist.getInventory();
         Map<String,Integer> inventoryMap = floristInventory.getInventoryMap();
-        int numberLeft = inventoryMap.get(productName);
+        System.out.println("In Database");
         if(!inventoryMap.containsKey(productName)){
             System.out.println("Flowers Dose not Exist Before" );
             System.out.println("A New Product Will Be Created");
             if(quantity < 0){
                 throw new Exception("Number of Flowers Cannot Not Be Zero");
             }
-            inventoryMap.put(productName,quantity);
+            floristMap.get(floristEmail).getInventory().getInventoryMap().put(productName,quantity);
             return 0;
         }
+        int numberLeft = inventoryMap.get(productName);
         if(numberLeft + quantity < 0){
             throw new Exception("Not Enough Flowers Left");
         }
-        inventoryMap.put(productName,quantity);
+        inventoryMap.put(productName,quantity+numberLeft);
         return 0;
     }
 
@@ -94,7 +95,7 @@ public class FloristDB{
     }
 
     public int addProduct(String email, String productName, String floristName, String description) {
-        Product newproduct = new Product(productName,0,description,floristName);
+        //Product newproduct = new Product(productName,0,description,floristName);
         floristMap.get(email).getInventory().getInventoryMap().put(productName,0);
         return 0;
     }
