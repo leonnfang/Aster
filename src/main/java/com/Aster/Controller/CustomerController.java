@@ -51,4 +51,10 @@ public class CustomerController {
     public int removeCart(@PathVariable String email, @RequestParam String orderID) throws Exception{
         return customerService.removeCart(email, orderID);
     }
+
+    @PutMapping("/{email}/checkout")
+    public int checkout(@PathVariable String email) throws Exception {
+        return customerService.checkout(email);
+    }
+
 }
