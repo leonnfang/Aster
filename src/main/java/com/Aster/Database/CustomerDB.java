@@ -111,12 +111,12 @@ public class CustomerDB {
         }
         return cur_history;
     }
-    public int updateHistory(String email){
+    public List<Order> updateHistory(String email){
         Customer customer = customerMap.get(email);
         for(Order order : customer.getCart().getCartList()){
             customer.getHistory().getHistory().add(order);
         }
-        return 0;
+        return customer.getCart().getCartList();
     }
 
     public int addOrder(Order order){
