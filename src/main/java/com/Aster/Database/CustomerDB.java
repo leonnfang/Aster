@@ -15,12 +15,15 @@ public class CustomerDB {
         if(customerMap.containsKey(customer.getEmail())){
             throw new Exception("Customer already exits");
         }
-        History newhistory = new History();
-        Cart newcart = new Cart();
+        List<Order> newHistoryList = new ArrayList<>();
+        List<Order> newCartList = new ArrayList<>();
+
+        History newHistory = new History(newHistoryList);
+        Cart newCart = new Cart(newCartList, 0);
         Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(),
                                             customer.getEmail(), customer.getLastName(),
                                             customer.getFirstName(), customer.getAddress(),
-                                            newhistory, newcart);
+                                            newHistory, newCart);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return 0;
@@ -91,7 +94,7 @@ public class CustomerDB {
         List<Order> cur_cart = customer.getCart().getCartList();
         for(Order order : cur_cart){
             System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
-            System.out.println(order.getProductName().getName() + "(" + order.getQuantity() + ")");
+            System.out.println(order.getProductName() + "(" + order.getQuantity() + ")");
         }
         return cur_cart;
     }
@@ -102,7 +105,7 @@ public class CustomerDB {
         List<Order> cur_history = customer.getHistory().getHistory();
         for(Order order : cur_history){
             System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
-            System.out.println(order.getProductName().getName() + "(" + order.getQuantity() + ")");
+            System.out.println(order.getProductName() + "(" + order.getQuantity() + ")");
         }
         return cur_history;
     }
