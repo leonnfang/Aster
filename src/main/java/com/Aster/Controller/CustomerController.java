@@ -3,11 +3,9 @@ import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import com.Aster.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Scanner;
 
 @RequestMapping("/customer")
 @RestController
@@ -24,9 +22,10 @@ public class CustomerController {
     public int addCustomer(@RequestBody Customer customer) throws Exception{
         return customerService.addCustomer(customer);
     }
+    @ResponseBody
     @GetMapping("/get")
-    public String getCustomername(@RequestParam String email) throws Exception{
-        return customerService.getCustomername(email);
+    public Customer getCustomer(@RequestParam String email) throws Exception{
+        return customerService.getCustomer(email);
     }
     @DeleteMapping("/{email}/delete")
     public int deleteCustomer(@PathVariable String email) throws Exception{
@@ -55,6 +54,11 @@ public class CustomerController {
     @PutMapping("/{email}/checkout")
     public int checkout(@PathVariable String email) throws Exception {
         return customerService.checkout(email);
+    }
+    @ResponseBody
+    @GetMapping("{email}/history/view")
+    public List<Order> viewHistory(@PathVariable String email) throws Exception{
+        return customerService.viewHistory(email);
     }
 
 }
