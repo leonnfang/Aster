@@ -112,6 +112,7 @@ public class CustomerDB {
         return cur_history;
     }
     public int updateHistory(String email, int opt){
+
         return 0;
     }
 
