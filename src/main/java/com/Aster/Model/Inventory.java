@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.*;
 public class Inventory {
     private Map<String,Integer> inventoryMap;
+    private Map<Process,Integer> inMap = new HashMap<>();
     private boolean isEmpty;
     private int totalNumber;
     public Inventory(@JsonProperty("inventoryMap") Map<String,Integer> inventoryMap,
@@ -19,8 +20,8 @@ public class Inventory {
         return inventoryMap;
     }
 
-    public void setInventoryMap(Map<String, Integer> inventoryMap) {
-        this.inventoryMap = inventoryMap;
+    public Map<Process, Integer> getInMap() {
+        return inMap;
     }
 
     public boolean isEmpty() {
