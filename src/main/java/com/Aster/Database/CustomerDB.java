@@ -18,7 +18,8 @@ public class CustomerDB {
         History newhistory = new History();
         Cart newcart = new Cart();
         Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(),
-                                            customer.getEmail(), customer.getAddress(),
+                                            customer.getEmail(), customer.getLastName(),
+                                            customer.getFirstName(), customer.getAddress(),
                                             newhistory, newcart);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
@@ -44,6 +45,10 @@ public class CustomerDB {
             customerMap.remove(email);
             return 0;
         }
+    }
+    public boolean isvalid(String email){
+        if(customerMap.containsKey(email)) return true;
+        else return false;
     }
 
 
@@ -97,12 +102,11 @@ public class CustomerDB {
     public int updateHistory(String email, int opt){
         return 0;
     }
+
     public int addOrder(Order order){
         return 0;
     }
     public int cancelOrder(Order order){
         return 0;
     }
-
-
 }

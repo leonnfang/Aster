@@ -36,17 +36,15 @@ public class CustomerController {
 
     @PostMapping("/{email}/cart/add")
     public int addCart(@PathVariable String email, @RequestBody Order order) throws Exception{
-        System.out.println("adding to cart");
         return customerService.addCart(email, order);
     }
-    @GetMapping("/{email}/cart/view")
     @ResponseBody
+    @GetMapping("/{email}/cart/view")
     public List<Order> viewCart(@PathVariable String email) throws Exception{
         return customerService.viewCart(email);
     }
     @DeleteMapping("/{email}/cart/empty")
     public int emptyCart(@PathVariable String email) throws Exception{
-        System.out.println("emptying cart");
         return customerService.emptyCart(email);
     }
     @DeleteMapping("/{email}/cart/remove")
