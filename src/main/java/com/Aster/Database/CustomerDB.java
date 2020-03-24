@@ -55,7 +55,7 @@ public class CustomerDB {
     }
 
 
-    public boolean addCart(String email, Order order){
+    public boolean addCart(String email, Order order){ //TODO add to total price
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -67,7 +67,7 @@ public class CustomerDB {
         cart.add(neworder);
         return true;
     }
-    public boolean removeCart(String email, String orderID) throws Exception{
+    public boolean removeCart(String email, String orderID) throws Exception{ //TODO reduce total price
         if(orderID == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -82,7 +82,7 @@ public class CustomerDB {
         }
         throw new Exception("Such Order does not exist");
     }
-    public boolean emptyCart(String email) throws Exception{
+    public boolean emptyCart(String email) throws Exception{ //TODO make total price = 0
         Customer customer = customerMap.get(email);
         List<Order> cart = customer.getCart().getCartList();
         if(!cart.isEmpty()) {
@@ -91,24 +91,16 @@ public class CustomerDB {
         else throw new Exception("Cart is already Empty");
         return true;
     }
-    public List<Order> viewCart(String email){
+    public Cart viewCart(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
-        for(Order order : cur_cart){
-            System.out.println(order.getFloristEmail() + "-------->" + order.getCustomerEmail());
-            System.out.println(order.getProductName() + "(" + order.getQuantity() + ")");
-        }
-        return cur_cart;
+        return customer.getCart();
     }
 
 
     public List<Order> viewHistory(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_history = customer.getHistory().getHistory();
-        for(Order order : cur_history){
-            System.out.println(order.getCustomerEmail() + "-------->" + order.getFloristEmail());
-            System.out.println(order.getProductName() + "(" + order.getQuantity() + ")");
-        }
         return cur_history;
     }
     public List<Order> updateHistory(String email){

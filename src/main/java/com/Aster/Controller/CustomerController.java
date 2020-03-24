@@ -1,4 +1,5 @@
 package com.Aster.Controller;
+import com.Aster.Model.Cart;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import com.Aster.Service.CustomerService;
@@ -39,7 +40,7 @@ public class CustomerController {
     }
     @ResponseBody
     @GetMapping("/{email}/cart/view")
-    public List<Order> viewCart(@PathVariable String email) throws Exception{
+    public Cart viewCart(@PathVariable String email) throws Exception{
         return customerService.viewCart(email);
     }
     @DeleteMapping("/{email}/cart/empty")
@@ -60,5 +61,4 @@ public class CustomerController {
     public List<Order> viewHistory(@PathVariable String email) throws Exception{
         return customerService.viewHistory(email);
     }
-
 }

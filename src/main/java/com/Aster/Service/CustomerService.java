@@ -2,6 +2,7 @@ package com.Aster.Service;
 
 import com.Aster.Database.CustomerDB;
 import com.Aster.Database.FloristDB;
+import com.Aster.Model.Cart;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class CustomerService {
         }
         else throw new Exception("Email does not exist");
     }
-    public List<Order> viewCart(String email) throws Exception{
+    public Cart viewCart(String email) throws Exception{
         if(customerDB.isvalid(email)) {
             return customerDB.viewCart(email);
         }

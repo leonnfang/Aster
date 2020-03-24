@@ -6,6 +6,7 @@ import java.util.*;
 @Repository
 public class FloristDB{
     Map<String,Florist> floristMap = new HashMap<>();
+
     public int addFlorist(Florist florist) throws Exception {
         if(floristMap.containsKey(florist.getEmail())){
             throw new Exception("This Florist Has Already Existed");
@@ -24,7 +25,6 @@ public class FloristDB{
                 newHistory);
 
         floristMap.put(florist.getEmail(),newflorist);
-        System.out.println("user was added");
         return 0;
     }
     public int deleteFlorist(String email) throws Exception {
@@ -33,10 +33,12 @@ public class FloristDB{
         }
         floristMap.remove(email);
         if(!floristMap.containsKey(email)){
-            System.out.println("user was deleted");
             return 0;
         }
         return 1;
+    }
+    public Florist getFlorist(String email) {
+        return floristMap.get(email);
     }
     public String getUser_name(String email) throws Exception {
         if(!floristMap.containsKey(email)){
@@ -49,18 +51,18 @@ public class FloristDB{
         else return false;
     }
 
-    public Map<String,Integer> getProduct(String email){
-        return floristMap.get(email).getInventory().getInventoryMap();
-    }
 
+    public int addProduct(String email, String productName, String floristName, String description) {
+        Product newproduct = new Product(productName,0,description,floristName);
+        floristMap.get(email).getInventory().getInventoryMap().put(productName,0);
+        return 0;
+    }
     public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
         Florist florist = floristMap.get(floristEmail);
         Inventory floristInventory = florist.getInventory();
         Map<String,Integer> inventoryMap = floristInventory.getInventoryMap();
         int numberLeft = inventoryMap.get(productName);
         if(!inventoryMap.containsKey(productName)){
-            System.out.println("Flowers Dose not Exist Before" );
-            System.out.println("A New Product Will Be Created");
             if(quantity < 0){
                 throw new Exception("Number of Flowers Cannot Not Be Zero");
             }
@@ -73,28 +75,24 @@ public class FloristDB{
         inventoryMap.put(productName,quantity);
         return 0;
     }
-
-    public Inventory getInventory(String email) throws Exception {
+    public Inventory viewInventory(String email) throws Exception {
         if(email == null || !floristMap.containsKey(email)){
             throw new Exception("Florist's Inventory Cannot Be Found");
         }
         return floristMap.get(email).getInventory();
     }
+
+
     public int updateHistory(Order order, String email){
 
         Florist florist = floristMap.get(email);
 
         florist.getHistory().getHistory().add(order);
 
-        System.out.println("worked!!!");
         return 0;
     }
     public History getHistory(String email){
         return floristMap.get(email).getHistory();
-    }
-
-    public Florist getFlorist(String email) {
-        return floristMap.get(email);
     }
 
 
@@ -104,10 +102,7 @@ public class FloristDB{
     public int cancelOrder(Order order){
         return 0;
     }
-
-    public int addProduct(String email, String productName, String floristName, String description) {
-        Product newproduct = new Product(productName,0,description,floristName);
-        floristMap.get(email).getInventory().getInventoryMap().put(productName,0);
-        return 0;
+    public Map<String,Integer> getProduct(String email){
+        return floristMap.get(email).getInventory().getInventoryMap();
     }
 }

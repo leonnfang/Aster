@@ -8,14 +8,14 @@ public class Product {
     private String description;
     private String storeName;
 
-    public Product(@JsonProperty("flowerName") String flowerName,
+    public Product(@JsonProperty("productName") String productName,
                    @JsonProperty("price") double price,
                    @JsonProperty("description") String description,
-                   @JsonProperty("storeName") String storeName) {
-        this.name = flowerName;
+                   @JsonProperty("floristEmail") String floristEmail) {
+        this.name = productName;
         this.price = price;
         this.description = description;
-        this.storeName = storeName;
+        this.storeName = floristEmail;
     }
 
     public String getName() {
