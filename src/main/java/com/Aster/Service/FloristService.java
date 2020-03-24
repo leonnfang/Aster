@@ -49,6 +49,8 @@ public class FloristService {
     public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
         return floristDB.updateInventory(floristEmail,product,quantity);
     }
+
+
     public Inventory viewInventory(String email) throws Exception {
         return floristDB.viewInventory(email);
     }

@@ -48,6 +48,8 @@ public class FloristController{
                                @RequestBody Product product) throws Exception{
         return floristService.updateInventory(email,product,quantity);
     }
+
+
     @ResponseBody
     @GetMapping("/{email}/inventory/view")
     public Inventory viewInventory(@PathVariable String email) throws Exception {
