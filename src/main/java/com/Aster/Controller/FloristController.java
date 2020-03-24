@@ -36,7 +36,7 @@ public class FloristController{
     }
 
 
-    @PostMapping("/{email}/add_product")
+    @PostMapping("/{email}/inventory/add")
     public int add_product(@PathVariable String email,
                            @RequestParam String productName,
                            @RequestParam String floristName,
@@ -44,9 +44,12 @@ public class FloristController{
         return floristService.addProduct(email,productName,floristName,description);
     }
     @PostMapping("/{email}/inventory/update")
-    public int updateInventory(@PathVariable String email,@RequestParam String productName,@RequestParam int quantity) throws Exception{
+    public int updateInventory(@PathVariable String email,
+                               @RequestParam String productName,
+                               @RequestParam int quantity) throws Exception{
         return floristService.updateInventory(email,productName,quantity);
     }
+    @ResponseBody
     @GetMapping("/{email}/inventory/view")
     public Inventory viewInventory(@PathVariable String email) throws Exception {
         return floristService.viewInventory(email);

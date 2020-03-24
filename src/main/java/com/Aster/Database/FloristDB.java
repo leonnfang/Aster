@@ -102,7 +102,4 @@ public class FloristDB{
     public int cancelOrder(Order order){
         return 0;
     }
-    public Map<String,Integer> getProduct(String email){
-        return floristMap.get(email).getInventory().getInventoryMap();
-    }
 }
