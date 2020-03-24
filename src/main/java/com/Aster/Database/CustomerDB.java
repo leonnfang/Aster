@@ -20,10 +20,14 @@ public class CustomerDB {
 
         History newHistory = new History(newHistoryList);
         Cart newCart = new Cart(newCartList, 0);
-        Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(),
-                                            customer.getEmail(), customer.getLastName(),
-                                            customer.getFirstName(), customer.getAddress(),
-                                            newHistory, newCart);
+        Customer newCustomer = new Customer(customer.getUser_name(),
+                customer.getPassword(),
+                customer.getEmail(),
+                customer.getLastName(),
+                customer.getFirstName(),
+                customer.getAddress(),
+                newHistory,
+                newCart);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return true;
@@ -62,8 +66,13 @@ public class CustomerDB {
         Customer customer = customerMap.get(email);
         List<Order> cart = customer.getCart().getCartList();
         String orderID = UUID.randomUUID().toString();
-        Order neworder = new Order(order.getFloristEmail(), order.getCustomerEmail(), order.getDate(),
-                                    order.getProductName(), order.getQuantity(), false, orderID);
+        Order neworder = new Order(order.getFloristEmail(),
+                order.getCustomerEmail(),
+                order.getDate(),
+                order.getProductName(),
+                order.getQuantity(),
+                false,
+                orderID);
         cart.add(neworder);
         return true;
     }
