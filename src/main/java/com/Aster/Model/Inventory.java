@@ -44,4 +44,7 @@ public class Inventory {
         return totalNumber;
     }
 
+    public void setTotalNumber(int totalNumber) {
+        this.totalNumber = totalNumber;
+    }
 }
