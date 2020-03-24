@@ -60,5 +60,4 @@ public class CustomerController {
     public List<Order> viewHistory(@PathVariable String email) throws Exception{
         return customerService.viewHistory(email);
     }
-
 }
