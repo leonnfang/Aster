@@ -8,7 +8,7 @@ import java.util.*;
 public class CustomerDB {
     Map<String,Customer> customerMap = new HashMap<>();
 
-    public int addCustomer(Customer customer) throws Exception{
+    public boolean addCustomer(Customer customer) throws Exception{
         if(customer == null){
             throw new Exception("Invalid Customer");
         }
@@ -26,7 +26,7 @@ public class CustomerDB {
                                             newHistory, newCart);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
-        return 0;
+        return true;
     }
     public Customer getCustomer(String email) throws Exception{
         if(email == null){
@@ -39,14 +39,14 @@ public class CustomerDB {
             return customerMap.get(email);
         }
     }
-    public int deleteCustomer(String email) throws Exception {
+    public boolean deleteCustomer(String email) throws Exception {
         if (email == null) {
             throw new Exception("It is not a valid email");
         } else if (!customerMap.containsKey(email)) {
             throw new Exception("Email dose not exist");
         } else {
             customerMap.remove(email);
-            return 0;
+            return true;
         }
     }
     public boolean isvalid(String email){
@@ -55,7 +55,7 @@ public class CustomerDB {
     }
 
 
-    public int addCart(String email, Order order){
+    public boolean addCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -65,9 +65,9 @@ public class CustomerDB {
         Order neworder = new Order(order.getFloristEmail(), order.getCustomerEmail(), order.getDate(),
                                     order.getProductName(), order.getQuantity(), false, orderID);
         cart.add(neworder);
-        return 0;
+        return true;
     }
-    public int removeCart(String email, String orderID) throws Exception{
+    public boolean removeCart(String email, String orderID) throws Exception{
         if(orderID == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -77,19 +77,19 @@ public class CustomerDB {
         for(Order cur_order : cart){
             if(cur_order.getId().equals(orderID)){
                 cart.remove(cur_order);
-                return 0;
+                return true;
             }
         }
         throw new Exception("Such Order does not exist");
     }
-    public int emptyCart(String email) throws Exception{
+    public boolean emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
         List<Order> cart = customer.getCart().getCartList();
         if(!cart.isEmpty()) {
             cart.clear();
         }
         else throw new Exception("Cart is already Empty");
-        return 0;
+        return true;
     }
     public List<Order> viewCart(String email){
         Customer customer = customerMap.get(email);
@@ -118,6 +118,7 @@ public class CustomerDB {
         }
         return customer.getCart().getCartList();
     }
+
 
     public int addOrder(Order order){
         return 0;
