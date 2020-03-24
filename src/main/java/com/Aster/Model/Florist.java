@@ -34,13 +34,6 @@ public class Florist {
         this.history = history;
     }
 
-    /*
-    public Florist(@JsonProperty String user_name,
-                   @JsonProperty String password,
-                   @JsonProperty String email) {
-    }
-     */
-
     public String getUser_name() {
         return user_name;
     }

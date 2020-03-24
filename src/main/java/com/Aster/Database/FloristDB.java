@@ -75,7 +75,7 @@ public class FloristDB{
         inventoryMap.put(productName,quantity);
         return 0;
     }
-    public Inventory getInventory(String email) throws Exception {
+    public Inventory viewInventory(String email) throws Exception {
         if(email == null || !floristMap.containsKey(email)){
             throw new Exception("Florist's Inventory Cannot Be Found");
         }
