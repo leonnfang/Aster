@@ -52,27 +52,27 @@ public class FloristDB{
     }
 
 
-    public int addProduct(String email, String productName, String floristName, String description) {
-        Product newproduct = new Product(productName,0,description,floristName);
-        floristMap.get(email).getInventory().getInventoryMap().put(productName,0);
+    public int addProduct(String email, Product product, int quantity) throws Exception{
+        if(quantity < 0){
+            throw new Exception("Number of Product Cannot be Lower than Zero");
+        }
+        Product newproduct = new Product(product.getName(), product.getPrice(),
+                                         product.getDescription(), product.getStoreName());
+        floristMap.get(email).getInventory().getInventoryMap().put(product.getName(), quantity);
         return 0;
     }
-    public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
+    public int updateInventory(String floristEmail, Product product, int quantity) throws Exception {
         Florist florist = floristMap.get(floristEmail);
         Inventory floristInventory = florist.getInventory();
         Map<String,Integer> inventoryMap = floristInventory.getInventoryMap();
-        int numberLeft = inventoryMap.get(productName);
-        if(!inventoryMap.containsKey(productName)){
-            if(quantity < 0){
-                throw new Exception("Number of Flowers Cannot Not Be Zero");
-            }
-            inventoryMap.put(productName,quantity);
-            return 0;
+        int numberLeft = inventoryMap.get(product.getName());
+        if(!inventoryMap.containsKey(product.getName())){
+            throw new Exception("Such Product Does Not Exist");
         }
         if(numberLeft + quantity < 0){
-            throw new Exception("Not Enough Flowers Left");
+            throw new Exception("Not Enough Products Left");
         }
-        inventoryMap.put(productName,quantity);
+        inventoryMap.put(product.getName(), numberLeft+quantity);
         return 0;
     }
     public Inventory viewInventory(String email) throws Exception {

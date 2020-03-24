@@ -38,16 +38,15 @@ public class FloristController{
 
     @PostMapping("/{email}/inventory/add")
     public int add_product(@PathVariable String email,
-                           @RequestParam String productName,
-                           @RequestParam String floristName,
-                           @RequestParam String description){
-        return floristService.addProduct(email,productName,floristName,description);
+                           @RequestParam int quantity,
+                           @RequestBody Product product) throws Exception{
+        return floristService.addProduct(email, product, quantity);
     }
     @PostMapping("/{email}/inventory/update")
     public int updateInventory(@PathVariable String email,
-                               @RequestParam String productName,
-                               @RequestParam int quantity) throws Exception{
-        return floristService.updateInventory(email,productName,quantity);
+                               @RequestParam int quantity,
+                               @RequestBody Product product) throws Exception{
+        return floristService.updateInventory(email,product,quantity);
     }
     @ResponseBody
     @GetMapping("/{email}/inventory/view")

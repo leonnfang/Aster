@@ -4,6 +4,7 @@ import com.Aster.Database.FloristDB;
 import com.Aster.Model.Florist;
 import com.Aster.Model.History;
 import com.Aster.Model.Inventory;
+import com.Aster.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +43,11 @@ public class FloristService {
     }
 
 
-    public int addProduct(String email, String productName, String floristName, String description) {
-        return floristDB.addProduct(email,productName,floristName,description);
+    public int addProduct(String email, Product product, int quantity) throws Exception{
+        return floristDB.addProduct(email, product, quantity);
     }
-    public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
-        return floristDB.updateInventory(floristEmail,productName,quantity);
+    public int updateInventory(String floristEmail, Product product, int quantity) throws Exception {
+        return floristDB.updateInventory(floristEmail,product,quantity);
     }
     public Inventory viewInventory(String email) throws Exception {
         return floristDB.viewInventory(email);
