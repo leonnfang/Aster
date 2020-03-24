@@ -18,13 +18,13 @@ public class OrderService {
     }
 
     public int addOrder(Order order) throws Exception {
-        if(floristDB.addOrder(order) != 0 || customerDB.addOrder(order) != 0){
+        if(floristDB.addOrder(order) != 0){
             throw new Exception("Cannot place the order");
         }
         return 0;
     }
     public int cancelOrder(Order order) throws Exception {
-        if(floristDB.cancelOrder(order) != 0 || customerDB.cancelOrder(order) != 0){
+        if(floristDB.cancelOrder(order) != 0){
             throw new Exception("cannot cancel the order");
         }
         return 0;

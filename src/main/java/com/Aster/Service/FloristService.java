@@ -33,7 +33,6 @@ public class FloristService {
         }
     }
     public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
-        System.out.println("Updating the Inventory");
         return floristDB.updateInventory(floristEmail,productName,quantity);
     }
 

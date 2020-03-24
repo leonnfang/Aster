@@ -24,7 +24,6 @@ public class FloristDB{
                 newHistory);
 
         floristMap.put(florist.getEmail(),newflorist);
-        System.out.println("user was added");
         return 0;
     }
     public int deleteFlorist(String email) throws Exception {
@@ -33,7 +32,6 @@ public class FloristDB{
         }
         floristMap.remove(email);
         if(!floristMap.containsKey(email)){
-            System.out.println("user was deleted");
             return 0;
         }
         return 1;
@@ -59,8 +57,6 @@ public class FloristDB{
         Map<String,Integer> inventoryMap = floristInventory.getInventoryMap();
         int numberLeft = inventoryMap.get(productName);
         if(!inventoryMap.containsKey(productName)){
-            System.out.println("Flowers Dose not Exist Before" );
-            System.out.println("A New Product Will Be Created");
             if(quantity < 0){
                 throw new Exception("Number of Flowers Cannot Not Be Zero");
             }
@@ -85,8 +81,6 @@ public class FloristDB{
         Florist florist = floristMap.get(email);
 
         florist.getHistory().getHistory().add(order);
-
-        System.out.println("worked!!!");
         return 0;
     }
     public History getHistory(String email){
