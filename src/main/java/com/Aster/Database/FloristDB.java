@@ -76,6 +76,22 @@ public class FloristDB{
 
         return true;
     }
+    public boolean removeProduct(String email, Product product) throws Exception{
+        Florist florist = floristMap.get(email);
+        Inventory floristInventory = florist.getInventory();
+        Map<String,Vector> inventoryMap = floristInventory.getInventoryMap();
+        int num = (int) inventoryMap.get(product.getName()).lastElement();
+
+        if(!inventoryMap.containsKey(product.getName())){
+            throw new Exception("Such Product Does Not Exist");
+        }
+
+        inventoryMap.remove(product.getName());
+
+        floristInventory.setTotalNumber(floristInventory.getTotalNumber() - num);
+
+        return true;
+    }
     public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
         Florist florist = floristMap.get(floristEmail);
         Inventory floristInventory = florist.getInventory();

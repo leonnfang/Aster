@@ -38,9 +38,9 @@ public class CustomerService {
             if(floristDB.isvalid(order.getFloristEmail())) {
                 return customerDB.addCart(email, order);
             }
-            else throw new Exception("Florsit does not exist");
+            else throw new Exception("Florsit Does Not Exist");
         }
-        else throw new Exception("Email does not exist");
+        else throw new Exception("Email Does Not Exist");
     }
     public Cart viewCart(String email) throws Exception{
         if(customerDB.isvalid(email)) {

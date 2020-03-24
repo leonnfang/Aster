@@ -42,14 +42,17 @@ public class FloristController{
                            @RequestBody Product product) throws Exception{
         return floristService.addProduct(email, product, quantity);
     }
+    @DeleteMapping("/{email}/inventory/remove")
+    public boolean remove_product(@PathVariable String email,
+                                  @RequestBody Product product) throws Exception{
+        return floristService.removeProduct(email, product);
+    }
     @PostMapping("/{email}/inventory/update")
     public boolean updateInventory(@PathVariable String email,
                                @RequestParam int quantity,
                                @RequestBody Product product) throws Exception{
         return floristService.updateInventory(email,product,quantity);
     }
-
-
     @ResponseBody
     @GetMapping("/{email}/inventory/view")
     public Inventory viewInventory(@PathVariable String email) throws Exception {

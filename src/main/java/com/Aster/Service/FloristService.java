@@ -46,11 +46,12 @@ public class FloristService {
     public boolean addProduct(String email, Product product, int quantity) throws Exception{
         return floristDB.addProduct(email, product, quantity);
     }
+    public boolean removeProduct(String email, Product product) throws Exception{
+        return floristDB.removeProduct(email, product);
+    }
     public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
         return floristDB.updateInventory(floristEmail,product,quantity);
     }
-
-
     public Inventory viewInventory(String email) throws Exception {
         return floristDB.viewInventory(email);
     }
