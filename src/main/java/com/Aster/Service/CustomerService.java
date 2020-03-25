@@ -33,8 +33,7 @@ public class CustomerService {
 
 
     public boolean addCart(String email, Order order) throws Exception{
-        //TODO if same product already exists, must only increase quantity and price
-        if(!customerDB.isvalid(email)){
+        if(!customerDB.isValid(email)){
             throw new Exception("Email Does Not Exists");
         }
         if(!floristDB.isvalid((order.getFloristEmail()))){
@@ -55,29 +54,60 @@ public class CustomerService {
 
         Customer customer = customerDB.getCustomer(email);
         Cart cart = customer.getCart();
-        double curPrice = cart.getTotalprice();
         Product product = (Product) inventoryMap.get(productName).firstElement();
-        double productPrice = product.getPrice();
-        double addPrice = productPrice * order.getQuantity();
-        cart.setTotalprice(curPrice + addPrice);
 
-        return customerDB.addCart(email, order);
+        if(customerDB.isInCart(email, order)){
+            if(quantityLeft < customerDB.getQuantity(email, order)){
+                throw new Exception("Not Enough Quantity in Inventory, Cannot Add That Much Quantity");
+            }
+            double curPrice = cart.getTotalprice();
+            double productPrice = product.getPrice();
+            double addPrice = productPrice * order.getQuantity();
+            cart.setTotalprice(curPrice + addPrice);
+
+            return customerDB.updateCart(email, order);
+        }
+        else{
+            double curPrice = cart.getTotalprice();
+            double productPrice = product.getPrice();
+            double addPrice = productPrice * order.getQuantity();
+            cart.setTotalprice(curPrice + addPrice);
+
+            return customerDB.addCart(email, order);
+        }
     }
     public boolean removeCart(String email, String orderID) throws Exception{
-        //TODO reduct total price
-        if(customerDB.isvalid(email)) {
-            return customerDB.removeCart(email, orderID);
+        if(!customerDB.isValid(email)){
+            throw new Exception("Email Does Not Exist");
         }
-        else throw new Exception("Email does not exist");
+        Customer customer = customerDB.getCustomer(email);
+        Cart cart = customer.getCart();
+        List<Order> cartList = cart.getCartList();
+        double curPrice = cart.getTotalprice();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getId().equals(orderID)){
+                String productName = cur_order.getProductName();
+                Florist florist = floristDB.getFlorist(cur_order.getFloristEmail());
+                Map<String, Vector> inventoryMap = florist.getInventory().getInventoryMap();
+                Product product = (Product) inventoryMap.get(productName).firstElement();
+                double productPrice = product.getPrice();
+
+                double cancelPrice = productPrice * cur_order.getQuantity();
+                cart.setTotalprice(curPrice - cancelPrice);
+            }
+        }
+
+        return customerDB.removeCart(email, orderID);
     }
     public Cart viewCart(String email) throws Exception{
-        if(customerDB.isvalid(email)) {
+        if(customerDB.isValid(email)) {
             return customerDB.viewCart(email);
         }
         else throw new Exception("Email does not exist");
     }
     public boolean emptyCart(String email) throws Exception{
-        if(customerDB.isvalid(email)) {
+        if(customerDB.isValid(email)) {
             return customerDB.emptyCart(email);
         }
         else throw new Exception("Email does not exist");
@@ -85,7 +115,7 @@ public class CustomerService {
 
 
     public boolean checkout(String email) throws Exception{
-        if(customerDB.isvalid(email)) {
+        if(customerDB.isValid(email)) {
             //last check of cart
             customerDB.viewCart(email);
             //make payment
@@ -102,7 +132,7 @@ public class CustomerService {
         else throw new Exception("Email does not exist");
     }
     public List<Order> viewHistory(String email) throws Exception{
-        if(customerDB.isvalid(email)) {
+        if(customerDB.isValid(email)) {
             return customerDB.viewHistory(email);
         }
         else throw new Exception("Email does not exist");

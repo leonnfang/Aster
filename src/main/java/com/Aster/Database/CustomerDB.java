@@ -53,7 +53,7 @@ public class CustomerDB {
             return true;
         }
     }
-    public boolean isvalid(String email){
+    public boolean isValid(String email){
         if(customerMap.containsKey(email)) return true;
         else return false;
     }
@@ -82,11 +82,11 @@ public class CustomerDB {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cart = customer.getCart().getCartList();
+        List<Order> cartList = customer.getCart().getCartList();
 
-        for(Order cur_order : cart){
+        for(Order cur_order : cartList){
             if(cur_order.getId().equals(orderID)){
-                cart.remove(cur_order);
+                cartList.remove(cur_order);
                 return true;
             }
         }
@@ -110,6 +110,60 @@ public class CustomerDB {
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
         return customer.getCart();
+    }
+
+    public boolean isInCart(String email, Order order) throws Exception{
+        if(order == null) {
+            throw new NullPointerException(("order pointer is null"));
+        }
+        Customer customer = customerMap.get(email);
+        List<Order> cartList = customer.getCart().getCartList();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
+                if(cur_order.getProductName().equals(order.getProductName())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean updateCart(String email, Order order) throws Exception{
+        if(order == null) {
+            throw new NullPointerException(("order pointer is null"));
+        }
+        Customer customer = customerMap.get(email);
+        List<Order> cartList = customer.getCart().getCartList();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
+                if(cur_order.getProductName().equals(order.getProductName())){
+                    int curQuantity = cur_order.getQuantity();
+                    int addQuantity = order.getQuantity();
+                    cur_order.setQuantity(curQuantity + addQuantity);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public int getQuantity(String email, Order order) throws Exception{
+        if(order == null) {
+            throw new NullPointerException(("order pointer is null"));
+        }
+        Customer customer = customerMap.get(email);
+        List<Order> cartList = customer.getCart().getCartList();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
+                if(cur_order.getProductName().equals(order.getProductName())){
+                    int curQuantity = cur_order.getQuantity();
+                    int addQuantity = order.getQuantity();
+                    return curQuantity + addQuantity;
+                }
+            }
+        }
+        return 0;
     }
 
 
