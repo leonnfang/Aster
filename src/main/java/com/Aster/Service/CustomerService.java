@@ -33,8 +33,7 @@ public class CustomerService {
 
 
     public boolean addCart(String email, Order order) throws Exception{
-        //TODO Have to add Checking whether stock exists
-        //TODO increase total price
+        //TODO if same product already exists, must only increase quantity and price
         if(!customerDB.isvalid(email)){
             throw new Exception("Email Does Not Exists");
         }
