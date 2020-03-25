@@ -20,10 +20,14 @@ public class CustomerDB {
 
         History newHistory = new History(newHistoryList);
         Cart newCart = new Cart(newCartList, 0);
-        Customer newCustomer = new Customer(customer.getUser_name(), customer.getPassword(),
-                                            customer.getEmail(), customer.getLastName(),
-                                            customer.getFirstName(), customer.getAddress(),
-                                            newHistory, newCart);
+        Customer newCustomer = new Customer(customer.getUser_name(),
+                customer.getPassword(),
+                customer.getEmail(),
+                customer.getLastName(),
+                customer.getFirstName(),
+                customer.getAddress(),
+                newHistory,
+                newCart);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return true;
@@ -49,52 +53,117 @@ public class CustomerDB {
             return true;
         }
     }
-    public boolean isvalid(String email){
+    public boolean isValid(String email){
         if(customerMap.containsKey(email)) return true;
         else return false;
     }
 
-
-    public boolean addCart(String email, Order order){ //TODO add to total price
+    // '/**' and enter for method commenting
+    public boolean addCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cart = customer.getCart().getCartList();
+        Cart cart = customer.getCart();
+        List<Order> cartList = cart.getCartList();
         String orderID = UUID.randomUUID().toString();
-        Order neworder = new Order(order.getFloristEmail(), order.getCustomerEmail(), order.getDate(),
-                                    order.getProductName(), order.getQuantity(), false, orderID);
-        cart.add(neworder);
+        Order newOrder = new Order(order.getFloristEmail(),
+                order.getCustomerEmail(),
+                order.getDate(),
+                order.getProductName(),
+                order.getQuantity(),
+                false,
+                orderID);
+        cartList.add(newOrder);
         return true;
     }
-    public boolean removeCart(String email, String orderID) throws Exception{ //TODO reduce total price
+    public boolean removeCart(String email, String orderID) throws Exception{
         if(orderID == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cart = customer.getCart().getCartList();
+        List<Order> cartList = customer.getCart().getCartList();
 
-        for(Order cur_order : cart){
+        for(Order cur_order : cartList){
             if(cur_order.getId().equals(orderID)){
-                cart.remove(cur_order);
+                cartList.remove(cur_order);
                 return true;
             }
         }
         throw new Exception("Such Order does not exist");
     }
-    public boolean emptyCart(String email) throws Exception{ //TODO make total price = 0
+    public boolean emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
-        List<Order> cart = customer.getCart().getCartList();
-        if(!cart.isEmpty()) {
-            cart.clear();
+        Cart cart = customer.getCart();
+        List<Order> cartList = customer.getCart().getCartList();
+
+        if(!cartList.isEmpty()) {
+            cartList.clear();
         }
         else throw new Exception("Cart is already Empty");
+
+        cart.setTotalprice(0);
+
         return true;
     }
     public Cart viewCart(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
         return customer.getCart();
+    }
+
+    public boolean isInCart(String email, Order order) throws Exception{
+        if(order == null) {
+            throw new NullPointerException(("order pointer is null"));
+        }
+        Customer customer = customerMap.get(email);
+        List<Order> cartList = customer.getCart().getCartList();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
+                if(cur_order.getProductName().equals(order.getProductName())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean updateCart(String email, Order order) throws Exception{
+        if(order == null) {
+            throw new NullPointerException(("order pointer is null"));
+        }
+        Customer customer = customerMap.get(email);
+        List<Order> cartList = customer.getCart().getCartList();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
+                if(cur_order.getProductName().equals(order.getProductName())){
+                    int curQuantity = cur_order.getQuantity();
+                    int addQuantity = order.getQuantity();
+                    cur_order.setQuantity(curQuantity + addQuantity);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public int getQuantity(String email, Order order) throws Exception{
+        if(order == null) {
+            throw new NullPointerException(("order pointer is null"));
+        }
+        Customer customer = customerMap.get(email);
+        List<Order> cartList = customer.getCart().getCartList();
+
+        for(Order cur_order : cartList){
+            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
+                if(cur_order.getProductName().equals(order.getProductName())){
+                    int curQuantity = cur_order.getQuantity();
+                    int addQuantity = order.getQuantity();
+                    return curQuantity + addQuantity;
+                }
+            }
+        }
+        return 0;
     }
 
 

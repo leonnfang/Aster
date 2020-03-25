@@ -4,6 +4,7 @@ import com.Aster.Database.FloristDB;
 import com.Aster.Model.Florist;
 import com.Aster.Model.History;
 import com.Aster.Model.Inventory;
+import com.Aster.Model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +16,20 @@ public class FloristService {
         this.floristDB = floristDB;
     }
 
-    public int addFlorist(Florist florist) throws Exception {
+    public boolean addFlorist(Florist florist) throws Exception {
         if(florist == null){
             throw new Exception("Invalid Florist Input");
         }
         return floristDB.addFlorist(florist);
     }
-    public int deleteFlorist(String email) throws Exception {
+    public boolean deleteFlorist(String email) throws Exception {
         if(email == null || email.length() == 0){
             throw new Exception("Invalid Email address");
         }
-        if(floristDB.deleteFlorist(email) != 0){
+        if(!floristDB.deleteFlorist(email)){
             throw new Exception("Cannot delete the florist");
         }else{
-            return 0;
+            return true;
         }
     }
     public String getUser_name(String email) throws Exception {
@@ -42,11 +43,14 @@ public class FloristService {
     }
 
 
-    public int addProduct(String email, String productName, String floristName, String description) {
-        return floristDB.addProduct(email,productName,floristName,description);
+    public boolean addProduct(String email, Product product, int quantity) throws Exception{
+        return floristDB.addProduct(email, product, quantity);
     }
-    public int updateInventory(String floristEmail, String productName, int quantity) throws Exception {
-        return floristDB.updateInventory(floristEmail,productName,quantity);
+    public boolean removeProduct(String email, Product product) throws Exception{
+        return floristDB.removeProduct(email, product);
+    }
+    public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
+        return floristDB.updateInventory(floristEmail,product,quantity);
     }
     public Inventory viewInventory(String email) throws Exception {
         return floristDB.viewInventory(email);

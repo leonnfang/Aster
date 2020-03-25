@@ -18,7 +18,7 @@ public class FloristController{
     }
 
     @PostMapping("/add")
-    public int addFlorist(@RequestBody Florist florist) throws Exception {
+    public boolean addFlorist(@RequestBody Florist florist) throws Exception {
         return floristService.addFlorist(florist);
     }
     @ResponseBody
@@ -27,7 +27,7 @@ public class FloristController{
         return floristService.getFlorist(email);
     }
     @PostMapping("/{email}/delete")
-    public int deleteFlorist(@PathVariable String email) throws Exception{
+    public boolean deleteFlorist(@PathVariable String email) throws Exception{
         return floristService.deleteFlorist(email);
     }
     @GetMapping("/{email}/getUser_name")
@@ -36,17 +36,24 @@ public class FloristController{
     }
 
 
-    @PostMapping("/{email}/add_product")
-    public int add_product(@PathVariable String email,
-                           @RequestParam String productName,
-                           @RequestParam String floristName,
-                           @RequestParam String description){
-        return floristService.addProduct(email,productName,floristName,description);
+    @PostMapping("/{email}/inventory/add")
+    public boolean add_product(@PathVariable String email,
+                               @RequestParam int quantity,
+                               @RequestBody Product product) throws Exception{
+        return floristService.addProduct(email, product, quantity);
+    }
+    @DeleteMapping("/{email}/inventory/remove")
+    public boolean remove_product(@PathVariable String email,
+                                  @RequestBody Product product) throws Exception{
+        return floristService.removeProduct(email, product);
     }
     @PostMapping("/{email}/inventory/update")
-    public int updateInventory(@PathVariable String email,@RequestParam String productName,@RequestParam int quantity) throws Exception{
-        return floristService.updateInventory(email,productName,quantity);
+    public boolean updateInventory(@PathVariable String email,
+                                   @RequestParam int quantity,
+                                   @RequestBody Product product) throws Exception{
+        return floristService.updateInventory(email,product,quantity);
     }
+    @ResponseBody
     @GetMapping("/{email}/inventory/view")
     public Inventory viewInventory(@PathVariable String email) throws Exception {
         return floristService.viewInventory(email);
@@ -60,11 +67,11 @@ public class FloristController{
 
 
     @PostMapping("/make_order")
-    public int makeOrder(@RequestBody Order order) throws Exception {
+    public boolean makeOrder(@RequestBody Order order) throws Exception {
         return orderService.addOrder(order);
     }
     @PostMapping("/cancel_order")
-    public int cancelOrder(@RequestBody Order order) throws Exception{
+    public boolean cancelOrder(@RequestBody Order order) throws Exception{
         return orderService.cancelOrder(order);
     }
 }
