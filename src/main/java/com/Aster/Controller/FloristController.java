@@ -38,8 +38,8 @@ public class FloristController{
 
     @PostMapping("/{email}/inventory/add")
     public boolean add_product(@PathVariable String email,
-                           @RequestParam int quantity,
-                           @RequestBody Product product) throws Exception{
+                               @RequestParam int quantity,
+                               @RequestBody Product product) throws Exception{
         return floristService.addProduct(email, product, quantity);
     }
     @DeleteMapping("/{email}/inventory/remove")
@@ -49,8 +49,8 @@ public class FloristController{
     }
     @PostMapping("/{email}/inventory/update")
     public boolean updateInventory(@PathVariable String email,
-                               @RequestParam int quantity,
-                               @RequestBody Product product) throws Exception{
+                                   @RequestParam int quantity,
+                                   @RequestBody Product product) throws Exception{
         return floristService.updateInventory(email,product,quantity);
     }
     @ResponseBody

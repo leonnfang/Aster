@@ -2,13 +2,13 @@ package com.Aster.Service;
 
 import com.Aster.Database.CustomerDB;
 import com.Aster.Database.FloristDB;
-import com.Aster.Model.Cart;
-import com.Aster.Model.Customer;
-import com.Aster.Model.Order;
+import com.Aster.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 @Service
 public class CustomerService {
@@ -34,23 +34,46 @@ public class CustomerService {
 
     public boolean addCart(String email, Order order) throws Exception{
         //TODO Have to add Checking whether stock exists
-        if(customerDB.isvalid(email)) {
-            if(floristDB.isvalid(order.getFloristEmail())) {
-                return customerDB.addCart(email, order);
-            }
-            else throw new Exception("Florsit Does Not Exist");
+        //TODO increase total price
+        if(!customerDB.isvalid(email)){
+            throw new Exception("Email Does Not Exists");
         }
-        else throw new Exception("Email Does Not Exist");
+        if(!floristDB.isvalid((order.getFloristEmail()))){
+            throw new Exception("Florist Does Not Exists");
+        }
+
+        String productName = order.getProductName();
+        Florist florist = floristDB.getFlorist(order.getFloristEmail());
+        Map<String, Vector> inventoryMap = florist.getInventory().getInventoryMap();
+        if(!inventoryMap.containsKey(productName)){
+            throw new Exception("Such Product Does Not Exists");
+        }
+
+        int quantityLeft = (int) inventoryMap.get(productName).lastElement();
+        if(quantityLeft < order.getQuantity()){
+            throw new Exception("Not Enough Quantity in Inventory");
+        }
+
+        Customer customer = customerDB.getCustomer(email);
+        Cart cart = customer.getCart();
+        double curPrice = cart.getTotalprice();
+        Product product = (Product) inventoryMap.get(productName).firstElement();
+        double productPrice = product.getPrice();
+        double addPrice = productPrice * order.getQuantity();
+        cart.setTotalprice(curPrice + addPrice);
+
+        return customerDB.addCart(email, order);
+    }
+    public boolean removeCart(String email, String orderID) throws Exception{
+        //TODO reduct total price
+        if(customerDB.isvalid(email)) {
+            return customerDB.removeCart(email, orderID);
+        }
+        else throw new Exception("Email does not exist");
     }
     public Cart viewCart(String email) throws Exception{
         if(customerDB.isvalid(email)) {
             return customerDB.viewCart(email);
-        }
-        else throw new Exception("Email does not exist");
-    }
-    public boolean removeCart(String email, String orderID) throws Exception{
-        if(customerDB.isvalid(email)) {
-            return customerDB.removeCart(email, orderID);
         }
         else throw new Exception("Email does not exist");
     }

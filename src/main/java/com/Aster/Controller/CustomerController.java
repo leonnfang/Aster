@@ -35,8 +35,14 @@ public class CustomerController {
 
 
     @PostMapping("/{email}/cart/add")
-    public boolean addCart(@PathVariable String email, @RequestBody Order order) throws Exception{
+    public boolean addCart(@PathVariable String email,
+                           @RequestBody Order order) throws Exception{
         return customerService.addCart(email, order);
+    }
+    @DeleteMapping("/{email}/cart/remove")
+    public boolean removeCart(@PathVariable String email,
+                              @RequestParam String orderID) throws Exception{
+        return customerService.removeCart(email, orderID);
     }
     @ResponseBody
     @GetMapping("/{email}/cart/view")
@@ -47,10 +53,7 @@ public class CustomerController {
     public boolean emptyCart(@PathVariable String email) throws Exception{
         return customerService.emptyCart(email);
     }
-    @DeleteMapping("/{email}/cart/remove")
-    public boolean removeCart(@PathVariable String email, @RequestParam String orderID) throws Exception{
-        return customerService.removeCart(email, orderID);
-    }
+
 
     @PutMapping("/{email}/checkout")
     public boolean checkout(@PathVariable String email) throws Exception {

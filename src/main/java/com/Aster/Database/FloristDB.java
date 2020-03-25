@@ -124,6 +124,7 @@ public class FloristDB{
         return floristMap.get(email).getInventory();
     }
 
+    //public double checkPrice(){}
 
     public int updateHistory(Order order, String email){
 

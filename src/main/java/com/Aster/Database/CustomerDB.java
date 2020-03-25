@@ -58,25 +58,26 @@ public class CustomerDB {
         else return false;
     }
 
-
-    public boolean addCart(String email, Order order){ //TODO add to total price
+    // '/**' and enter for method commenting
+    public boolean addCart(String email, Order order){
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cart = customer.getCart().getCartList();
+        Cart cart = customer.getCart();
+        List<Order> cartList = cart.getCartList();
         String orderID = UUID.randomUUID().toString();
-        Order neworder = new Order(order.getFloristEmail(),
+        Order newOrder = new Order(order.getFloristEmail(),
                 order.getCustomerEmail(),
                 order.getDate(),
                 order.getProductName(),
                 order.getQuantity(),
                 false,
                 orderID);
-        cart.add(neworder);
+        cartList.add(newOrder);
         return true;
     }
-    public boolean removeCart(String email, String orderID) throws Exception{ //TODO reduce total price
+    public boolean removeCart(String email, String orderID) throws Exception{
         if(orderID == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -91,13 +92,18 @@ public class CustomerDB {
         }
         throw new Exception("Such Order does not exist");
     }
-    public boolean emptyCart(String email) throws Exception{ //TODO make total price = 0
+    public boolean emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
-        List<Order> cart = customer.getCart().getCartList();
-        if(!cart.isEmpty()) {
-            cart.clear();
+        Cart cart = customer.getCart();
+        List<Order> cartList = customer.getCart().getCartList();
+
+        if(!cartList.isEmpty()) {
+            cartList.clear();
         }
         else throw new Exception("Cart is already Empty");
+
+        cart.setTotalprice(0);
+
         return true;
     }
     public Cart viewCart(String email){
