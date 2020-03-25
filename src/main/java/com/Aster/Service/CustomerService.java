@@ -112,7 +112,10 @@ public class CustomerService {
         }
         else throw new Exception("Email does not exist");
     }
-
+    //TODO might need to make editCart
+    public int editCart(String email, Order order) throws Exception{
+        return 0;
+    }
 
     public boolean checkout(String email) throws Exception{
         if(customerDB.isValid(email)) {
