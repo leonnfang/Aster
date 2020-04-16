@@ -3,12 +3,12 @@ import com.Aster.Model.*;
 
 import org.springframework.stereotype.Repository;
 
-import java.security.KeyPair;
 import java.util.*;
 @Repository
-public class FloristDB{
+public class JdbiFloristRepository implements FloristRepository {
     Map<String,Florist> floristMap = new HashMap<>();
 
+    @Override
     public boolean addFlorist(Florist florist) throws Exception {
         if(floristMap.containsKey(florist.getEmail())){
             throw new Exception("This Florist Has Already Existed");
@@ -31,6 +31,7 @@ public class FloristDB{
         floristMap.put(florist.getEmail(),newflorist);
         return true;
     }
+    @Override
     public boolean deleteFlorist(String email) throws Exception {
         if (!floristMap.containsKey(email)){
             throw new Exception("Florist Dose not Exist");
@@ -41,21 +42,25 @@ public class FloristDB{
         }
         return false;
     }
+    @Override
     public Florist getFlorist(String email) {
         return floristMap.get(email);
     }
+    @Override
     public String getUser_name(String email) throws Exception {
         if(!floristMap.containsKey(email)){
             throw new Exception("Invalid Email Address(Dose Not Exist)");
         }
         return floristMap.get(email).getUser_name();
     }
+    @Override
     public boolean isvalid(String email){
         if(floristMap.containsKey(email)) return true;
         else return false;
     }
 
 
+    @Override
     public boolean addProduct(String email, Product product, int quantity) throws Exception{
         if(quantity < 0){
             throw new Exception("Number of Product Cannot be Lower than Zero");
@@ -76,6 +81,7 @@ public class FloristDB{
 
         return true;
     }
+    @Override
     public boolean removeProduct(String email, Product product) throws Exception{
         Florist florist = floristMap.get(email);
         Inventory floristInventory = florist.getInventory();
@@ -92,6 +98,7 @@ public class FloristDB{
 
         return true;
     }
+    @Override
     public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
         Florist florist = floristMap.get(floristEmail);
         Inventory floristInventory = florist.getInventory();
@@ -117,6 +124,7 @@ public class FloristDB{
         floristInventory.setTotalNumber(floristInventory.getTotalNumber() + quantity);
         return true;
     }
+    @Override
     public Inventory viewInventory(String email) throws Exception {
         if(email == null || !floristMap.containsKey(email)){
             throw new Exception("Florist's Inventory Cannot Be Found");
@@ -126,6 +134,7 @@ public class FloristDB{
 
     //public double checkPrice(){}
 
+    @Override
     public int updateHistory(Order order, String email){
 
         Florist florist = floristMap.get(email);
@@ -134,15 +143,18 @@ public class FloristDB{
 
         return 0;
     }
+    @Override
     public History getHistory(String email){
         return floristMap.get(email).getHistory();
     }
 
     //TODO confirm order: will reduce quantity in inventory
 
+    @Override
     public int addOrder(Order order) {
         return 0;
     }
+    @Override
     public int cancelOrder(Order order){
         return 0;
     }

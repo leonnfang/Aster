@@ -5,10 +5,11 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class CustomerDB {
+public class JdbiCustomerRepository implements CustomerRepository {
     Map<String,Customer> customerMap = new HashMap<>();
 
 
+    @Override
     public boolean addCustomer(Customer customer) throws Exception{
         if(customer == null){
             throw new Exception("Invalid Customer");
@@ -33,6 +34,7 @@ public class CustomerDB {
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return true;
     }
+    @Override
     public Customer getCustomer(String email) throws Exception{
         if(email == null){
             throw new Exception("Invalid Email");
@@ -44,6 +46,7 @@ public class CustomerDB {
             return customerMap.get(email);
         }
     }
+    @Override
     public boolean deleteCustomer(String email) throws Exception {
         if (email == null) {
             throw new Exception("Invalid Email");
@@ -54,12 +57,14 @@ public class CustomerDB {
             return true;
         }
     }
+    @Override
     public boolean isValid(String email){
         if(customerMap.containsKey(email)) return true;
         else return false;
     }
 
     
+    @Override
     public boolean addCart(String email, Order order) throws Exception{
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
@@ -78,6 +83,7 @@ public class CustomerDB {
         cartList.add(newOrder);
         return true;
     }
+    @Override
     public boolean removeCart(String email, String orderID) throws Exception{
         if(orderID == null) {
             throw new NullPointerException(("order pointer is null"));
@@ -93,6 +99,7 @@ public class CustomerDB {
         }
         throw new Exception("Such Order does not exist");
     }
+    @Override
     public boolean emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
         Cart cart = customer.getCart();
@@ -107,6 +114,7 @@ public class CustomerDB {
 
         return true;
     }
+    @Override
     public Cart viewCart(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_cart = customer.getCart().getCartList();
@@ -114,6 +122,7 @@ public class CustomerDB {
     }
 
 
+    @Override
     public boolean isInCart(String email, Order order) throws Exception{
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
@@ -130,6 +139,7 @@ public class CustomerDB {
         }
         return false;
     }
+    @Override
     public boolean updateCart(String email, Order order) throws Exception{
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
@@ -149,6 +159,7 @@ public class CustomerDB {
         }
         return false;
     }
+    @Override
     public int getQuantity(String email, Order order) throws Exception{
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
@@ -169,11 +180,13 @@ public class CustomerDB {
     }
 
 
+    @Override
     public List<Order> viewHistory(String email){
         Customer customer = customerMap.get(email);
         List<Order> cur_history = customer.getHistory().getHistory();
         return cur_history;
     }
+    @Override
     public List<Order> updateHistory(String email){
         Customer customer = customerMap.get(email);
         for(Order order : customer.getCart().getCartList()){
@@ -183,9 +196,11 @@ public class CustomerDB {
     }
 
 
+    @Override
     public int addOrder(Order order){
         return 0;
     }
+    @Override
     public int cancelOrder(Order order){
         return 0;
     }
