@@ -8,12 +8,13 @@ import java.util.*;
 public class CustomerDB {
     Map<String,Customer> customerMap = new HashMap<>();
 
+
     public boolean addCustomer(Customer customer) throws Exception{
         if(customer == null){
             throw new Exception("Invalid Customer");
         }
         if(customerMap.containsKey(customer.getEmail())){
-            throw new Exception("Customer already exits");
+            throw new Exception("Customer Already Exists");
         }
         List<Order> newHistoryList = new ArrayList<>();
         List<Order> newCartList = new ArrayList<>();
@@ -34,10 +35,10 @@ public class CustomerDB {
     }
     public Customer getCustomer(String email) throws Exception{
         if(email == null){
-            throw new Exception("It is not a valid email");
+            throw new Exception("Invalid Email");
         }
         else if(!customerMap.containsKey(email)){
-            throw new Exception("Email dose not exist");
+            throw new Exception("Email Dose Not Exist");
         }
         else{
             return customerMap.get(email);
@@ -45,9 +46,9 @@ public class CustomerDB {
     }
     public boolean deleteCustomer(String email) throws Exception {
         if (email == null) {
-            throw new Exception("It is not a valid email");
+            throw new Exception("Invalid Email");
         } else if (!customerMap.containsKey(email)) {
-            throw new Exception("Email dose not exist");
+            throw new Exception("Email Dose Not Exist");
         } else {
             customerMap.remove(email);
             return true;
@@ -58,8 +59,8 @@ public class CustomerDB {
         else return false;
     }
 
-    // '/**' and enter for method commenting
-    public boolean addCart(String email, Order order){
+    
+    public boolean addCart(String email, Order order) throws Exception{
         if(order == null) {
             throw new NullPointerException(("order pointer is null"));
         }
@@ -111,6 +112,7 @@ public class CustomerDB {
         List<Order> cur_cart = customer.getCart().getCartList();
         return customer.getCart();
     }
+
 
     public boolean isInCart(String email, Order order) throws Exception{
         if(order == null) {

@@ -138,6 +138,7 @@ public class FloristDB{
         return floristMap.get(email).getHistory();
     }
 
+    //TODO confirm order: will reduce quantity in inventory
 
     public int addOrder(Order order) {
         return 0;

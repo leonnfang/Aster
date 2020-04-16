@@ -117,6 +117,8 @@ public class CustomerService {
         return 0;
     }
 
+    //TODO have to add 'order cancellation'
+    //TODO finish checkout 'Florist's update history'
     public boolean checkout(String email) throws Exception{
         if(customerDB.isValid(email)) {
             //last check of cart
