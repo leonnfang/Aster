@@ -5,10 +5,12 @@ import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Primary
+@Transactional
 @Repository
 public class JdbiCustomerRepository implements CustomerRepository {
 

@@ -19,11 +19,13 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-
-	runtimeOnly 'mysql:mysql-connector-java'
-
+	//compile 'mysql:mysql-connector-java:5.1.44'
+	//compile 'mysql:mysql-connector-java:5.1.13'
+	compile 'mysql:mysql-connector-java:8.0.13'
+	compile 'org.jdbi:jdbi3-sqlobject:3.12.2'
 	compile 'org.jdbi:jdbi3-core:3.1.0'
 	compile 'com.h2database:h2:1.4.200'
+	compile 'joda-time:joda-time:2.8.1'
 	//compile 'org.jdbi:jdbi:2.75'
 }
 

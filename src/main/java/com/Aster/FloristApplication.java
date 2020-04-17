@@ -1,7 +1,9 @@
 package com.Aster;
 
+import com.Aster.Model.Customer;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.h2.H2DatabasePlugin;
+import org.jdbi.v3.core.mapper.reflect.ConstructorMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,9 @@ public class FloristApplication {
 		SpringApplication.run(FloristApplication.class, args);
 		System.out.println("Welcome to Aster");
 	}
+
+	//TODO order florist by: views, popularity, etc
+
 	/*
 	@Bean
 	public Jdbi jdbi(DataSource dataSource){
@@ -27,7 +32,9 @@ public class FloristApplication {
 		jdbi.installPlugins();
 		jdbi.installPlugin(new H2DatabasePlugin());
 
-		jdbi.registerRowMapper(Order.)
+		jdbi.registerRowMapper(Customer.class, ConstructorMapper.of(Customer.class));
+
+		return jdbi;
 	}
 	*/
 
