@@ -10,6 +10,7 @@ public class Customer{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CUSTOMER_ID")
     private Long Id;
+
     @Column(nullable = false, unique = true)
     private String user_name;
     @Column(nullable = false)
@@ -22,6 +23,7 @@ public class Customer{
     private String firstName;
     @Column(nullable = false)
     private String address;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "CART_ID")
     private Cart cart;
