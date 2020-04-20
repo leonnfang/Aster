@@ -36,17 +36,14 @@ public class Customer{
                     @JsonProperty("email") String email,
                     @JsonProperty("address") String address,
                     @JsonProperty("lastName") String lastName,
-                    @JsonProperty("firstName") String firstName,
-                    @JsonProperty("cart") Cart cart,
-                    @JsonProperty("history") History history) {
+                    @JsonProperty("firstName") String firstName
+                    ) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.cart = cart;
-        this.history = history;
     }
 
     public Customer(){}

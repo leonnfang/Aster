@@ -36,7 +36,7 @@ public class CustomerController {
     }
     @ResponseBody
     @GetMapping("/getAll")
-    public List<Customer> viewCustomers(){
+    public List<String> viewCustomers(){
         return jpaCustomerService.viewCustomers();
     }
 

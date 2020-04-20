@@ -1,4 +1,5 @@
 package com.Aster.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -12,14 +13,15 @@ public class Cart {
     @Column(name = "CART_ID")
     private Long Id;
     @Column
-    private double totalprice;
+    private double totalprice = 0;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CUSTOMER_ID")
+    @JsonIgnore
     private Customer customer;
 
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Purchase> cart;
+    private List<Purchase> cart = new ArrayList<>();
 
 
     public Cart(@JsonProperty("cart") List<Purchase> cart,

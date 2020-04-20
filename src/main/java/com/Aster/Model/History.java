@@ -1,4 +1,5 @@
 package com.Aster.Model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -12,19 +13,33 @@ public class History {
     @Column(name = "HISTORY_ID")
     private Long Id;
 
+    @Column
+    private boolean allCompleted = true;
+
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CUSTOMER_ID")
+    @JsonIgnore
     private Customer customer;
 
     @OneToMany(mappedBy = "history", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Purchase> history;
+    private List<Purchase> history = new ArrayList<>();
 
 
-    public History(@JsonProperty("history") List<Purchase> history) {
+    public History(@JsonProperty("history") List<Purchase> history,
+                   @JsonProperty("allcompleted") boolean allCompleted) {
+        this.allCompleted = allCompleted;
         this.history = history;
     }
 
     public History(){}
+
+    public boolean isAllCompleted() {
+        return allCompleted;
+    }
+
+    public void setAllCompleted(boolean allCompleted) {
+        this.allCompleted = allCompleted;
+    }
 
     public Long getId() {
         return Id;
