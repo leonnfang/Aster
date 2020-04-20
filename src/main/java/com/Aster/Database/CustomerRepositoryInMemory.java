@@ -22,15 +22,13 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
         List<Purchase> newCart = new ArrayList<>();
 
         Cart cart = new Cart(newCart, 0);
-        History history = new History(newHistory);
+        History history = new History(newHistory, true);
         Customer newCustomer = new Customer(customer.getUser_name(),
                 customer.getPassword(),
                 customer.getEmail(),
                 customer.getLastName(),
                 customer.getFirstName(),
-                customer.getAddress(),
-                cart,
-                history);
+                customer.getAddress());
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return true;

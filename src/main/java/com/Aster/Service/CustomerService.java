@@ -31,8 +31,7 @@ public class CustomerService {
     public boolean deleteCustomer(String email) throws Exception{
         return customerRepository.deleteCustomer(email);
     }
-
-
+    
     public boolean addCart(String email, Purchase purchase) throws Exception{
         if(!customerRepository.isValid(email)){
             throw new Exception("Email Does Not Exists");
