@@ -10,7 +10,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CART_ID")
-    private Long id;
+    private Long Id;
     @Column
     private double totalprice;
 
@@ -33,11 +33,11 @@ public class Cart {
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public double getTotalprice() {
