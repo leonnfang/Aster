@@ -17,7 +17,7 @@ public class FloristRepositoryInMemory implements FloristRepository {
             throw new Exception("This Florist Has Already Existed");
         }
 
-        List<Order> newHistory = new ArrayList<>();
+        List<Purchase> newHistory = new ArrayList<>();
         Map<String, Vector> newInventoryMap = new HashMap<>();
 
         Inventory newInventory = new Inventory(newInventoryMap,true,0);
@@ -138,27 +138,27 @@ public class FloristRepositoryInMemory implements FloristRepository {
     //public double checkPrice(){}
 
     @Override
-    public int updateHistory(Order order, String email){
+    public int updateHistory(Purchase purchase, String email){
 
         Florist florist = floristMap.get(email);
 
-        florist.getHistory().add(order);
+        florist.getHistory().add(purchase);
 
         return 0;
     }
     @Override
-    public List<Order> getHistory(String email){
+    public List<Purchase> getHistory(String email){
         return floristMap.get(email).getHistory();
     }
 
     //TODO confirm order: will reduce quantity in inventory
 
     @Override
-    public int addOrder(Order order) {
+    public int addOrder(Purchase purchase) {
         return 0;
     }
     @Override
-    public int cancelOrder(Order order){
+    public int cancelOrder(Purchase purchase){
         return 0;
     }
 }

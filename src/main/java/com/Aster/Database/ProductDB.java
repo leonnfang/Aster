@@ -1,10 +1,7 @@
 package com.Aster.Database;
 
-import com.Aster.Model.Customer;
-import com.Aster.Model.Order;
 import com.Aster.Model.Product;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;

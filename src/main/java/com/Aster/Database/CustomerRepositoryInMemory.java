@@ -18,17 +18,19 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
         if(customerMap.containsKey(customer.getEmail())){
             throw new Exception("Customer Already Exists");
         }
-        List<Order> newHistory = new ArrayList<>();
-        List<Order> newCart = new ArrayList<>();
+        List<Purchase> newHistory = new ArrayList<>();
+        List<Purchase> newCart = new ArrayList<>();
 
-        Profile profile = new Profile(newCart,newHistory, 0);
+        Cart cart = new Cart(newCart, 0);
+        History history = new History(newHistory);
         Customer newCustomer = new Customer(customer.getUser_name(),
                 customer.getPassword(),
                 customer.getEmail(),
                 customer.getLastName(),
                 customer.getFirstName(),
                 customer.getAddress(),
-                profile);
+                cart,
+                history);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return true;
@@ -64,22 +66,22 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
 
     
     @Override
-    public boolean addCart(String email, Order order) throws Exception{
-        if(order == null) {
+    public boolean addCart(String email, Purchase purchase) throws Exception{
+        if(purchase == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        Profile profile = customer.getProfile();
-        List<Order> cartList = profile.getCart();
+        Cart cart = customer.getCart();
+        List<Purchase> cartList = cart.getCart();
         String orderID = UUID.randomUUID().toString();
-        Order newOrder = new Order(order.getFloristEmail(),
-                order.getCustomerEmail(),
-                order.getDate(),
-                order.getProductName(),
-                order.getQuantity(),
+        Purchase newPurchase = new Purchase(purchase.getFloristEmail(),
+                purchase.getCustomerEmail(),
+                purchase.getDate(),
+                purchase.getProductName(),
+                purchase.getQuantity(),
                 false,
                 orderID);
-        cartList.add(newOrder);
+        cartList.add(newPurchase);
         return true;
     }
     @Override
@@ -88,11 +90,11 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getProfile().getCart();
+        List<Purchase> cartList = customer.getCart().getCart();
 
-        for(Order cur_order : cartList){
-            if(cur_order.getId().equals(orderID)){
-                cartList.remove(cur_order);
+        for(Purchase cur_purchase : cartList){
+            if(cur_purchase.getOrderId().equals(orderID)){
+                cartList.remove(cur_purchase);
                 return true;
             }
         }
@@ -101,37 +103,37 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
     @Override
     public boolean emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
-        Profile profile = customer.getProfile();
-        List<Order> cartList = profile.getCart();
+        Cart cart = customer.getCart();
+        List<Purchase> cartList = cart.getCart();
 
         if(!cartList.isEmpty()) {
             cartList.clear();
         }
         else throw new Exception("Cart is already Empty");
 
-        profile.setTotalprice(0);
+        cart.setTotalprice(0);
 
         return true;
     }
     @Override
-    public List<Order> viewCart(String email){
+    public List<Purchase> viewCart(String email){
         Customer customer = customerMap.get(email);
-        List<Order> cur_cart = customer.getProfile().getCart();
-        return customer.getProfile().getCart();
+        List<Purchase> cur_cart = customer.getCart().getCart();
+        return customer.getCart().getCart();
     }
 
 
     @Override
-    public boolean isInCart(String email, Order order) throws Exception{
-        if(order == null) {
+    public boolean isInCart(String email, Purchase purchase) throws Exception{
+        if(purchase == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getProfile().getCart();
+        List<Purchase> cartList = customer.getCart().getCart();
 
-        for(Order cur_order : cartList){
-            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
-                if(cur_order.getProductName().equals(order.getProductName())){
+        for(Purchase cur_purchase : cartList){
+            if(cur_purchase.getFloristEmail().equals(purchase.getFloristEmail())){
+                if(cur_purchase.getProductName().equals(purchase.getProductName())){
                     return true;
                 }
             }
@@ -139,19 +141,19 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
         return false;
     }
     @Override
-    public boolean updateCart(String email, Order order) throws Exception{
-        if(order == null) {
+    public boolean updateCart(String email, Purchase purchase) throws Exception{
+        if(purchase == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getProfile().getCart();
+        List<Purchase> cartList = customer.getCart().getCart();
 
-        for(Order cur_order : cartList){
-            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
-                if(cur_order.getProductName().equals(order.getProductName())){
-                    int curQuantity = cur_order.getQuantity();
-                    int addQuantity = order.getQuantity();
-                    cur_order.setQuantity(curQuantity + addQuantity);
+        for(Purchase cur_purchase : cartList){
+            if(cur_purchase.getFloristEmail().equals(purchase.getFloristEmail())){
+                if(cur_purchase.getProductName().equals(purchase.getProductName())){
+                    int curQuantity = cur_purchase.getQuantity();
+                    int addQuantity = purchase.getQuantity();
+                    cur_purchase.setQuantity(curQuantity + addQuantity);
                     return true;
                 }
             }
@@ -159,18 +161,18 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
         return false;
     }
     @Override
-    public int getQuantity(String email, Order order) throws Exception{
-        if(order == null) {
+    public int getQuantity(String email, Purchase purchase) throws Exception{
+        if(purchase == null) {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getProfile().getCart();
+        List<Purchase> cartList = customer.getCart().getCart();
 
-        for(Order cur_order : cartList){
-            if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
-                if(cur_order.getProductName().equals(order.getProductName())){
-                    int curQuantity = cur_order.getQuantity();
-                    int addQuantity = order.getQuantity();
+        for(Purchase cur_purchase : cartList){
+            if(cur_purchase.getFloristEmail().equals(purchase.getFloristEmail())){
+                if(cur_purchase.getProductName().equals(purchase.getProductName())){
+                    int curQuantity = cur_purchase.getQuantity();
+                    int addQuantity = purchase.getQuantity();
                     return curQuantity + addQuantity;
                 }
             }
@@ -180,27 +182,27 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
 
 
     @Override
-    public List<Order> viewHistory(String email){
+    public List<Purchase> viewHistory(String email){
         Customer customer = customerMap.get(email);
-        List<Order> cur_history = customer.getProfile().getHistory();
+        List<Purchase> cur_history = customer.getHistory().getHistory();
         return cur_history;
     }
     @Override
-    public List<Order> updateHistory(String email){
+    public List<Purchase> updateHistory(String email){
         Customer customer = customerMap.get(email);
-        for(Order order : customer.getProfile().getCart()){
-            customer.getProfile().getHistory().add(order);
+        for(Purchase purchase : customer.getCart().getCart()){
+            customer.getHistory().getHistory().add(purchase);
         }
-        return customer.getProfile().getCart();
+        return customer.getCart().getCart();
     }
 
 
     @Override
-    public int addOrder(Order order){
+    public int addOrder(Purchase purchase){
         return 0;
     }
     @Override
-    public int cancelOrder(Order order){
+    public int cancelOrder(Purchase purchase){
         return 0;
     }
 }

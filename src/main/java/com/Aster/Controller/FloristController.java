@@ -63,17 +63,17 @@ public class FloristController{
 
 
     @GetMapping("/{email}/history/view")
-    public List<Order> getHistory(@PathVariable String email) throws Exception{
+    public List<Purchase> getHistory(@PathVariable String email) throws Exception{
         return floristService.getHistory(email);
     }
 
 
     @PostMapping("/make_order")
-    public boolean makeOrder(@RequestBody Order order) throws Exception {
-        return orderService.addOrder(order);
+    public boolean makeOrder(@RequestBody Purchase purchase) throws Exception {
+        return orderService.addOrder(purchase);
     }
     @PostMapping("/cancel_order")
-    public boolean cancelOrder(@RequestBody Order order) throws Exception{
-        return orderService.cancelOrder(order);
+    public boolean cancelOrder(@RequestBody Purchase purchase) throws Exception{
+        return orderService.cancelOrder(purchase);
     }
 }

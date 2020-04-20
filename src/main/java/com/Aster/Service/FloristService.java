@@ -56,7 +56,7 @@ public class FloristService {
     }
 
 
-    public List<Order> getHistory(String email) {
+    public List<Purchase> getHistory(String email) {
         return floristRepsoitory.getHistory(email);
     }
 }

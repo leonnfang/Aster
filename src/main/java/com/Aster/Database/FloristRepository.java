@@ -1,7 +1,6 @@
 package com.Aster.Database;
 
 import com.Aster.Model.*;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -24,11 +23,11 @@ public interface FloristRepository{
 
     Inventory viewInventory(String email) throws Exception;
 
-    int updateHistory(Order order, String email);
+    int updateHistory(Purchase purchase, String email);
 
-    List<Order> getHistory(String email);
+    List<Purchase> getHistory(String email);
 
-    int addOrder(Order order);
+    int addOrder(Purchase purchase);
 
-    int cancelOrder(Order order);
+    int cancelOrder(Purchase purchase);
 }

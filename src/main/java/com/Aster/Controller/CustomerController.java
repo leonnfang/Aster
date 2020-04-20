@@ -1,7 +1,6 @@
 package com.Aster.Controller;
-import com.Aster.Model.Profile;
 import com.Aster.Model.Customer;
-import com.Aster.Model.Order;
+import com.Aster.Model.Purchase;
 import com.Aster.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +35,8 @@ public class CustomerController {
 
     @PostMapping("/{email}/cart/add")
     public boolean addCart(@PathVariable String email,
-                           @RequestBody Order order) throws Exception{
-        return customerService.addCart(email, order);
+                           @RequestBody Purchase purchase) throws Exception{
+        return customerService.addCart(email, purchase);
     }
     @DeleteMapping("/{email}/cart/remove")
     public boolean removeCart(@PathVariable String email,
@@ -46,7 +45,7 @@ public class CustomerController {
     }
     @ResponseBody
     @GetMapping("/{email}/cart/view")
-    public List<Order> viewCart(@PathVariable String email) throws Exception{
+    public List<Purchase> viewCart(@PathVariable String email) throws Exception{
         return customerService.viewCart(email);
     }
     @DeleteMapping("/{email}/cart/empty")
@@ -61,7 +60,7 @@ public class CustomerController {
     }
     @ResponseBody
     @GetMapping("{email}/history/view")
-    public List<Order> viewHistory(@PathVariable String email) throws Exception{
+    public List<Purchase> viewHistory(@PathVariable String email) throws Exception{
         return customerService.viewHistory(email);
     }
 }

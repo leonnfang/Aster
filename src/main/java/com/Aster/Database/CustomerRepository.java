@@ -1,9 +1,7 @@
 package com.Aster.Database;
 
-import com.Aster.Model.Profile;
 import com.Aster.Model.Customer;
-import com.Aster.Model.Order;
-import org.aspectj.weaver.ast.Or;
+import com.Aster.Model.Purchase;
 
 import java.util.List;
 
@@ -16,25 +14,25 @@ public interface CustomerRepository {
 
     boolean isValid(String email);
 
-    boolean addCart(String email, Order order) throws Exception;
+    boolean addCart(String email, Purchase purchase) throws Exception;
 
     boolean removeCart(String email, String orderID) throws Exception;
 
     boolean emptyCart(String email) throws Exception;
 
-    List<Order> viewCart(String email);
+    List<Purchase> viewCart(String email);
 
-    boolean isInCart(String email, Order order) throws Exception;
+    boolean isInCart(String email, Purchase purchase) throws Exception;
 
-    boolean updateCart(String email, Order order) throws Exception;
+    boolean updateCart(String email, Purchase purchase) throws Exception;
 
-    int getQuantity(String email, Order order) throws Exception;
+    int getQuantity(String email, Purchase purchase) throws Exception;
 
-    List<Order> viewHistory(String email);
+    List<Purchase> viewHistory(String email);
 
-    List<Order> updateHistory(String email);
+    List<Purchase> updateHistory(String email);
 
-    int addOrder(Order order);
+    int addOrder(Purchase purchase);
 
-    int cancelOrder(Order order);
+    int cancelOrder(Purchase purchase);
 }

@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "CUSTOMER")
 public class Customer{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "CUSTOMER_ID")
+    private Long Id;
     @Column(nullable = false, unique = true)
     private String user_name;
     @Column(nullable = false)
@@ -21,8 +22,12 @@ public class Customer{
     private String firstName;
     @Column(nullable = false)
     private String address;
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private Profile profile;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "CART_ID")
+    private Cart cart;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "HISTORY_ID")
+    private History history;
 
     public Customer(@JsonProperty("user_name") String user_name,
                     @JsonProperty("password") String password,
@@ -30,23 +35,34 @@ public class Customer{
                     @JsonProperty("address") String address,
                     @JsonProperty("lastName") String lastName,
                     @JsonProperty("firstName") String firstName,
-                    @JsonProperty("profile") Profile profile) {
+                    @JsonProperty("profile") Cart cart,
+                    @JsonProperty("history") History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.profile = profile;
+        this.cart = cart;
+        this.history = history;
     }
 
+    public Customer(){}
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long Id) {
+        this.Id = Id;
     }
 
     public String getUser_name() {
@@ -81,12 +97,12 @@ public class Customer{
         this.address = address;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public String getLastName() {

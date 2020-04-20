@@ -7,14 +7,16 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "order")
-public class Order {
+@Table(name = "PURCHASE")
+public class Purchase {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(nullable = false, unique = true)
-    private String id;
+    @Column(name = "PURCHASE_ID", nullable = false, unique = true)
+    private String OrderId;
+
+
     @Column(nullable = false)
     private String floristEmail;
     @Column(nullable = false)
@@ -28,44 +30,46 @@ public class Order {
     @Column(nullable = false)
     private boolean complete = false;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn
-    private Profile profile_cart;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CART_ID")
+    private Cart cart;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn
-    private Profile profile_history;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HISTORY_ID")
+    private History history;
 
-    public Order(@JsonProperty("floristEmail") String floristEmail,
-                 @JsonProperty("customerEmail") String customerEmail,
-                 @JsonProperty("date") String date,
-                 @JsonProperty("product") String productName,
-                 @JsonProperty("quantity") int quantity,
-                 @JsonProperty("complete") boolean complete,
-                 @JsonProperty("id") String id){
+    public Purchase(@JsonProperty("floristEmail") String floristEmail,
+                    @JsonProperty("customerEmail") String customerEmail,
+                    @JsonProperty("date") String date,
+                    @JsonProperty("product") String productName,
+                    @JsonProperty("quantity") int quantity,
+                    @JsonProperty("complete") boolean complete,
+                    @JsonProperty("id") String OrderId){
         this.floristEmail = floristEmail;
         this.customerEmail = customerEmail;
         this.date = date;
         this.productName = productName;
         this.quantity = quantity;
         this.complete = false;
-        this.id = id;
+        this.OrderId = OrderId;
     }
 
-    public Profile getProfile_history() {
-        return profile_history;
+    public Purchase(){}
+
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setProfile_history(Profile profile_history) {
-        this.profile_history = profile_history;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
-    public Profile getProfile_cart() {
-        return profile_cart;
+    public History getHistory() {
+        return history;
     }
 
-    public void setProfile_cart(Profile profile_cart) {
-        this.profile_cart = profile_cart;
+    public void setHistory(History history) {
+        this.history = history;
     }
 
     public String getFloristEmail() {
@@ -116,12 +120,12 @@ public class Order {
         this.complete = complete;
     }
 
-    public String getId() {
-        return id;
+    public String getOrderId() {
+        return OrderId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String OrderId) {
+        this.OrderId = OrderId;
     }
 
 }

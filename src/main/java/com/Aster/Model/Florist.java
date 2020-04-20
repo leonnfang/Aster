@@ -1,6 +1,5 @@
 package com.Aster.Model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.*;
@@ -13,7 +12,7 @@ public class Florist {
     private String lastName;
     private String firstName;
     private String address;
-    private List<Order> history;
+    private List<Purchase> history;
     private Inventory inventory;
 
     public Florist(@JsonProperty("user_name") String user_name,
@@ -23,7 +22,7 @@ public class Florist {
                    @JsonProperty("firstName") String firstName,
                    @JsonProperty("address") String address,
                    @JsonProperty("inventory") Inventory inventory,
-                   @JsonProperty("history") List<Order> history) {
+                   @JsonProperty("history") List<Purchase> history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
@@ -74,11 +73,11 @@ public class Florist {
         this.address = address;
     }
 
-    public List<Order> getHistory() {
+    public List<Purchase> getHistory() {
         return history;
     }
 
-    public void setHistory(List<Order> history) {
+    public void setHistory(List<Purchase> history) {
         this.history = history;
     }
 

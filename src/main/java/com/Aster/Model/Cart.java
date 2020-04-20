@@ -5,30 +5,30 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "cart")
-public class Profile {
+@Table(name = "CART")
+public class Cart {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CART_ID")
     private Long id;
     @Column
     private double totalprice;
+
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @MapsId
+    @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
-    @OneToMany(mappedBy = "profile_cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> cart;
-    @OneToMany(mappedBy = "profile_history", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> history;
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Purchase> cart;
 
-    public Profile(@JsonProperty("cart") List<Order> cart,
-                   @JsonProperty("history") List<Order> history,
-                   @JsonProperty("totalprice") double totalprice){
+
+    public Cart(@JsonProperty("cart") List<Purchase> cart,
+                @JsonProperty("totalprice") double totalprice){
         this.cart = cart;
-        this.history = history;
         this.totalprice = totalprice;
     }
 
-    public Profile(){
+    public Cart(){
 
     }
 
@@ -56,19 +56,11 @@ public class Profile {
         this.customer = customer;
     }
 
-    public List<Order> getCart() {
+    public List<Purchase> getCart() {
         return cart;
     }
 
-    public void setCart(List<Order> cart) {
+    public void setCart(List<Purchase> cart) {
         this.cart = cart;
-    }
-
-    public List<Order> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<Order> history) {
-        this.history = history;
     }
 }
