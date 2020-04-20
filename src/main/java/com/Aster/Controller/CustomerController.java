@@ -2,6 +2,7 @@ package com.Aster.Controller;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Purchase;
 import com.Aster.Service.CustomerService;
+import com.Aster.Service.JpaCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,24 +13,31 @@ import java.util.List;
 public class CustomerController {
     //private OrderService orderService;
     private CustomerService customerService;
+    private JpaCustomerService jpaCustomerService;
 
     @Autowired
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, JpaCustomerService jpaCustomerService) {
         this.customerService = customerService;
+        this.jpaCustomerService = jpaCustomerService;
     }
 
     @PostMapping("/add")
     public boolean addCustomer(@RequestBody Customer customer) throws Exception{
-        return customerService.addCustomer(customer);
+        return jpaCustomerService.addCustomer(customer);
     }
     @ResponseBody
     @GetMapping("/get")
     public Customer getCustomer(@RequestParam String email) throws Exception{
-        return customerService.getCustomer(email);
+        return jpaCustomerService.getCustomer(email);
     }
     @DeleteMapping("/{email}/delete")
     public boolean deleteCustomer(@PathVariable String email) throws Exception{
-        return customerService.deleteCustomer(email);
+        return jpaCustomerService.deleteCustomer(email);
+    }
+    @ResponseBody
+    @GetMapping("/getAll")
+    public List<Customer> viewCustomers(){
+        return jpaCustomerService.viewCustomers();
     }
 
 
