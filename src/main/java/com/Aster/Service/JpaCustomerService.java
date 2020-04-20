@@ -34,21 +34,11 @@ public class JpaCustomerService {
         Cart cart = new Cart();
         History history = new History();
 
-        /*Customer newCustomer = new Customer(customer.getUser_name(),
-                customer.getPassword(),
-                customer.getEmail(),
-                customer.getLastName(),
-                customer.getFirstName(),
-                customer.getAddress());*/
-
-
         cart.setCustomer(customer);
         customer.setCart(cart);
         history.setCustomer(customer);
         customer.setHistory(history);
 
-        //jpaCartRepository.save(cart);
-        //jpaHistoryRepository.save(history);
         jpaCustomerRepository.save(customer);
         return true;
     }

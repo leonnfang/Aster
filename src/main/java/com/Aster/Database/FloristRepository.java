@@ -25,7 +25,7 @@ public interface FloristRepository{
 
     int updateHistory(Purchase purchase, String email);
 
-    List<Purchase> getHistory(String email);
+    History getHistory(String email);
 
     int addOrder(Purchase purchase);
 

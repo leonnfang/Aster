@@ -63,7 +63,7 @@ public class FloristController{
 
 
     @GetMapping("/{email}/history/view")
-    public List<Purchase> getHistory(@PathVariable String email) throws Exception{
+    public History getHistory(@PathVariable String email) throws Exception{
         return floristService.getHistory(email);
     }
 

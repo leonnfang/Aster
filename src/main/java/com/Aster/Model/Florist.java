@@ -2,18 +2,37 @@ package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "FLORIST")
 public class Florist {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FLORIST_ID")
+    private Long Id;
 
+    @Column(nullable = false, unique = true)
     private String user_name;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String address;
-    private List<Purchase> history;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "INVENTORY_ID")
     private Inventory inventory;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "HISTORY_ID")
+    private History history;
+
 
     public Florist(@JsonProperty("user_name") String user_name,
                    @JsonProperty("password") String password,
@@ -22,7 +41,7 @@ public class Florist {
                    @JsonProperty("firstName") String firstName,
                    @JsonProperty("address") String address,
                    @JsonProperty("inventory") Inventory inventory,
-                   @JsonProperty("history") List<Purchase> history) {
+                   @JsonProperty("history") History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
@@ -73,11 +92,19 @@ public class Florist {
         this.address = address;
     }
 
-    public List<Purchase> getHistory() {
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public History getHistory() {
         return history;
     }
 
-    public void setHistory(List<Purchase> history) {
+    public void setHistory(History history) {
         this.history = history;
     }
 
