@@ -1,24 +1,27 @@
 package com.Aster.Database;
 import com.Aster.Model.*;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import java.security.KeyPair;
 import java.util.*;
+
+@Primary
 @Repository
-public class FloristDB{
+public class FloristRepositoryInMemory implements FloristRepository {
     Map<String,Florist> floristMap = new HashMap<>();
 
+    @Override
     public boolean addFlorist(Florist florist) throws Exception {
         if(floristMap.containsKey(florist.getEmail())){
             throw new Exception("This Florist Has Already Existed");
         }
 
-        List<Order> newHistoryList = new ArrayList<>();
+        List<Purchase> newHistory = new ArrayList<>();
         Map<String, Vector> newInventoryMap = new HashMap<>();
 
         Inventory newInventory = new Inventory(newInventoryMap,true,0);
-        History newHistory = new History(newHistoryList);
+
         Florist newflorist = new Florist(florist.getUser_name(),
                 florist.getPassword(),
                 florist.getEmail(),
@@ -31,6 +34,7 @@ public class FloristDB{
         floristMap.put(florist.getEmail(),newflorist);
         return true;
     }
+    @Override
     public boolean deleteFlorist(String email) throws Exception {
         if (!floristMap.containsKey(email)){
             throw new Exception("Florist Dose not Exist");
@@ -41,21 +45,25 @@ public class FloristDB{
         }
         return false;
     }
+    @Override
     public Florist getFlorist(String email) {
         return floristMap.get(email);
     }
+    @Override
     public String getUser_name(String email) throws Exception {
         if(!floristMap.containsKey(email)){
             throw new Exception("Invalid Email Address(Dose Not Exist)");
         }
         return floristMap.get(email).getUser_name();
     }
+    @Override
     public boolean isvalid(String email){
         if(floristMap.containsKey(email)) return true;
         else return false;
     }
 
 
+    @Override
     public boolean addProduct(String email, Product product, int quantity) throws Exception{
         if(quantity < 0){
             throw new Exception("Number of Product Cannot be Lower than Zero");
@@ -76,6 +84,7 @@ public class FloristDB{
 
         return true;
     }
+    @Override
     public boolean removeProduct(String email, Product product) throws Exception{
         Florist florist = floristMap.get(email);
         Inventory floristInventory = florist.getInventory();
@@ -92,6 +101,7 @@ public class FloristDB{
 
         return true;
     }
+    @Override
     public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
         Florist florist = floristMap.get(floristEmail);
         Inventory floristInventory = florist.getInventory();
@@ -117,6 +127,7 @@ public class FloristDB{
         floristInventory.setTotalNumber(floristInventory.getTotalNumber() + quantity);
         return true;
     }
+    @Override
     public Inventory viewInventory(String email) throws Exception {
         if(email == null || !floristMap.containsKey(email)){
             throw new Exception("Florist's Inventory Cannot Be Found");
@@ -126,23 +137,28 @@ public class FloristDB{
 
     //public double checkPrice(){}
 
-    public int updateHistory(Order order, String email){
+    @Override
+    public int updateHistory(Purchase purchase, String email){
 
         Florist florist = floristMap.get(email);
 
-        florist.getHistory().getHistory().add(order);
+        florist.getHistory().add(purchase);
 
         return 0;
     }
-    public History getHistory(String email){
+    @Override
+    public List<Purchase> getHistory(String email){
         return floristMap.get(email).getHistory();
     }
 
+    //TODO confirm order: will reduce quantity in inventory
 
-    public int addOrder(Order order) {
+    @Override
+    public int addOrder(Purchase purchase) {
         return 0;
     }
-    public int cancelOrder(Order order){
+    @Override
+    public int cancelOrder(Purchase purchase){
         return 0;
     }
 }

@@ -5,6 +5,8 @@ import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/florist")
 public class FloristController{
@@ -61,17 +63,17 @@ public class FloristController{
 
 
     @GetMapping("/{email}/history/view")
-    public History getHistory(@PathVariable String email) throws Exception{
+    public List<Purchase> getHistory(@PathVariable String email) throws Exception{
         return floristService.getHistory(email);
     }
 
 
     @PostMapping("/make_order")
-    public boolean makeOrder(@RequestBody Order order) throws Exception {
-        return orderService.addOrder(order);
+    public boolean makeOrder(@RequestBody Purchase purchase) throws Exception {
+        return orderService.addOrder(purchase);
     }
     @PostMapping("/cancel_order")
-    public boolean cancelOrder(@RequestBody Order order) throws Exception{
-        return orderService.cancelOrder(order);
+    public boolean cancelOrder(@RequestBody Purchase purchase) throws Exception{
+        return orderService.cancelOrder(purchase);
     }
 }

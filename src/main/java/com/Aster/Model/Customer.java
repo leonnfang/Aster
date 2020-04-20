@@ -1,18 +1,33 @@
 package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.web.bind.annotation.RequestBody;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "CUSTOMER")
 public class Customer{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CUSTOMER_ID")
+    private Long Id;
+    @Column(nullable = false, unique = true)
     private String user_name;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String address;
-    private History history;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "CART_ID")
     private Cart cart;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "HISTORY_ID")
+    private History history;
 
     public Customer(@JsonProperty("user_name") String user_name,
                     @JsonProperty("password") String password,
@@ -20,16 +35,34 @@ public class Customer{
                     @JsonProperty("address") String address,
                     @JsonProperty("lastName") String lastName,
                     @JsonProperty("firstName") String firstName,
-                    @JsonProperty("history") History history,
-                    @JsonProperty("cart") Cart cart) {
+                    @JsonProperty("profile") Cart cart,
+                    @JsonProperty("history") History history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.history = history;
         this.cart = cart;
+        this.history = history;
+    }
+
+    public Customer(){}
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
     }
 
     public String getUser_name() {
@@ -62,14 +95,6 @@ public class Customer{
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public History getHistory() {
-        return history;
-    }
-
-    public void setHistory(History history) {
-        this.history = history;
     }
 
     public Cart getCart() {

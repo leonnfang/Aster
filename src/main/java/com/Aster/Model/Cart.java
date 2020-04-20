@@ -1,14 +1,28 @@
 package com.Aster.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.util.*;
 
+@Entity
+@Table(name = "CART")
 public class Cart {
-    //private List<Order> cart = new ArrayList<>();
-    private List<Order> cart;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CART_ID")
+    private Long id;
+    @Column
     private double totalprice;
 
-    public Cart(@JsonProperty("cart") List<Order> cart,
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Purchase> cart;
+
+
+    public Cart(@JsonProperty("cart") List<Purchase> cart,
                 @JsonProperty("totalprice") double totalprice){
         this.cart = cart;
         this.totalprice = totalprice;
@@ -18,12 +32,12 @@ public class Cart {
 
     }
 
-    public List<Order> getCartList() {
-        return cart;
+    public Long getId() {
+        return id;
     }
 
-    public void setCart(List<Order> cart) {
-        this.cart = cart;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getTotalprice() {
@@ -32,5 +46,21 @@ public class Cart {
 
     public void setTotalprice(double totalprice) {
         this.totalprice = totalprice;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Purchase> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Purchase> cart) {
+        this.cart = cart;
     }
 }

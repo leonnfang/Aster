@@ -1,30 +1,30 @@
 package com.Aster.Service;
 
-import com.Aster.Database.CustomerDB;
-import com.Aster.Database.FloristDB;
-import com.Aster.Model.Order;
+import com.Aster.Database.CustomerRepository;
+import com.Aster.Database.FloristRepository;
+import com.Aster.Model.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
-    private FloristDB floristDB;
-    private CustomerDB customerDB;
+    private FloristRepository floristRepsoitory;
+    private CustomerRepository customerRepository;
 
     @Autowired
-    public OrderService(FloristDB floristDB, CustomerDB customerDB) {
-        this.floristDB = floristDB;
-        this.customerDB = customerDB;
+    public OrderService(FloristRepository floristRepsoitory, CustomerRepository customerRepository) {
+        this.floristRepsoitory = floristRepsoitory;
+        this.customerRepository = customerRepository;
     }
 
-    public boolean addOrder(Order order) throws Exception {
-        if(floristDB.addOrder(order) != 0 || customerDB.addOrder(order) != 0){
+    public boolean addOrder(Purchase purchase) throws Exception {
+        if(floristRepsoitory.addOrder(purchase) != 0 || customerRepository.addOrder(purchase) != 0){
             throw new Exception("Cannot place the order");
         }
         return true;
     }
-    public boolean cancelOrder(Order order) throws Exception {
-        if(floristDB.cancelOrder(order) != 0 || customerDB.cancelOrder(order) != 0){
+    public boolean cancelOrder(Purchase purchase) throws Exception {
+        if(floristRepsoitory.cancelOrder(purchase) != 0 || customerRepository.cancelOrder(purchase) != 0){
             throw new Exception("cannot cancel the order");
         }
         return true;
