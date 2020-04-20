@@ -9,9 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
+
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
-
+//@EnableJpaRepositories
 @SpringBootApplication
 public class FloristApplication {
 
@@ -24,18 +26,7 @@ public class FloristApplication {
 	//TODO order florist by: views, popularity, etc
 
 	/*
-	@Bean
-	public Jdbi jdbi(DataSource dataSource){
-		TransactionAwareDataSourceProxy dataSourceProxy =
-				new TransactionAwareDataSourceProxy(dataSource);
-		Jdbi jdbi = Jdbi.create(dataSourceProxy);
-		jdbi.installPlugins();
-		jdbi.installPlugin(new H2DatabasePlugin());
 
-		jdbi.registerRowMapper(Customer.class, ConstructorMapper.of(Customer.class));
-
-		return jdbi;
-	}
 	*/
 
 }

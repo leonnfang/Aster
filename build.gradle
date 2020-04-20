@@ -26,6 +26,7 @@ dependencies {
 	compile 'org.jdbi:jdbi3-core:3.1.0'
 	compile 'com.h2database:h2:1.4.200'
 	compile 'joda-time:joda-time:2.8.1'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	//compile 'org.jdbi:jdbi:2.75'
 }
 

@@ -1,8 +1,9 @@
 package com.Aster.Database;
 
-import com.Aster.Model.Cart;
+import com.Aster.Model.Profile;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Order;
+import org.aspectj.weaver.ast.Or;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface CustomerRepository {
 
     boolean emptyCart(String email) throws Exception;
 
-    Cart viewCart(String email);
+    List<Order> viewCart(String email);
 
     boolean isInCart(String email, Order order) throws Exception;
 

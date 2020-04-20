@@ -1,18 +1,28 @@
 package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.web.bind.annotation.RequestBody;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "customer")
 public class Customer{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String user_name;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String address;
-    private History history;
-    private Cart cart;
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Profile profile;
 
     public Customer(@JsonProperty("user_name") String user_name,
                     @JsonProperty("password") String password,
@@ -20,16 +30,23 @@ public class Customer{
                     @JsonProperty("address") String address,
                     @JsonProperty("lastName") String lastName,
                     @JsonProperty("firstName") String firstName,
-                    @JsonProperty("history") History history,
-                    @JsonProperty("cart") Cart cart) {
+                    @JsonProperty("profile") Profile profile) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.address = address;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.history = history;
-        this.cart = cart;
+        this.profile = profile;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUser_name() {
@@ -64,20 +81,12 @@ public class Customer{
         this.address = address;
     }
 
-    public History getHistory() {
-        return history;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public void setHistory(History history) {
-        this.history = history;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public String getLastName() {

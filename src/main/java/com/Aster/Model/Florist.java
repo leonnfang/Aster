@@ -13,7 +13,7 @@ public class Florist {
     private String lastName;
     private String firstName;
     private String address;
-    private History history;
+    private List<Order> history;
     private Inventory inventory;
 
     public Florist(@JsonProperty("user_name") String user_name,
@@ -23,7 +23,7 @@ public class Florist {
                    @JsonProperty("firstName") String firstName,
                    @JsonProperty("address") String address,
                    @JsonProperty("inventory") Inventory inventory,
-                   @JsonProperty("history") History history) {
+                   @JsonProperty("history") List<Order> history) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
@@ -74,11 +74,11 @@ public class Florist {
         this.address = address;
     }
 
-    public History getHistory() {
+    public List<Order> getHistory() {
         return history;
     }
 
-    public void setHistory(History history) {
+    public void setHistory(List<Order> history) {
         this.history = history;
     }
 

@@ -1,12 +1,10 @@
 package com.Aster.Database;
 
 import com.Aster.Model.*;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-//@Primary
 @Repository
 public class CustomerRepositoryInMemory implements CustomerRepository {
     Map<String,Customer> customerMap = new HashMap<>();
@@ -20,19 +18,17 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
         if(customerMap.containsKey(customer.getEmail())){
             throw new Exception("Customer Already Exists");
         }
-        List<Order> newHistoryList = new ArrayList<>();
-        List<Order> newCartList = new ArrayList<>();
+        List<Order> newHistory = new ArrayList<>();
+        List<Order> newCart = new ArrayList<>();
 
-        History newHistory = new History(newHistoryList);
-        Cart newCart = new Cart(newCartList, 0);
+        Profile profile = new Profile(newCart,newHistory, 0);
         Customer newCustomer = new Customer(customer.getUser_name(),
                 customer.getPassword(),
                 customer.getEmail(),
                 customer.getLastName(),
                 customer.getFirstName(),
                 customer.getAddress(),
-                newHistory,
-                newCart);
+                profile);
 
         customerMap.put(newCustomer.getEmail(), newCustomer);
         return true;
@@ -73,8 +69,8 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        Cart cart = customer.getCart();
-        List<Order> cartList = cart.getCartList();
+        Profile profile = customer.getProfile();
+        List<Order> cartList = profile.getCart();
         String orderID = UUID.randomUUID().toString();
         Order newOrder = new Order(order.getFloristEmail(),
                 order.getCustomerEmail(),
@@ -92,7 +88,7 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getCart().getCartList();
+        List<Order> cartList = customer.getProfile().getCart();
 
         for(Order cur_order : cartList){
             if(cur_order.getId().equals(orderID)){
@@ -105,23 +101,23 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
     @Override
     public boolean emptyCart(String email) throws Exception{
         Customer customer = customerMap.get(email);
-        Cart cart = customer.getCart();
-        List<Order> cartList = customer.getCart().getCartList();
+        Profile profile = customer.getProfile();
+        List<Order> cartList = profile.getCart();
 
         if(!cartList.isEmpty()) {
             cartList.clear();
         }
         else throw new Exception("Cart is already Empty");
 
-        cart.setTotalprice(0);
+        profile.setTotalprice(0);
 
         return true;
     }
     @Override
-    public Cart viewCart(String email){
+    public List<Order> viewCart(String email){
         Customer customer = customerMap.get(email);
-        List<Order> cur_cart = customer.getCart().getCartList();
-        return customer.getCart();
+        List<Order> cur_cart = customer.getProfile().getCart();
+        return customer.getProfile().getCart();
     }
 
 
@@ -131,7 +127,7 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getCart().getCartList();
+        List<Order> cartList = customer.getProfile().getCart();
 
         for(Order cur_order : cartList){
             if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
@@ -148,7 +144,7 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getCart().getCartList();
+        List<Order> cartList = customer.getProfile().getCart();
 
         for(Order cur_order : cartList){
             if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
@@ -168,7 +164,7 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
             throw new NullPointerException(("order pointer is null"));
         }
         Customer customer = customerMap.get(email);
-        List<Order> cartList = customer.getCart().getCartList();
+        List<Order> cartList = customer.getProfile().getCart();
 
         for(Order cur_order : cartList){
             if(cur_order.getFloristEmail().equals(order.getFloristEmail())){
@@ -186,16 +182,16 @@ public class CustomerRepositoryInMemory implements CustomerRepository {
     @Override
     public List<Order> viewHistory(String email){
         Customer customer = customerMap.get(email);
-        List<Order> cur_history = customer.getHistory().getHistory();
+        List<Order> cur_history = customer.getProfile().getHistory();
         return cur_history;
     }
     @Override
     public List<Order> updateHistory(String email){
         Customer customer = customerMap.get(email);
-        for(Order order : customer.getCart().getCartList()){
-            customer.getHistory().getHistory().add(order);
+        for(Order order : customer.getProfile().getCart()){
+            customer.getProfile().getHistory().add(order);
         }
-        return customer.getCart().getCartList();
+        return customer.getProfile().getCart();
     }
 
 

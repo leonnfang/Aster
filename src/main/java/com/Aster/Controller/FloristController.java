@@ -5,6 +5,8 @@ import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/florist")
 public class FloristController{
@@ -61,7 +63,7 @@ public class FloristController{
 
 
     @GetMapping("/{email}/history/view")
-    public History getHistory(@PathVariable String email) throws Exception{
+    public List<Order> getHistory(@PathVariable String email) throws Exception{
         return floristService.getHistory(email);
     }
 

@@ -1,8 +1,11 @@
 package com.Aster.Database;
 
 import com.Aster.Model.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FloristRepository {
+import java.util.List;
+
+public interface FloristRepository{
     boolean addFlorist(Florist florist) throws Exception;
 
     boolean deleteFlorist(String email) throws Exception;
@@ -23,7 +26,7 @@ public interface FloristRepository {
 
     int updateHistory(Order order, String email);
 
-    History getHistory(String email);
+    List<Order> getHistory(String email);
 
     int addOrder(Order order);
 

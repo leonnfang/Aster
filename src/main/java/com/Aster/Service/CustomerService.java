@@ -54,25 +54,25 @@ public class CustomerService {
         }
 
         Customer customer = customerRepository.getCustomer(email);
-        Cart cart = customer.getCart();
+        Profile profile = customer.getProfile();
         Product product = (Product) inventoryMap.get(productName).firstElement();
 
         if(customerRepository.isInCart(email, order)){
             if(quantityLeft < customerRepository.getQuantity(email, order)){
                 throw new Exception("Not Enough Quantity in Inventory, Cannot Add That Much Quantity");
             }
-            double curPrice = cart.getTotalprice();
+            double curPrice = profile.getTotalprice();
             double productPrice = product.getPrice();
             double addPrice = productPrice * order.getQuantity();
-            cart.setTotalprice(curPrice + addPrice);
+            profile.setTotalprice(curPrice + addPrice);
 
             return customerRepository.updateCart(email, order);
         }
         else{
-            double curPrice = cart.getTotalprice();
+            double curPrice = profile.getTotalprice();
             double productPrice = product.getPrice();
             double addPrice = productPrice * order.getQuantity();
-            cart.setTotalprice(curPrice + addPrice);
+            profile.setTotalprice(curPrice + addPrice);
 
             return customerRepository.addCart(email, order);
         }
@@ -82,9 +82,9 @@ public class CustomerService {
             throw new Exception("Email Does Not Exist");
         }
         Customer customer = customerRepository.getCustomer(email);
-        Cart cart = customer.getCart();
-        List<Order> cartList = cart.getCartList();
-        double curPrice = cart.getTotalprice();
+        Profile profile = customer.getProfile();
+        List<Order> cartList = profile.getCart();
+        double curPrice = profile.getTotalprice();
 
         for(Order cur_order : cartList){
             if(cur_order.getId().equals(orderID)){
@@ -95,13 +95,13 @@ public class CustomerService {
                 double productPrice = product.getPrice();
 
                 double cancelPrice = productPrice * cur_order.getQuantity();
-                cart.setTotalprice(curPrice - cancelPrice);
+                profile.setTotalprice(curPrice - cancelPrice);
             }
         }
 
         return customerRepository.removeCart(email, orderID);
     }
-    public Cart viewCart(String email) throws Exception{
+    public List<Order> viewCart(String email) throws Exception{
         if(customerRepository.isValid(email)) {
             return customerRepository.viewCart(email);
         }

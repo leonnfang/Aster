@@ -1,17 +1,40 @@
 package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.util.UUID;
+import javax.persistence.*;
 
+
+@Entity
+@Table(name = "order")
 public class Order {
-    private String floristEmail;
-    private String customerEmail;
-    private String date;
-    private String productName;
-    private int quantity;
-    private boolean complete;
+
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(nullable = false, unique = true)
     private String id;
+    @Column(nullable = false)
+    private String floristEmail;
+    @Column(nullable = false)
+    private String customerEmail;
+    @Column(nullable = false)
+    private String date;
+    @Column(nullable = false)
+    private String productName;
+    @Column(nullable = false)
+    private int quantity;
+    @Column(nullable = false)
+    private boolean complete = false;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn
+    private Profile profile_cart;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn
+    private Profile profile_history;
 
     public Order(@JsonProperty("floristEmail") String floristEmail,
                  @JsonProperty("customerEmail") String customerEmail,
@@ -27,6 +50,22 @@ public class Order {
         this.quantity = quantity;
         this.complete = false;
         this.id = id;
+    }
+
+    public Profile getProfile_history() {
+        return profile_history;
+    }
+
+    public void setProfile_history(Profile profile_history) {
+        this.profile_history = profile_history;
+    }
+
+    public Profile getProfile_cart() {
+        return profile_cart;
+    }
+
+    public void setProfile_cart(Profile profile_cart) {
+        this.profile_cart = profile_cart;
     }
 
     public String getFloristEmail() {

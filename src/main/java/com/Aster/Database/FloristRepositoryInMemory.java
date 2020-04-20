@@ -17,11 +17,11 @@ public class FloristRepositoryInMemory implements FloristRepository {
             throw new Exception("This Florist Has Already Existed");
         }
 
-        List<Order> newHistoryList = new ArrayList<>();
+        List<Order> newHistory = new ArrayList<>();
         Map<String, Vector> newInventoryMap = new HashMap<>();
 
         Inventory newInventory = new Inventory(newInventoryMap,true,0);
-        History newHistory = new History(newHistoryList);
+
         Florist newflorist = new Florist(florist.getUser_name(),
                 florist.getPassword(),
                 florist.getEmail(),
@@ -142,12 +142,12 @@ public class FloristRepositoryInMemory implements FloristRepository {
 
         Florist florist = floristMap.get(email);
 
-        florist.getHistory().getHistory().add(order);
+        florist.getHistory().add(order);
 
         return 0;
     }
     @Override
-    public History getHistory(String email){
+    public List<Order> getHistory(String email){
         return floristMap.get(email).getHistory();
     }
 
