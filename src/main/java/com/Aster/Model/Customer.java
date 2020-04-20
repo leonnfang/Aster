@@ -37,7 +37,7 @@ public class Customer{
                     @JsonProperty("address") String address,
                     @JsonProperty("lastName") String lastName,
                     @JsonProperty("firstName") String firstName,
-                    @JsonProperty("profile") Cart cart,
+                    @JsonProperty("cart") Cart cart,
                     @JsonProperty("history") History history) {
         this.user_name = user_name;
         this.password = password;
