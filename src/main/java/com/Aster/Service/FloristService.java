@@ -1,11 +1,9 @@
 package com.Aster.Service;
 
-import com.Aster.Database.FloristRepository;
+import com.Aster.Repository.FloristRepository;
 import com.Aster.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class FloristService {

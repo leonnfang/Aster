@@ -1,4 +1,4 @@
-package com.Aster.Database;
+package com.Aster.Repository;
 
 import com.Aster.Model.History;
 import org.springframework.data.jpa.repository.JpaRepository;

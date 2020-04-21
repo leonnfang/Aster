@@ -16,10 +16,14 @@ public class History {
     @Column
     private boolean allCompleted = true;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CUSTOMER_ID")
     @JsonIgnore
     private Customer customer;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FLORISTJPA_ID")
+    @JsonIgnore
+    private FloristJpa floristJpa;
 
     @OneToMany(mappedBy = "history", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Purchase> history = new ArrayList<>();
@@ -32,6 +36,14 @@ public class History {
     }
 
     public History(){}
+
+    public FloristJpa getFloristJpa() {
+        return floristJpa;
+    }
+
+    public void setFloristJpa(FloristJpa floristJpa) {
+        this.floristJpa = floristJpa;
+    }
 
     public boolean isAllCompleted() {
         return allCompleted;

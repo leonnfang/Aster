@@ -1,7 +1,7 @@
 package com.Aster.Service;
 
-import com.Aster.Database.CustomerRepository;
-import com.Aster.Database.FloristRepository;
+import com.Aster.Repository.CustomerRepository;
+import com.Aster.Repository.FloristRepository;
 import com.Aster.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

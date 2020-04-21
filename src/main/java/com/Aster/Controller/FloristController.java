@@ -1,6 +1,7 @@
 package com.Aster.Controller;
 import com.Aster.Model.*;
 import com.Aster.Service.FloristService;
+import com.Aster.Service.JpaFloristService;
 import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,29 +13,33 @@ import java.util.List;
 public class FloristController{
     private OrderService orderService;
     private FloristService floristService;
+    private JpaFloristService jpaFloristService;
 
     @Autowired
-    public FloristController(OrderService orderService, FloristService floristService) {
+    public FloristController(OrderService orderService, FloristService floristService, JpaFloristService jpaFloristService) {
         this.orderService = orderService;
         this.floristService = floristService;
+        this.jpaFloristService = jpaFloristService;
     }
 
+
     @PostMapping("/add")
-    public boolean addFlorist(@RequestBody Florist florist) throws Exception {
-        return floristService.addFlorist(florist);
+    public boolean addFlorist(@RequestBody FloristJpa floristJpa) throws Exception {
+        return jpaFloristService.addFlorist(floristJpa);
     }
     @ResponseBody
     @GetMapping("/get")
-    public Florist getFlorist(@RequestParam String email) throws Exception{
-        return floristService.getFlorist(email);
+    public FloristJpa getFlorist(@RequestParam String email) throws Exception{
+        return jpaFloristService.getFlorist(email);
     }
     @PostMapping("/{email}/delete")
     public boolean deleteFlorist(@PathVariable String email) throws Exception{
-        return floristService.deleteFlorist(email);
+        return jpaFloristService.deleteFlorist(email);
     }
-    @GetMapping("/{email}/getUser_name")
-    public String getUser_name(@PathVariable String email) throws Exception{
-        return floristService.getUser_name(email);
+    @ResponseBody
+    @GetMapping("/getAll")
+    public List<String> viewFlorists(){
+        return jpaFloristService.viewFlorists();
     }
 
 

@@ -2,35 +2,55 @@ package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.util.*;
 
-public class Florist {
+@Entity
+@Table(name = "FLORISTJPA")
+public class FloristJpa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FLORISTJPA_ID")
+    private Long Id;
 
+    @Column(nullable = false, unique = true)
     private String user_name;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String address;
-    private History history;
-    private Inventory inventory;
 
-    public Florist(@JsonProperty("user_name") String user_name,
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "INVENTORYJPA_ID")
+    private InventoryJpa inventoryJpa;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "HISTORY_ID")
+    private History history;
+
+
+    public FloristJpa(@JsonProperty("user_name") String user_name,
                    @JsonProperty("password") String password,
                    @JsonProperty("email") String email,
                    @JsonProperty("lastName") String lastName,
                    @JsonProperty("firstName") String firstName,
-                   @JsonProperty("address") String address,
-                   @JsonProperty("inventory") Inventory inventory,
-                   @JsonProperty("history") History history) {
+                   @JsonProperty("address") String address
+                   ) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
-        this.inventory = inventory;
-        this.history = history;
+    }
+
+    public FloristJpa(){
+
     }
 
     public String getUser_name() {
@@ -73,6 +93,14 @@ public class Florist {
         this.address = address;
     }
 
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
     public History getHistory() {
         return history;
     }
@@ -81,11 +109,11 @@ public class Florist {
         this.history = history;
     }
 
-    public Inventory getInventory() {
-        return inventory;
+    public InventoryJpa getInventoryJpa() {
+        return inventoryJpa;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setInventoryJpa(InventoryJpa inventoryJpa) {
+        this.inventoryJpa = inventoryJpa;
     }
 }

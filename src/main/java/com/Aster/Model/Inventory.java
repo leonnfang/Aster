@@ -1,12 +1,14 @@
 package com.Aster.Model;
-import com.Aster.Model.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.*;
-import java.util.*;
+
+
 public class Inventory {
+
     private Map<String,Vector> inventoryMap;
     private boolean isEmpty;
     private int totalNumber;
+
     public Inventory(@JsonProperty("inventoryMap") Map<String,Vector> inventoryMap,
                      @JsonProperty("isEmpty") boolean isEmpty,
                      @JsonProperty("totalNumber") int totalNumber) {

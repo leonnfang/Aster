@@ -1,4 +1,4 @@
-package com.Aster.Database;
+package com.Aster.Repository;
 
 import com.Aster.Model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

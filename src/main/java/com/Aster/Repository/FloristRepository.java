@@ -1,8 +1,6 @@
-package com.Aster.Database;
+package com.Aster.Repository;
 
 import com.Aster.Model.*;
-
-import java.util.List;
 
 public interface FloristRepository{
     boolean addFlorist(Florist florist) throws Exception;
