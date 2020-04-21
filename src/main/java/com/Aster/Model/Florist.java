@@ -2,35 +2,54 @@ package com.Aster.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.*;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "FLORIST")
 public class Florist {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FLORIST_ID")
+    private Long Id;
 
+    @Column(nullable = false, unique = true)
     private String user_name;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String address;
-    private History history;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "INVENTORY_ID")
     private Inventory inventory;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "HISTORYC_ID")
+    private HistoryC historyC;
+
 
     public Florist(@JsonProperty("user_name") String user_name,
                    @JsonProperty("password") String password,
                    @JsonProperty("email") String email,
                    @JsonProperty("lastName") String lastName,
                    @JsonProperty("firstName") String firstName,
-                   @JsonProperty("address") String address,
-                   @JsonProperty("inventory") Inventory inventory,
-                   @JsonProperty("history") History history) {
+                   @JsonProperty("address") String address
+                   ) {
         this.user_name = user_name;
         this.password = password;
         this.email = email;
         this.lastName = lastName;
         this.firstName = firstName;
         this.address = address;
-        this.inventory = inventory;
-        this.history = history;
+    }
+
+    public Florist(){
+
     }
 
     public String getUser_name() {
@@ -73,12 +92,20 @@ public class Florist {
         this.address = address;
     }
 
-    public History getHistory() {
-        return history;
+    public Long getId() {
+        return Id;
     }
 
-    public void setHistory(History history) {
-        this.history = history;
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public HistoryC getHistoryC() {
+        return historyC;
+    }
+
+    public void setHistoryC(HistoryC historyC) {
+        this.historyC = historyC;
     }
 
     public Inventory getInventory() {

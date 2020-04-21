@@ -1,145 +1,169 @@
 package com.Aster.Service;
 
-import com.Aster.Repository.CustomerRepository;
-import com.Aster.Repository.FloristRepository;
-import com.Aster.Model.*;
+import com.Aster.Repository.*;
+import com.Aster.Model.Cart;
+import com.Aster.Model.Customer;
+import com.Aster.Model.HistoryC;
+import com.Aster.Model.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
 @Service
 public class CustomerService {
-    private CustomerRepository customerRepository;
-    private FloristRepository floristRepsoitory;
-
-
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, FloristRepository floristRepsoitory){
-        this.customerRepository = customerRepository;
-        this.floristRepsoitory = floristRepsoitory;
-    }
+    private CustomerRepository customerRepository;
+    @Autowired
+    private FloristRepository floristRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private PurchaseRepository purchaseRepository;
+    @Autowired
+    private CartRepository cartRepository;
+    @Autowired
+    private HistoryCRepository historyCRepository;
 
     public boolean addCustomer(Customer customer) throws Exception{
-        return customerRepository.addCustomer(customer);
+        if(customer == null){
+            throw new Exception("Invalid Customer");
+        }
+        if(customerRepository.customerExists(customer.getEmail())){
+            throw new Exception("Customer Already Exists");
+        }
+
+        Cart cart = new Cart();
+        HistoryC historyC = new HistoryC();
+
+        cart.setCustomer(customer);
+        customer.setCart(cart);
+        historyC.setCustomer(customer);
+        customer.setHistoryC(historyC);
+
+        customerRepository.save(customer);
+        return true;
     }
-    public Customer getCustomer(String email) throws Exception{
-        return customerRepository.getCustomer(email);
+    public boolean deleteCustomer(String customerEmail) throws Exception{
+        if(customerEmail == null){
+            throw new Exception("Invalid Email");
+        }
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        customerRepository.delete(customerRepository.findCustomerByEmail(customerEmail));
+        return true;
     }
-    public boolean deleteCustomer(String email) throws Exception{
-        return customerRepository.deleteCustomer(email);
+    public Customer getCustomer(String customerEmail) throws Exception{
+        if(customerEmail == null){
+            throw new Exception("Invalid Email");
+        }
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        return customerRepository.findCustomerByEmail(customerEmail);
     }
-    
-    public boolean addCart(String email, Purchase purchase) throws Exception{
-        if(!customerRepository.isValid(email)){
-            throw new Exception("Email Does Not Exists");
-        }
-        if(!floristRepsoitory.isvalid((purchase.getFloristEmail()))){
-            throw new Exception("Florist Does Not Exists");
-        }
+    public List<Customer> viewCustomers(){
+        return customerRepository.findAllCustomers();
+    }
 
-        String productName = purchase.getProductName();
-        Florist florist = floristRepsoitory.getFlorist(purchase.getFloristEmail());
-        Map<String, Vector> inventoryMap = florist.getInventory().getInventoryMap();
-        if(!inventoryMap.containsKey(productName)){
-            throw new Exception("Such Product Does Not Exists");
+    public boolean addCart(String customerEmail, Purchase purchase) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
         }
-
-        int quantityLeft = (int) inventoryMap.get(productName).lastElement();
-        if(quantityLeft < purchase.getQuantity()){
-            throw new Exception("Not Enough Quantity in Inventory");
+        if(!floristRepository.floristExists(purchase.getFloristEmail())){
+            throw new Exception("Florist Does Not Exist");
+        }
+        if(!productRepository.productExists(purchase.getFloristEmail(), purchase.getProductName())){
+            throw new Exception("Product Does Not Exist In Florist's Inventory");
+        }
+        int inventoryQuantity = productRepository.findQuantityByEmailAndName(purchase.getFloristEmail(), purchase.getProductName());
+        if(purchase.getQuantity() > inventoryQuantity){
+            throw new Exception("Not Enough Quantity In Florist's Inventory");
         }
 
-        Customer customer = customerRepository.getCustomer(email);
-        Cart cart = customer.getCart();
-        Product product = (Product) inventoryMap.get(productName).firstElement();
+        Customer customer = customerRepository.findCustomerByEmail(customerEmail);
+        double priceToAdd = purchase.getQuantity() * productRepository.findPriceByEmailAndName(purchase.getFloristEmail(), purchase.getProductName());
 
-        if(customerRepository.isInCart(email, purchase)){
-            if(quantityLeft < customerRepository.getQuantity(email, purchase)){
-                throw new Exception("Not Enough Quantity in Inventory, Cannot Add That Much Quantity");
+        if(purchaseRepository.purchaseExists(customerEmail, purchase.getProductName())){
+            if(inventoryQuantity < purchase.getQuantity() + purchaseRepository.findQuantityByEmailAndName(customerEmail, purchase.getProductName())){
+                throw new Exception("Not Enough Quantity In Florist's Inventory, Cannot Add That Much Quantity");
             }
-            double curPrice = cart.getTotalprice();
-            double productPrice = product.getPrice();
-            double addPrice = productPrice * purchase.getQuantity();
-            cart.setTotalprice(curPrice + addPrice);
-
-            return customerRepository.updateCart(email, purchase);
+            purchaseRepository.quantityUpdate(customerEmail, purchase.getProductName(), purchase.getQuantity());
         }
         else{
-            double curPrice = cart.getTotalprice();
-            double productPrice = product.getPrice();
-            double addPrice = productPrice * purchase.getQuantity();
-            cart.setTotalprice(curPrice + addPrice);
-
-            return customerRepository.addCart(email, purchase);
+            purchase.setCart(customer.getCart());
+            purchaseRepository.save(purchase);
         }
+        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
+        cartRepository.totalpriceUpdate(cartId, priceToAdd);
+
+        return true;
     }
-    public boolean removeCart(String email, String orderID) throws Exception{
-        if(!customerRepository.isValid(email)){
-            throw new Exception("Email Does Not Exist");
+    public boolean removeCart(String customerEmail, String orderId) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
         }
-        Customer customer = customerRepository.getCustomer(email);
-        Cart cart = customer.getCart();
-        List<Purchase> cartList = cart.getCart();
-        double curPrice = cart.getTotalprice();
-
-        for(Purchase cur_purchase : cartList){
-            if(cur_purchase.getOrderId().equals(orderID)){
-                String productName = cur_purchase.getProductName();
-                Florist florist = floristRepsoitory.getFlorist(cur_purchase.getFloristEmail());
-                Map<String, Vector> inventoryMap = florist.getInventory().getInventoryMap();
-                Product product = (Product) inventoryMap.get(productName).firstElement();
-                double productPrice = product.getPrice();
-
-                double cancelPrice = productPrice * cur_purchase.getQuantity();
-                cart.setTotalprice(curPrice - cancelPrice);
-            }
+        if(!purchaseRepository.purchaseExistsById(orderId)){
+            throw new Exception("Order Does Not Exist");
         }
 
-        return customerRepository.removeCart(email, orderID);
+        Purchase purchase = purchaseRepository.findPurchaseByOrderId(orderId);
+        double price = productRepository.findPriceByEmailAndName(purchase.getFloristEmail(), purchase.getProductName());
+        int quantity = purchase.getQuantity();
+        double priceToReduce = price * quantity * -1;
+
+        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
+        cartRepository.totalpriceUpdate(cartId, priceToReduce);
+        purchaseRepository.deleteById(orderId);
+
+        return true;
     }
-    public List<Purchase> viewCart(String email) throws Exception{
-        if(customerRepository.isValid(email)) {
-            return customerRepository.viewCart(email);
+    public List<Purchase> viewCart(String customerEmail) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
         }
-        else throw new Exception("Email does not exist");
+        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
+        return purchaseRepository.findPurchasesByEmailAndCartId(customerEmail, cartId);
     }
-    public boolean emptyCart(String email) throws Exception{
-        if(customerRepository.isValid(email)) {
-            return customerRepository.emptyCart(email);
+    public boolean emptyCart(String customerEmail) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
         }
-        else throw new Exception("Email does not exist");
-    }
-    //TODO might need to make editCart
-    public int editCart(String email, Purchase purchase) throws Exception{
-        return 0;
+        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
+        List<Purchase> cartToEmpty = purchaseRepository.findPurchasesByEmailAndCartId(customerEmail, cartId);
+        purchaseRepository.deleteInBatch(cartToEmpty);
+        cartRepository.totalpriceToZero(cartId);
+        return true;
     }
 
-    //TODO have to add 'order cancellation'
-    //TODO finish checkout 'Florist's update history'
-    public boolean checkout(String email) throws Exception{
-        if(customerRepository.isValid(email)) {
-            //last check of cart
-            customerRepository.viewCart(email);
-            //make payment
+    public boolean checkout(String customerEmail) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        //TODO make payment
 
-            //send order to florist & update history both
-            List<Purchase> cur_cart = customerRepository.updateHistory(email);
-            for(Purchase purchase : cur_cart){
-                floristRepsoitory.updateHistory(purchase, purchase.getFloristEmail());
-            }
-            //empty cart
-            customerRepository.emptyCart(email);
-            return true;
+        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
+        List<Purchase> editCartList = purchaseRepository.findPurchasesByEmailAndCartId(customerEmail, cartId);
+        //update(reduce) Florist's Inventory
+        for(Purchase purchase : editCartList){
+            productRepository.quantityUpdate(purchase.getFloristEmail(), purchase.getProductName(), purchase.getQuantity());
+
         }
-        else throw new Exception("Email does not exist");
+        //update Florist's History
+        //update Customer's History
+        //empty Customer's Cart
+
+        return true;
     }
-    public List<Purchase> viewHistory(String email) throws Exception{
-        if(customerRepository.isValid(email)) {
-            return customerRepository.viewHistory(email);
+    public List<Purchase> viewHistoryC(String customerEmail) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
         }
-        else throw new Exception("Email does not exist");
+        Long historyCId = historyCRepository.findHistoryCIdByEmail(customerEmail);
+        return purchaseRepository.findPurchasesByEmailAndHistoryCId(customerEmail, historyCId);
+    }
+    public boolean cancelPurchase(String customerEmail, String orderId) throws Exception{
+        return true;
     }
 }

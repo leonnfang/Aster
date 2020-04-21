@@ -37,9 +37,9 @@ public class Purchase {
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HISTORY_ID")
+    @JoinColumn(name = "HISTORYC_ID")
     @JsonIgnore
-    private History history;
+    private HistoryC historyC;
 
     public Purchase(@JsonProperty("floristEmail") String floristEmail,
                     @JsonProperty("customerEmail") String customerEmail,
@@ -67,12 +67,12 @@ public class Purchase {
         this.cart = cart;
     }
 
-    public History getHistory() {
-        return history;
+    public HistoryC getHistoryC() {
+        return historyC;
     }
 
-    public void setHistory(History history) {
-        this.history = history;
+    public void setHistoryC(HistoryC historyC) {
+        this.historyC = historyC;
     }
 
     public String getFloristEmail() {

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface JpaPurchaseRepository extends JpaRepository<Purchase, String> {
+public interface PurchaseRepository extends JpaRepository<Purchase, String> {
     @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Purchase p WHERE (p.customerEmail = ?1 AND p.productName = ?2)")
     boolean purchaseExists(String customerEmail, String productName);
     @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Purchase p WHERE p.OrderId = ?1")
@@ -29,6 +29,8 @@ public interface JpaPurchaseRepository extends JpaRepository<Purchase, String> {
     @Query("SELECT p FROM Purchase p WHERE p.OrderId = ?1")
     Purchase findPurchaseByOrderId(String orderId);
 
-    @Query("SELECT p FROM Purchase p WHERE p.customerEmail = ?1")
-    List<Purchase> findPurchasesByEmail(String CustomerEmail);
+    @Query("SELECT p FROM Purchase p WHERE p.customerEmail = ?1 AND p.cart.Id = ?2")
+    List<Purchase> findPurchasesByEmailAndCartId(String customerEmail, Long cartId);
+    @Query("SELECT p FROM Purchase p WHERE p.customerEmail = ?1 AND p.historyC.Id = ?2")
+    List<Purchase> findPurchasesByEmailAndHistoryCId(String customerEmail, Long historyCId);
 }

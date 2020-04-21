@@ -1,8 +1,6 @@
 package com.Aster.Controller;
 import com.Aster.Model.*;
 import com.Aster.Service.FloristService;
-import com.Aster.Service.JpaFloristService;
-import com.Aster.Service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,72 +9,63 @@ import java.util.List;
 @RestController
 @RequestMapping("/florist")
 public class FloristController{
-    private OrderService orderService;
+
     private FloristService floristService;
-    private JpaFloristService jpaFloristService;
 
     @Autowired
-    public FloristController(OrderService orderService, FloristService floristService, JpaFloristService jpaFloristService) {
-        this.orderService = orderService;
+    public FloristController(FloristService floristService) {
         this.floristService = floristService;
-        this.jpaFloristService = jpaFloristService;
     }
 
 
     @PostMapping("/add")
-    public boolean addFlorist(@RequestBody FloristJpa floristJpa) throws Exception {
-        return jpaFloristService.addFlorist(floristJpa);
+    public boolean addFlorist(@RequestBody Florist florist) throws Exception {
+        return floristService.addFlorist(florist);
     }
     @ResponseBody
     @GetMapping("/get")
-    public FloristJpa getFlorist(@RequestParam String floristEmail) throws Exception{
-        return jpaFloristService.getFlorist(floristEmail);
+    public Florist getFlorist(@RequestParam String floristEmail) throws Exception{
+        return floristService.getFlorist(floristEmail);
     }
     @PostMapping("/{florstEmail}/delete")
     public boolean deleteFlorist(@PathVariable String florstEmail) throws Exception{
-        return jpaFloristService.deleteFlorist(florstEmail);
+        return floristService.deleteFlorist(florstEmail);
     }
     @ResponseBody
     @GetMapping("/getAll")
-    public List<FloristJpa> viewFlorists(){
-        return jpaFloristService.viewFlorists();
+    public List<Florist> viewFlorists(){
+        return floristService.viewFlorists();
     }
 
 
     @PostMapping("/{floristEmail}/inventory/add")
     public boolean addInventory(@PathVariable String floristEmail,
-                                @RequestBody ProductJpa productJpa) throws Exception{
-        return jpaFloristService.addInventory(floristEmail, productJpa);
+                                @RequestBody Product product) throws Exception{
+        return floristService.addInventory(floristEmail, product);
     }
     @DeleteMapping("/{floristEmail}/inventory/remove")
     public boolean removeInventory(@PathVariable String floristEmail,
                                    @RequestParam String productName) throws Exception{
-        return jpaFloristService.removeInventory(floristEmail, productName);
+        return floristService.removeInventory(floristEmail, productName);
     }
     @ResponseBody
     @GetMapping("/{floristEmail}/inventory/view")
-    public List<ProductJpa> viewInventory(@PathVariable String floristEmail) throws Exception {
-        return jpaFloristService.viewInventory(floristEmail);
+    public List<Product> viewInventory(@PathVariable String floristEmail) throws Exception {
+        return floristService.viewInventory(floristEmail);
     }
     @PostMapping("/{floristEmail}/inventory/empty")
     public boolean emptyInventory(@PathVariable String floristEmail) throws Exception{
-        return jpaFloristService.emptyInventory(floristEmail);
+        return floristService.emptyInventory(floristEmail);
     }
 
 
-
+    /*
     @GetMapping("/{email}/history/view")
-    public History getHistory(@PathVariable String email) throws Exception{
+    public HistoryC getHistory(@PathVariable String email) throws Exception{
         return floristService.getHistory(email);
     }
 
+     */
 
-    @PostMapping("/make_order")
-    public boolean makeOrder(@RequestBody Purchase purchase) throws Exception {
-        return orderService.addOrder(purchase);
-    }
-    @PostMapping("/cancel_order")
-    public boolean cancelOrder(@RequestBody Purchase purchase) throws Exception{
-        return orderService.cancelOrder(purchase);
-    }
+
 }

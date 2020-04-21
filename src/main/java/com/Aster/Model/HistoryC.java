@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "HISTORY")
-public class History {
+@Table(name = "HISTORYC")
+public class HistoryC {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "HISTORY_ID")
+    @Column(name = "HISTORYC_ID")
     private Long Id;
 
     @Column
@@ -21,28 +21,28 @@ public class History {
     @JsonIgnore
     private Customer customer;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FLORISTJPA_ID")
+    @JoinColumn(name = "FLORIST_ID")
     @JsonIgnore
-    private FloristJpa floristJpa;
+    private Florist florist;
 
-    @OneToMany(mappedBy = "history", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Purchase> history = new ArrayList<>();
+    @OneToMany(mappedBy = "historyC", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Purchase> historyC = new ArrayList<>();
 
 
-    public History(@JsonProperty("history") List<Purchase> history,
-                   @JsonProperty("allcompleted") boolean allCompleted) {
+    public HistoryC(@JsonProperty("historyC") List<Purchase> historyC,
+                    @JsonProperty("allcompleted") boolean allCompleted) {
         this.allCompleted = allCompleted;
-        this.history = history;
+        this.historyC = historyC;
     }
 
-    public History(){}
+    public HistoryC(){}
 
-    public FloristJpa getFloristJpa() {
-        return floristJpa;
+    public Florist getFlorist() {
+        return florist;
     }
 
-    public void setFloristJpa(FloristJpa floristJpa) {
-        this.floristJpa = floristJpa;
+    public void setFlorist(Florist florist) {
+        this.florist = florist;
     }
 
     public boolean isAllCompleted() {
@@ -69,11 +69,11 @@ public class History {
         this.customer = customer;
     }
 
-    public List<Purchase> getHistory() {
-        return history;
+    public List<Purchase> getHistoryC() {
+        return historyC;
     }
 
-    public void setHistory(List<Purchase> history) {
-        this.history = history;
+    public void setHistoryC(List<Purchase> historyC) {
+        this.historyC = historyC;
     }
 }

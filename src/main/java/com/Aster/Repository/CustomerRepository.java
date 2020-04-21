@@ -1,38 +1,24 @@
 package com.Aster.Repository;
 
 import com.Aster.Model.Customer;
-import com.Aster.Model.Purchase;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CustomerRepository {
-    boolean addCustomer(Customer customer) throws Exception;
+@Repository
+@Transactional
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    @Query("SELECT CASE WHEN count(c) > 0 THEN true ELSE false END FROM Customer c WHERE c.email = ?1")
+    boolean customerExists(String email);
 
-    Customer getCustomer(String email) throws Exception;
+    @Query("SELECT c FROM Customer c WHERE c.email = ?1")
+    Customer findCustomerByEmail(String email);
 
-    boolean deleteCustomer(String email) throws Exception;
-
-    boolean isValid(String email);
-
-    boolean addCart(String email, Purchase purchase) throws Exception;
-
-    boolean removeCart(String email, String orderID) throws Exception;
-
-    boolean emptyCart(String email) throws Exception;
-
-    List<Purchase> viewCart(String email);
-
-    boolean isInCart(String email, Purchase purchase) throws Exception;
-
-    boolean updateCart(String email, Purchase purchase) throws Exception;
-
-    int getQuantity(String email, Purchase purchase) throws Exception;
-
-    List<Purchase> viewHistory(String email);
-
-    List<Purchase> updateHistory(String email);
-
-    int addOrder(Purchase purchase);
-
-    int cancelOrder(Purchase purchase);
+    @Query("SELECT c.email FROM Customer c")
+    List<String> findAllEmail();
+    @Query("SELECT c FROM Customer c")
+    List<Customer> findAllCustomers();
 }

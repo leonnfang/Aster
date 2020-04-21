@@ -28,8 +28,8 @@ public class Customer{
     @JoinColumn(name = "CART_ID")
     private Cart cart;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "HISTORY_ID")
-    private History history;
+    @JoinColumn(name = "HISTORYC_ID")
+    private HistoryC historyC;
 
     public Customer(@JsonProperty("user_name") String user_name,
                     @JsonProperty("password") String password,
@@ -48,12 +48,12 @@ public class Customer{
 
     public Customer(){}
 
-    public History getHistory() {
-        return history;
+    public HistoryC getHistoryC() {
+        return historyC;
     }
 
-    public void setHistory(History history) {
-        this.history = history;
+    public void setHistoryC(HistoryC historyC) {
+        this.historyC = historyC;
     }
 
     public Long getId() {
