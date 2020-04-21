@@ -1,5 +1,7 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.internal.EntityManagerMessageLogger;
 
@@ -21,28 +23,41 @@ public class ProductJpa {
     private String description;
     @Column(nullable = false)
     private String florsitEmail;
+    @Column(nullable = false)
+    private int quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "INVENTORYJPA_ID")
+    @JsonIgnore
     private InventoryJpa inventoryJpa;
 
     public ProductJpa(@JsonProperty("productName") String productName,
-                   @JsonProperty("price") double price,
-                   @JsonProperty("description") String description,
-                   @JsonProperty("floristEmail") String floristEmail) {
+                      @JsonProperty("price") double price,
+                      @JsonProperty("description") String description,
+                      @JsonProperty("floristEmail") String floristEmail,
+                      @JsonProperty("quantity") int quantity) {
         this.name = productName;
         this.price = price;
         this.description = description;
         this.florsitEmail = floristEmail;
+        this.quantity = quantity;
     }
 
     public ProductJpa(){}
 
-    public InventoryJpa getInventory() {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public InventoryJpa getInventoryJpa() {
         return inventoryJpa;
     }
 
-    public void setInventory(InventoryJpa inventoryJpa) {
+    public void setInventoryJpa(InventoryJpa inventoryJpa) {
         this.inventoryJpa = inventoryJpa;
     }
 

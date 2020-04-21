@@ -29,42 +29,40 @@ public class FloristController{
     }
     @ResponseBody
     @GetMapping("/get")
-    public FloristJpa getFlorist(@RequestParam String email) throws Exception{
-        return jpaFloristService.getFlorist(email);
+    public FloristJpa getFlorist(@RequestParam String floristEmail) throws Exception{
+        return jpaFloristService.getFlorist(floristEmail);
     }
-    @PostMapping("/{email}/delete")
-    public boolean deleteFlorist(@PathVariable String email) throws Exception{
-        return jpaFloristService.deleteFlorist(email);
+    @PostMapping("/{florstEmail}/delete")
+    public boolean deleteFlorist(@PathVariable String florstEmail) throws Exception{
+        return jpaFloristService.deleteFlorist(florstEmail);
     }
     @ResponseBody
     @GetMapping("/getAll")
-    public List<String> viewFlorists(){
+    public List<FloristJpa> viewFlorists(){
         return jpaFloristService.viewFlorists();
     }
 
 
-    @PostMapping("/{email}/inventory/add")
-    public boolean add_product(@PathVariable String email,
-                               @RequestParam int quantity,
-                               @RequestBody Product product) throws Exception{
-        return floristService.addProduct(email, product, quantity);
+    @PostMapping("/{floristEmail}/inventory/add")
+    public boolean addInventory(@PathVariable String floristEmail,
+                                @RequestBody ProductJpa productJpa) throws Exception{
+        return jpaFloristService.addInventory(floristEmail, productJpa);
     }
-    @DeleteMapping("/{email}/inventory/remove")
-    public boolean remove_product(@PathVariable String email,
-                                  @RequestBody Product product) throws Exception{
-        return floristService.removeProduct(email, product);
-    }
-    @PostMapping("/{email}/inventory/update")
-    public boolean updateInventory(@PathVariable String email,
-                                   @RequestParam int quantity,
-                                   @RequestBody Product product) throws Exception{
-        return floristService.updateInventory(email,product,quantity);
+    @DeleteMapping("/{floristEmail}/inventory/remove")
+    public boolean removeInventory(@PathVariable String floristEmail,
+                                   @RequestParam String productName) throws Exception{
+        return jpaFloristService.removeInventory(floristEmail, productName);
     }
     @ResponseBody
-    @GetMapping("/{email}/inventory/view")
-    public Inventory viewInventory(@PathVariable String email) throws Exception {
-        return floristService.viewInventory(email);
+    @GetMapping("/{floristEmail}/inventory/view")
+    public List<ProductJpa> viewInventory(@PathVariable String floristEmail) throws Exception {
+        return jpaFloristService.viewInventory(floristEmail);
     }
+    @PostMapping("/{floristEmail}/inventory/empty")
+    public boolean emptyInventory(@PathVariable String floristEmail) throws Exception{
+        return jpaFloristService.emptyInventory(floristEmail);
+    }
+
 
 
     @GetMapping("/{email}/history/view")

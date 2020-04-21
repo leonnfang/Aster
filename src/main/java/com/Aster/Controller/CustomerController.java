@@ -27,48 +27,48 @@ public class CustomerController {
     }
     @ResponseBody
     @GetMapping("/get")
-    public Customer getCustomer(@RequestParam String email) throws Exception{
-        return jpaCustomerService.getCustomer(email);
+    public Customer getCustomer(@RequestParam String customerEmail) throws Exception{
+        return jpaCustomerService.getCustomer(customerEmail);
     }
-    @DeleteMapping("/{email}/delete")
-    public boolean deleteCustomer(@PathVariable String email) throws Exception{
-        return jpaCustomerService.deleteCustomer(email);
+    @DeleteMapping("/{customerEmail}/delete")
+    public boolean deleteCustomer(@PathVariable String customerEmail) throws Exception{
+        return jpaCustomerService.deleteCustomer(customerEmail);
     }
     @ResponseBody
     @GetMapping("/getAll")
-    public List<String> viewCustomers(){
+    public List<Customer> viewCustomers(){
         return jpaCustomerService.viewCustomers();
     }
 
 
-    @PostMapping("/{email}/cart/add")
-    public boolean addCart(@PathVariable String email,
+    @PostMapping("/{customerEmail}/cart/add")
+    public boolean addCart(@PathVariable String customerEmail,
                            @RequestBody Purchase purchase) throws Exception{
-        return customerService.addCart(email, purchase);
+        return jpaCustomerService.addCart(customerEmail, purchase);
     }
-    @DeleteMapping("/{email}/cart/remove")
-    public boolean removeCart(@PathVariable String email,
+    @DeleteMapping("/{customerEmail}/cart/remove")
+    public boolean removeCart(@PathVariable String customerEmail,
                               @RequestParam String orderID) throws Exception{
-        return customerService.removeCart(email, orderID);
+        return jpaCustomerService.removeCart(customerEmail, orderID);
     }
     @ResponseBody
-    @GetMapping("/{email}/cart/view")
-    public List<Purchase> viewCart(@PathVariable String email) throws Exception{
-        return customerService.viewCart(email);
+    @GetMapping("/{customerEmail}/cart/view")
+    public List<Purchase> viewCart(@PathVariable String customerEmail) throws Exception{
+        return jpaCustomerService.viewCart(customerEmail);
     }
-    @DeleteMapping("/{email}/cart/empty")
-    public boolean emptyCart(@PathVariable String email) throws Exception{
-        return customerService.emptyCart(email);
+    @DeleteMapping("/{customerEmail}/cart/empty")
+    public boolean emptyCart(@PathVariable String customerEmail) throws Exception{
+        return jpaCustomerService.emptyCart(customerEmail);
     }
 
 
-    @PutMapping("/{email}/checkout")
-    public boolean checkout(@PathVariable String email) throws Exception {
-        return customerService.checkout(email);
+    @PutMapping("/{customerEmail}/checkout")
+    public boolean checkout(@PathVariable String customerEmail) throws Exception {
+        return customerService.checkout(customerEmail);
     }
     @ResponseBody
-    @GetMapping("{email}/history/view")
-    public List<Purchase> viewHistory(@PathVariable String email) throws Exception{
-        return customerService.viewHistory(email);
+    @GetMapping("{customerEmail}/history/view")
+    public List<Purchase> viewHistory(@PathVariable String customerEmail) throws Exception{
+        return customerService.viewHistory(customerEmail);
     }
 }
