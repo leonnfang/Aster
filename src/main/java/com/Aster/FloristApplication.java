@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
-//@EnableJpaRepositories
 @SpringBootApplication
 public class FloristApplication {
 

@@ -1,5 +1,6 @@
 package com.Aster.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,11 +33,13 @@ public class Purchase {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CART_ID")
+    @JsonIgnore
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HISTORY_ID")
-    private History history;
+    @JoinColumn(name = "HISTORYC_ID")
+    @JsonIgnore
+    private HistoryC historyC;
 
     public Purchase(@JsonProperty("floristEmail") String floristEmail,
                     @JsonProperty("customerEmail") String customerEmail,
@@ -64,12 +67,12 @@ public class Purchase {
         this.cart = cart;
     }
 
-    public History getHistory() {
-        return history;
+    public HistoryC getHistoryC() {
+        return historyC;
     }
 
-    public void setHistory(History history) {
-        this.history = history;
+    public void setHistoryC(HistoryC historyC) {
+        this.historyC = historyC;
     }
 
     public String getFloristEmail() {

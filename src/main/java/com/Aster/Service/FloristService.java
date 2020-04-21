@@ -1,60 +1,116 @@
 package com.Aster.Service;
 
-import com.Aster.Repository.FloristRepository;
 import com.Aster.Model.*;
+import com.Aster.Repository.FloristRepository;
+import com.Aster.Repository.InventoryRepository;
+import com.Aster.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FloristService {
-    private FloristRepository floristRepsoitory;
     @Autowired
-    public FloristService(FloristRepository floristRepsoitory) {
-        this.floristRepsoitory = floristRepsoitory;
-    }
+    private FloristRepository floristRepository;
+    @Autowired
+    private ProductRepository productRepository;
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
-    public boolean addFlorist(Florist florist) throws Exception {
+    public boolean addFlorist(Florist florist) throws Exception{
         if(florist == null){
-            throw new Exception("Invalid Florist Input");
+            throw new Exception("Invalid Florist");
         }
-        return floristRepsoitory.addFlorist(florist);
+        if(floristRepository.floristExists(florist.getEmail())){
+            throw new Exception("Florist Already Exists");
+        }
+
+        Inventory inventory = new Inventory();
+        HistoryC historyC = new HistoryC();
+
+        inventory.setFlorist(florist);
+        florist.setInventory(inventory);
+        historyC.setFlorist(florist);
+        florist.setHistoryC(historyC);
+
+        floristRepository.save(florist);
+        return true;
     }
-    public boolean deleteFlorist(String email) throws Exception {
-        if(email == null || email.length() == 0){
-            throw new Exception("Invalid Email address");
+    public boolean deleteFlorist(String floristEmail) throws Exception {
+        if(floristEmail == null){
+            throw new Exception("Invalid Email");
         }
-        if(!floristRepsoitory.deleteFlorist(email)){
-            throw new Exception("Cannot delete the florist");
-        }else{
-            return true;
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Florist Does Not Exist");
         }
+        floristRepository.delete(floristRepository.findFloristByEmail(floristEmail));
+        return true;
     }
-    public String getUser_name(String email) throws Exception {
-        if(email == null || email.length() == 0){
-            throw new Exception("Invalid email address");
+    public Florist getFlorist(String floristEmail) throws Exception{
+        if(floristEmail == null){
+            throw new Exception("Invalid Email");
         }
-        return floristRepsoitory.getUser_name(email);
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Florist Does Not Exist");
+        }
+        return floristRepository.findFloristByEmail(floristEmail);
     }
-    public Florist getFlorist(String email) {
-        return floristRepsoitory.getFlorist(email);
+    public List<Florist> viewFlorists(){
+        return floristRepository.findAllFlorists();
     }
 
+    public boolean addInventory(String floristEmail, Product product)throws Exception{
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Florist Does Not Exist");
+        }
 
-    public boolean addProduct(String email, Product product, int quantity) throws Exception{
-        return floristRepsoitory.addProduct(email, product, quantity);
-    }
-    public boolean removeProduct(String email, Product product) throws Exception{
-        return floristRepsoitory.removeProduct(email, product);
-    }
-    public boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception {
-        return floristRepsoitory.updateInventory(floristEmail,product,quantity);
-    }
-    public Inventory viewInventory(String email) throws Exception {
-        return floristRepsoitory.viewInventory(email);
-    }
+        Florist florist = floristRepository.findFloristByEmail(floristEmail);
+        if(productRepository.productExists(floristEmail, product.getName())){
 
+            int curQuantity = productRepository.findQuantityByEmailAndName(floristEmail, product.getName());
+            if(curQuantity + product.getQuantity() < 0){
+                throw new Exception("Total Quantity Cannot Be Less Than 0");
+            }
+            productRepository.quantityUpdate(floristEmail, product.getName(), product.getQuantity());
+        }
+        else{
+            product.setInventory(florist.getInventory());
+            productRepository.save(product);
+        }
 
-    public History getHistory(String email) {
-        return floristRepsoitory.getHistory(email);
+        inventoryRepository.totalNumberUpdate(florist.getId(), product.getQuantity());
+
+        if(inventoryRepository.findTotalNumberById(florist.getId()) == 0){
+            inventoryRepository.isEmptyUpdateTrue(florist.getId());
+        }
+        else{
+            inventoryRepository.isEmptyUpdateFalse(florist.getId());
+        }
+        return true;
+    }
+    public boolean removeInventory(String floristEmail, String productName) throws Exception{
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Florist Does Not Exist");
+        }
+        if(!productRepository.productExists(floristEmail, productName)){
+            throw new Exception("Product Does Not Exist In Florist's Inventory");
+        }
+        productRepository.delete(productRepository.findProductByEmailAndName(floristEmail, productName));
+        return true;
+    }
+    public List<Product> viewInventory(String floristEmail) throws Exception{
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Florist Does Not Exist");
+        }
+        return productRepository.findProductsByEmail(floristEmail);
+    }
+    public boolean emptyInventory(String floristEmail) throws Exception{
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Forist Does Not Exist");
+        }
+        List<Product> InventoryToEmpty = productRepository.findProductsByEmail(floristEmail);
+        productRepository.deleteInBatch(InventoryToEmpty);
+        return true;
     }
 }

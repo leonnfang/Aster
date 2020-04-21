@@ -1,31 +1,24 @@
 package com.Aster.Repository;
 
-import com.Aster.Model.*;
+import com.Aster.Model.Florist;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface FloristRepository{
-    boolean addFlorist(Florist florist) throws Exception;
+import java.util.List;
 
-    boolean deleteFlorist(String email) throws Exception;
+@Repository
+@Transactional
+public interface FloristRepository extends JpaRepository<Florist, Long> {
+    @Query("SELECT CASE WHEN count(f) > 0 THEN true ELSE false END FROM Florist f WHERE f.email = ?1")
+    boolean floristExists(String email);
 
-    Florist getFlorist(String email);
+    @Query("SELECT f FROM Florist f WHERE f.email = ?1")
+    Florist findFloristByEmail(String email);
 
-    String getUser_name(String email) throws Exception;
-
-    boolean isvalid(String email);
-
-    boolean addProduct(String email, Product product, int quantity) throws Exception;
-
-    boolean removeProduct(String email, Product product) throws Exception;
-
-    boolean updateInventory(String floristEmail, Product product, int quantity) throws Exception;
-
-    Inventory viewInventory(String email) throws Exception;
-
-    int updateHistory(Purchase purchase, String email);
-
-    History getHistory(String email);
-
-    int addOrder(Purchase purchase);
-
-    int cancelOrder(Purchase purchase);
+    @Query("SELECT f.email FROM Florist f")
+    List<String> findAllEmail();
+    @Query("SELECT f FROM Florist f")
+    List<Florist> findAllFlorists();
 }
