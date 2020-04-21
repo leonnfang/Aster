@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {
-    //private OrderService orderService;
+
     private CustomerService customerService;
     private JpaCustomerService jpaCustomerService;
 

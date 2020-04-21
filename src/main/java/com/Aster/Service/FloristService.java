@@ -1,11 +1,9 @@
 package com.Aster.Service;
 
-import com.Aster.Database.FloristRepository;
+import com.Aster.Repository.FloristRepository;
 import com.Aster.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class FloristService {
@@ -56,7 +54,7 @@ public class FloristService {
     }
 
 
-    public List<Purchase> getHistory(String email) {
+    public History getHistory(String email) {
         return floristRepsoitory.getHistory(email);
     }
 }

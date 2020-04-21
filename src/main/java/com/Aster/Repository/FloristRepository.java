@@ -1,8 +1,6 @@
-package com.Aster.Database;
+package com.Aster.Repository;
 
 import com.Aster.Model.*;
-
-import java.util.List;
 
 public interface FloristRepository{
     boolean addFlorist(Florist florist) throws Exception;
@@ -25,7 +23,7 @@ public interface FloristRepository{
 
     int updateHistory(Purchase purchase, String email);
 
-    List<Purchase> getHistory(String email);
+    History getHistory(String email);
 
     int addOrder(Purchase purchase);
 

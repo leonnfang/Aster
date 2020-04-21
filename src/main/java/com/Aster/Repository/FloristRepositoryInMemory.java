@@ -1,4 +1,4 @@
-package com.Aster.Database;
+package com.Aster.Repository;
 import com.Aster.Model.*;
 
 import org.springframework.context.annotation.Primary;
@@ -17,9 +17,9 @@ public class FloristRepositoryInMemory implements FloristRepository {
             throw new Exception("This Florist Has Already Existed");
         }
 
-        List<Purchase> newHistory = new ArrayList<>();
-        Map<String, Vector> newInventoryMap = new HashMap<>();
 
+        Map<String, Vector> newInventoryMap = new HashMap<>();
+        History newHistory = new History();
         Inventory newInventory = new Inventory(newInventoryMap,true,0);
 
         Florist newflorist = new Florist(florist.getUser_name(),
@@ -142,12 +142,12 @@ public class FloristRepositoryInMemory implements FloristRepository {
 
         Florist florist = floristMap.get(email);
 
-        florist.getHistory().add(purchase);
+        florist.getHistory().getHistory().add(purchase);
 
         return 0;
     }
     @Override
-    public List<Purchase> getHistory(String email){
+    public History getHistory(String email){
         return floristMap.get(email).getHistory();
     }
 
