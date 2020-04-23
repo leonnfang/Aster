@@ -127,8 +127,11 @@ public class FloristService {
         if(!purchaseRepository.purchaseExistsById(orderId)){
             throw new Exception("Order Does Not Exist");
         }
-        //check if purchase is already complete
-        //
+        if(purchaseRepository.purchaseIsComplete(orderId)){
+            throw new Exception("This Order Is Already Completed");
+        }
+        Purchase purchase = purchaseRepository.findPurchaseByOrderId(orderId);
+        purchase.setComplete(true);
         return true;
     }
 }
