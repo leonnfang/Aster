@@ -29,5 +29,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Modifying
     @Query("UPDATE Product p SET p.quantity = p.quantity + ?3 WHERE (p.florsitEmail = ?1 AND p.name = ?2) ")
-    void quantityUpdate(String floristEmail, String productName, int quantityToADD);
+    void quantityUpdate(String floristEmail, String productName, int quantityToAdd);
 }

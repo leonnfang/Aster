@@ -17,15 +17,14 @@ import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 public class FloristApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(FloristApplication.class, args);
 		System.out.println("Welcome to Aster");
 	}
-
-	//TODO order florist by: views, popularity, etc
-
-	/*
-
-	*/
-
+	//TODO add in internal currency
+	//TODO money calculation
+	//TODO react JS (redux)
+	//TODO logging (cookies, jwt tokens)
+	//TODO docker, middleware
+	//TODO add tags to products
+	//TODO S3 photo saving
 }

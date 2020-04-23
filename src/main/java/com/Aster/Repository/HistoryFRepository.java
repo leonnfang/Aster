@@ -1,6 +1,6 @@
 package com.Aster.Repository;
 
-import com.Aster.Model.HistoryC;
+import com.Aster.Model.HistoryF;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface HistoryCRepository extends JpaRepository<HistoryC, Long> {
+public interface HistoryFRepository extends JpaRepository<HistoryF, Long> {
 
-    @Query("SELECT h.Id FROM HistoryC h WHERE h.customer.email = ?1")
-    Long findHistoryCIdByEmail(String email);
+    @Query("SELECT h.Id FROM HistoryF h WHERE h.florist.email = ?1")
+    Long findHistoryFIdByEmail(String email);
 }

@@ -1,9 +1,7 @@
 package com.Aster.Service;
 
 import com.Aster.Model.*;
-import com.Aster.Repository.FloristRepository;
-import com.Aster.Repository.InventoryRepository;
-import com.Aster.Repository.ProductRepository;
+import com.Aster.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +15,10 @@ public class FloristService {
     private ProductRepository productRepository;
     @Autowired
     private InventoryRepository inventoryRepository;
+    @Autowired
+    private HistoryFRepository historyFRepository;
+    @Autowired
+    private PurchaseRepository purchaseRepository;
 
     public boolean addFlorist(Florist florist) throws Exception{
         if(florist == null){
@@ -27,12 +29,12 @@ public class FloristService {
         }
 
         Inventory inventory = new Inventory();
-        HistoryC historyC = new HistoryC();
+        HistoryF historyF = new HistoryF();
 
         inventory.setFlorist(florist);
         florist.setInventory(inventory);
-        historyC.setFlorist(florist);
-        florist.setHistoryC(historyC);
+        historyF.setFlorist(florist);
+        florist.setHistoryF(historyF);
 
         floristRepository.save(florist);
         return true;
@@ -111,6 +113,22 @@ public class FloristService {
         }
         List<Product> InventoryToEmpty = productRepository.findProductsByEmail(floristEmail);
         productRepository.deleteInBatch(InventoryToEmpty);
+        return true;
+    }
+
+    public List<Purchase> viewHistory(String floristEmail) throws Exception{
+        if(!floristRepository.floristExists(floristEmail)){
+            throw new Exception("Florist Does Not Exist");
+        }
+        Long historyFId = historyFRepository.findHistoryFIdByEmail(floristEmail);
+        return purchaseRepository.findPurchasesByHistoryFId(historyFId);
+    }
+    public boolean completeOrder(String orderId) throws Exception{
+        if(!purchaseRepository.purchaseExistsById(orderId)){
+            throw new Exception("Order Does Not Exist");
+        }
+        //check if purchase is already complete
+        //
         return true;
     }
 }

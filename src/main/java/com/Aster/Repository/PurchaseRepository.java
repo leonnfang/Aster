@@ -1,5 +1,7 @@
 package com.Aster.Repository;
 
+import com.Aster.Model.Cart;
+import com.Aster.Model.HistoryC;
 import com.Aster.Model.Purchase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,10 +14,12 @@ import java.util.List;
 @Repository
 @Transactional
 public interface PurchaseRepository extends JpaRepository<Purchase, String> {
-    @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Purchase p WHERE (p.customerEmail = ?1 AND p.productName = ?2)")
-    boolean purchaseExists(String customerEmail, String productName);
+    @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Purchase p WHERE ((p.cart = ?3) AND (p.customerEmail = ?1) AND (p.productName = ?2))")
+    boolean purchaseExists(String customerEmail, String productName, Cart cart);
     @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Purchase p WHERE p.OrderId = ?1")
     boolean purchaseExistsById(String purchaseId);
+    @Query("SELECT p.complete FROM Purchase p WHERE p.OrderId = ?1")
+    boolean purchaseIsComplete(String purchaseId);
 
     @Query("SELECT p.quantity FROM Purchase p WHERE (p.customerEmail = ?1 AND p.productName = ?2)")
     int findQuantityByEmailAndName(String customerEmail, String productName);
@@ -29,8 +33,10 @@ public interface PurchaseRepository extends JpaRepository<Purchase, String> {
     @Query("SELECT p FROM Purchase p WHERE p.OrderId = ?1")
     Purchase findPurchaseByOrderId(String orderId);
 
-    @Query("SELECT p FROM Purchase p WHERE p.customerEmail = ?1 AND p.cart.Id = ?2")
-    List<Purchase> findPurchasesByEmailAndCartId(String customerEmail, Long cartId);
-    @Query("SELECT p FROM Purchase p WHERE p.customerEmail = ?1 AND p.historyC.Id = ?2")
-    List<Purchase> findPurchasesByEmailAndHistoryCId(String customerEmail, Long historyCId);
+    @Query("SELECT p FROM Purchase p WHERE p.cart.Id = ?1")
+    List<Purchase> findPurchasesByCartId(Long cartId);
+    @Query("SELECT p FROM Purchase p WHERE p.historyC.Id = ?1")
+    List<Purchase> findPurchasesByHistoryCId(Long historyCId);
+    @Query("SELECT p FROM Purchase p WHERE p.historyF.Id = ?1")
+    List<Purchase> findPurchasesByHistoryFId(Long historyFId);
 }
