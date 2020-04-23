@@ -20,10 +20,6 @@ public class HistoryC {
     @JoinColumn(name = "CUSTOMER_ID")
     @JsonIgnore
     private Customer customer;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FLORIST_ID")
-    @JsonIgnore
-    private Florist florist;
 
     @OneToMany(mappedBy = "historyC", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Purchase> historyC = new ArrayList<>();
@@ -36,14 +32,6 @@ public class HistoryC {
     }
 
     public HistoryC(){}
-
-    public Florist getFlorist() {
-        return florist;
-    }
-
-    public void setFlorist(Florist florist) {
-        this.florist = florist;
-    }
 
     public boolean isAllCompleted() {
         return allCompleted;

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface CartRepository extends JpaRepository<Cart, Long> {
-    //TODO make money adding function
+
     @Modifying
     @Query("UPDATE Cart c SET c.totalprice = (c.totalprice + ?2) WHERE c.Id = ?1")
     void totalpriceUpdate(Long cartId, double pricetoAdd);
@@ -20,7 +20,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
 
     @Query("SELECT c.totalprice FROM Cart c WHERE c.customer.email = ?1")
-    double findTotalpriceByCustomerId(String customerEmail);
+    double findTotalpriceByCustomerEmail(String customerEmail);
 
     @Query("SELECT c.Id FROM Cart c WHERE c.customer.email = ?1")
     Long findCartIdByEmail(String customerEmail);

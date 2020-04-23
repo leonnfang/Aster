@@ -29,8 +29,8 @@ public class Florist {
     @JoinColumn(name = "INVENTORY_ID")
     private Inventory inventory;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name = "HISTORYC_ID")
-    private HistoryC historyC;
+    @JoinColumn(name = "HISTORYF_ID")
+    private HistoryF historyF;
 
 
     public Florist(@JsonProperty("user_name") String user_name,
@@ -100,12 +100,12 @@ public class Florist {
         Id = id;
     }
 
-    public HistoryC getHistoryC() {
-        return historyC;
+    public HistoryF getHistoryF() {
+        return historyF;
     }
 
-    public void setHistoryC(HistoryC historyC) {
-        this.historyC = historyC;
+    public void setHistoryF(HistoryF historyF) {
+        this.historyF = historyF;
     }
 
     public Inventory getInventory() {

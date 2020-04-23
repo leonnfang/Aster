@@ -1,10 +1,7 @@
 package com.Aster.Service;
 
+import com.Aster.Model.*;
 import com.Aster.Repository.*;
-import com.Aster.Model.Cart;
-import com.Aster.Model.Customer;
-import com.Aster.Model.HistoryC;
-import com.Aster.Model.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +21,8 @@ public class CustomerService {
     private CartRepository cartRepository;
     @Autowired
     private HistoryCRepository historyCRepository;
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
     public boolean addCustomer(Customer customer) throws Exception{
         if(customer == null){
@@ -85,7 +84,7 @@ public class CustomerService {
         Customer customer = customerRepository.findCustomerByEmail(customerEmail);
         double priceToAdd = purchase.getQuantity() * productRepository.findPriceByEmailAndName(purchase.getFloristEmail(), purchase.getProductName());
 
-        if(purchaseRepository.purchaseExists(customerEmail, purchase.getProductName())){
+        if(purchaseRepository.purchaseExists(customerEmail, purchase.getProductName(), customer.getCart())){
             if(inventoryQuantity < purchase.getQuantity() + purchaseRepository.findQuantityByEmailAndName(customerEmail, purchase.getProductName())){
                 throw new Exception("Not Enough Quantity In Florist's Inventory, Cannot Add That Much Quantity");
             }
@@ -124,46 +123,77 @@ public class CustomerService {
             throw new Exception("Customer Does Not Exist");
         }
         Long cartId = cartRepository.findCartIdByEmail(customerEmail);
-        return purchaseRepository.findPurchasesByEmailAndCartId(customerEmail, cartId);
+        return purchaseRepository.findPurchasesByCartId(cartId);
     }
     public boolean emptyCart(String customerEmail) throws Exception{
         if(!customerRepository.customerExists(customerEmail)){
             throw new Exception("Customer Does Not Exist");
         }
         Long cartId = cartRepository.findCartIdByEmail(customerEmail);
-        List<Purchase> cartToEmpty = purchaseRepository.findPurchasesByEmailAndCartId(customerEmail, cartId);
+        List<Purchase> cartToEmpty = purchaseRepository.findPurchasesByCartId(cartId);
         purchaseRepository.deleteInBatch(cartToEmpty);
         cartRepository.totalpriceToZero(cartId);
         return true;
     }
 
-    public boolean checkout(String customerEmail) throws Exception{
-        if(!customerRepository.customerExists(customerEmail)){
-            throw new Exception("Customer Does Not Exist");
-        }
-        //TODO make payment
-
-        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
-        List<Purchase> editCartList = purchaseRepository.findPurchasesByEmailAndCartId(customerEmail, cartId);
-        //update(reduce) Florist's Inventory
-        for(Purchase purchase : editCartList){
-            productRepository.quantityUpdate(purchase.getFloristEmail(), purchase.getProductName(), purchase.getQuantity());
-
-        }
-        //update Florist's History
-        //update Customer's History
-        //empty Customer's Cart
-
-        return true;
-    }
     public List<Purchase> viewHistoryC(String customerEmail) throws Exception{
         if(!customerRepository.customerExists(customerEmail)){
             throw new Exception("Customer Does Not Exist");
         }
         Long historyCId = historyCRepository.findHistoryCIdByEmail(customerEmail);
-        return purchaseRepository.findPurchasesByEmailAndHistoryCId(customerEmail, historyCId);
+        return purchaseRepository.findPurchasesByHistoryCId(historyCId);
     }
-    public boolean cancelPurchase(String customerEmail, String orderId) throws Exception{
+    public boolean checkout(String customerEmail) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        //TODO make payment
+        double totalPrice = cartRepository.findTotalpriceByCustomerEmail(customerEmail);
+
+        Long cartId = cartRepository.findCartIdByEmail(customerEmail);
+        List<Purchase> editCartList = purchaseRepository.findPurchasesByCartId(cartId);
+        Customer customer = customerRepository.findCustomerByEmail(customerEmail);
+
+        for(Purchase purchase : editCartList){
+            if(purchase.getQuantity() > productRepository.findQuantityByEmailAndName(purchase.getFloristEmail(), purchase.getProductName())){
+                throw new Exception("Not Enough Quantity In Florist's Inventory: " + purchase.getProductName());
+            }
+            Florist florist = floristRepository.findFloristByEmail(purchase.getFloristEmail());
+
+            productRepository.quantityUpdate(purchase.getFloristEmail(), purchase.getProductName(), -1*purchase.getQuantity());
+            purchase.setHistoryF(florist.getHistoryF());
+            purchase.setHistoryC(customer.getHistoryC());
+            purchase.setCart(null);
+
+            inventoryRepository.totalNumberUpdate(florist.getId(), -1*purchase.getQuantity());
+            if(inventoryRepository.findTotalNumberById(florist.getId()) == 0){
+                inventoryRepository.isEmptyUpdateTrue(florist.getId());
+            }
+            else{
+                inventoryRepository.isEmptyUpdateFalse(florist.getId());
+            }
+        }
+        cartRepository.totalpriceToZero(cartId);
+
+        return true;
+    }
+    public boolean cancelOrder(String customerEmail, String orderId) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        if(purchaseRepository.purchaseIsComplete(orderId)){
+            throw new Exception("Delivery Is Already On Its Way");
+        }
+        Purchase purchase = purchaseRepository.findPurchaseByOrderId(orderId);
+        int quantityToRestore = purchase.getQuantity();
+        productRepository.quantityUpdate(purchase.getFloristEmail(), purchase.getProductName(), quantityToRestore);
+
+        Florist florist = floristRepository.findFloristByEmail(purchase.getFloristEmail());
+        inventoryRepository.totalNumberUpdate(florist.getId(), quantityToRestore);
+
+        purchaseRepository.deleteById(orderId);
+
+        //TODO return payment
         return true;
     }
 }

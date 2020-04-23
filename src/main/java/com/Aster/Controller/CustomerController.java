@@ -58,7 +58,7 @@ public class CustomerController {
         return customerService.emptyCart(customerEmail);
     }
 
-    /*
+
     @PutMapping("/{customerEmail}/checkout")
     public boolean checkout(@PathVariable String customerEmail) throws Exception {
         return customerService.checkout(customerEmail);
@@ -66,8 +66,8 @@ public class CustomerController {
     @ResponseBody
     @GetMapping("{customerEmail}/history/view")
     public List<Purchase> viewHistory(@PathVariable String customerEmail) throws Exception{
-        return customerService.viewHistory(customerEmail);
+        return customerService.viewHistoryC(customerEmail);
     }
 
-     */
+
 }
