@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Product p WHERE (p.florsitEmail = ?1 AND p.name = ?2)")
     boolean productExists(String floristEmail, String productName);
