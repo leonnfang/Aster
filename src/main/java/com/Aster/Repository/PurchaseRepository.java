@@ -11,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Repository
-@Transactional
+@Repositoryw
 public interface PurchaseRepository extends JpaRepository<Purchase, String> {
     @Query("SELECT CASE WHEN count(p) > 0 THEN true ELSE false END FROM Purchase p WHERE ((p.cart = ?3) AND (p.customerEmail = ?1) AND (p.productName = ?2))")
     boolean purchaseExists(String customerEmail, String productName, Cart cart);

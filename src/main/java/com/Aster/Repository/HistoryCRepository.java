@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional
 public interface HistoryCRepository extends JpaRepository<HistoryC, Long> {
 
     @Query("SELECT h.Id FROM HistoryC h WHERE h.customer.email = ?1")

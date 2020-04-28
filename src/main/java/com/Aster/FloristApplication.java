@@ -20,7 +20,7 @@ public class FloristApplication {
 		SpringApplication.run(FloristApplication.class, args);
 		System.out.println("Welcome to Aster");
 	}
-	//TODO add in internal currency
+
 	//TODO money calculation
 	//TODO react JS (redux)
 	//TODO logging (cookies, jwt tokens)
