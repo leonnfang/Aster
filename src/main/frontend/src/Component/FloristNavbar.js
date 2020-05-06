@@ -22,8 +22,8 @@ export class FloristNavbar extends Component {
                                 <div className = 'spacer'></div>
                                 <div className = 'toolbar__navigation-items'>
                                     <ul>
-                                        <li><a href='/'>Products</a> </li>
-                                        <li><a href='/'>Users</a> </li>
+                                        <li><a href='https://github.com/leonnfang/Aster'>About</a> </li>
+                                        <li><a href='/'>Home</a> </li>
                                     </ul>
                                 </div>
                             </nav>

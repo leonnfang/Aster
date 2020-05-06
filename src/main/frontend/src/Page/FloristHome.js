@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import BackDrop from "../Component/BackDrop";
 import {CustomerNavbar} from "../Component/CustomerNavbar";
-import SideDrawer from "../Component/SideDrawer";
+import CustomerSideDrawer from "../Component/CustomerSideDrawer";
 import {FloristNavbar} from "../Component/FloristNavbar";
+import FloristSideDrawer from "../Component/FloristSideDrawer";
 
 export class FloristHome extends Component {
     state = {
@@ -28,7 +29,7 @@ export class FloristHome extends Component {
         return (
             <div style={{height: '100%'}}>
                 <FloristNavbar drawerClickHandler={this.drawerToggleClickHandler}/>
-                <SideDrawer show={this.state.sideDrawerOpen}/>
+                <FloristSideDrawer show={this.state.sideDrawerOpen}/>
                 {backDrop}
                 <p>This is the florist page!</p>
 
