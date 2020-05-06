@@ -1,6 +1,6 @@
  import React, {Component} from "react";
  import {CustomerNavbar} from "../Component/CustomerNavbar";
- import SideDrawer from "../Component/SideDrawer";
+ import CustomerSideDrawer from "../Component/CustomerSideDrawer";
  import BackDrop from "../Component/BackDrop";
 
 export class CustomerHome extends Component {
@@ -27,7 +27,7 @@ export class CustomerHome extends Component {
         return (
             <div style={{height: '100%'}}>
                 <CustomerNavbar drawerClickHandler={this.drawerToggleClickHandler}/>
-                <SideDrawer show={this.state.sideDrawerOpen}/>
+                <CustomerSideDrawer show={this.state.sideDrawerOpen}/>
                 {backDrop}
                 <p>This is the customer page!</p>
 
