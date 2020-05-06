@@ -8,7 +8,7 @@ export class FloristRegister extends Component{
         return(
             <Form className="login-form">
                 <h1>
-                    <span className="font-weight-bold">ASTER</span>
+                    <a href='/'>ASTER</a>
                 </h1>
                 <h2 className="text-center">DoYouWantToJoin?</h2>
                 <FormGroup>
@@ -20,10 +20,23 @@ export class FloristRegister extends Component{
                     <Input type="password" placeholder="Password"/>
                 </FormGroup>
                 <FormGroup>
-                    <Button className="btn-lg btn-dark btn-block">Log in</Button>
+                    <Label>User Name</Label>
+                    <Input type="user_name" placeholder="user_name"/>
                 </FormGroup>
                 <FormGroup>
-                    <Button className="text-center" href="/floristregister">Register</Button>
+                    <Label>FirstName</Label>
+                    <Input type="firstName" placeholder="firstName"/>
+                </FormGroup>
+                <FormGroup>
+                    <Label>LastName</Label>
+                    <Input type="lastName" placeholder="lastName"/>
+                </FormGroup>
+                <FormGroup>
+                    <Label>Address</Label>
+                    <Input type="address" placeholder="address"/>
+                </FormGroup>
+                <FormGroup>
+                    <Button className="btn-lg btn-dark btn-block">Sign Up</Button>
                 </FormGroup>
             </Form>
         )

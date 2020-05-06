@@ -8,7 +8,7 @@ export class FloristLogin extends Component{
         return(
             <Form className="login-form">
                 <h1>
-                    <span className="font-weight-bold">ASTER</span>
+                    <a href='/'>ASTER</a>
                 </h1>
                 <h2 className="text-center">Welcome</h2>
                 <FormGroup>

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Spring} from "react-spring/renderprops";
 import DrawerToggleButton from "./DrawerToggleButton";
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 import './Toolbar.css'
 
@@ -22,8 +23,9 @@ export class FloristNavbar extends Component {
                                 <div className = 'spacer'></div>
                                 <div className = 'toolbar__navigation-items'>
                                     <ul>
+                                        <Button href='floristlogin'>Log in</Button>
                                         <li><a href='https://github.com/leonnfang/Aster'>About</a> </li>
-                                        <li><a href='/floristlogin'>Home</a> </li>
+                                        <li><a href='/'>Home</a> </li>
                                     </ul>
                                 </div>
                             </nav>
