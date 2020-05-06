@@ -23,7 +23,7 @@ export class FloristNavbar extends Component {
                                 <div className = 'toolbar__navigation-items'>
                                     <ul>
                                         <li><a href='https://github.com/leonnfang/Aster'>About</a> </li>
-                                        <li><a href='/'>Home</a> </li>
+                                        <li><a href='/floristlogin'>Home</a> </li>
                                     </ul>
                                 </div>
                             </nav>
