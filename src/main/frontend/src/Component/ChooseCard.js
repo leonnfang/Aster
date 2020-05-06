@@ -18,7 +18,7 @@ export default function ChooseCard(props) {
 
 
     return (
-        <div style={{display: 'flex', justifyContent:'center'}}>
+        <div style={{display: 'flex'}}>
             <Link to={props.path} style={{textDecoration: 'none'}}>
                 <Card className={classes.root}>
                     <CardActionArea>
