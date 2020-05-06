@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../lib/style.css'
+import './style.css'
 
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 

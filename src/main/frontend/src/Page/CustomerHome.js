@@ -1,7 +1,7 @@
- import React, {Component} from "react";
- import {CustomerNavbar} from "../Component/CustomerNavbar";
- import CustomerSideDrawer from "../Component/CustomerSideDrawer";
- import BackDrop from "../Component/BackDrop";
+import React, {Component} from "react";
+import {CustomerNavbar} from "../Component/CustomerNavbar";
+import CustomerSideDrawer from "../Component/CustomerSideDrawer";
+import BackDrop from "../Component/BackDrop";
 
 export class CustomerHome extends Component {
     state = {
