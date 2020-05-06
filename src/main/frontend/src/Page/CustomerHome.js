@@ -29,7 +29,7 @@ export class CustomerHome extends Component {
                 <CustomerNavbar drawerClickHandler={this.drawerToggleClickHandler}/>
                 <SideDrawer show={this.state.sideDrawerOpen}/>
                 {backDrop}
-                <p>This is the page content!</p>
+                <p>This is the customer page!</p>
 
             </div>
         )

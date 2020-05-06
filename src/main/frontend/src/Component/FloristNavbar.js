@@ -4,7 +4,7 @@ import DrawerToggleButton from "./DrawerToggleButton";
 
 import './Toolbar.css'
 
-export class CustomerNavbar extends Component {
+export class FloristNavbar extends Component {
     render() {
         return (
             <Spring
@@ -13,7 +13,7 @@ export class CustomerNavbar extends Component {
             >
                 {props =>
                     <div style={props}>
-                        <header className='toolbarCustomer'>
+                        <header className='toolbarFlorist'>
                             <nav className='toolbar__navigation'>
                                 <div>
                                     <DrawerToggleButton click={this.props.drawerClickHandler}/>
