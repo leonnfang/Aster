@@ -1,7 +1,29 @@
 import React, {Component} from 'react'
 import './style.css'
+import { Form } from 'reactstrap'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import {makeStyles} from "@material-ui/core/styles";
 
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+const classes = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
 
 export class FloristLogin extends Component{
     render(){
@@ -11,20 +33,45 @@ export class FloristLogin extends Component{
                     <a href='/'>ASTER</a>
                 </h1>
                 <h2 className="text-center">Welcome</h2>
-                <FormGroup>
-                    <Label>Email</Label>
-                    <Input type="email" placeholder="Email"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Password</Label>
-                    <Input type="password" placeholder="Password"/>
-                </FormGroup>
-                <FormGroup>
-                    <Button className="btn-lg btn-dark btn-block">Log in</Button>
-                </FormGroup>
-                <FormGroup>
-                    <Button className="text-center" href="/floristregister">Register</Button>
-                </FormGroup>
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
+                    autoFocus
+                />
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                />
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                >
+                    Sign In
+                </Button>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                    className={classes.submit}
+                    href= "/floristregister"
+                >
+                    Register
+                </Button>
             </Form>
         )
     }

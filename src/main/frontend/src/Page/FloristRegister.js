@@ -1,44 +1,171 @@
 import React, {Component} from 'react'
 import './style.css'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import axios from 'axios';
 
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+const classes = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(3),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
+
 
 export class FloristRegister extends Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            user_name: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            address: ''
+        }
+    }
+    changeHandler = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+    submitHandler = (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        axios.post('http://localhost:8080/florist/add', this.state)
+            .then(response => {
+                console.log(response)
+                })
+            .catch(error => {
+                console.log(error)
+            })
+
+    }
     render(){
+        const { user_name, firstName, lastName, email, password, address} = this.state
         return(
-            <Form className="login-form">
-                <h1>
-                    <a href='/'>ASTER</a>
-                </h1>
-                <h2 className="text-center">DoYouWantToJoin?</h2>
-                <FormGroup>
-                    <Label>Email</Label>
-                    <Input type="email" placeholder="Email"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Password</Label>
-                    <Input type="password" placeholder="Password"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>User Name</Label>
-                    <Input type="user_name" placeholder="user_name"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>FirstName</Label>
-                    <Input type="firstName" placeholder="firstName"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>LastName</Label>
-                    <Input type="lastName" placeholder="lastName"/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Address</Label>
-                    <Input type="address" placeholder="address"/>
-                </FormGroup>
-                <FormGroup>
-                    <Button className="btn-lg btn-dark btn-block">Sign Up</Button>
-                </FormGroup>
-            </Form>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+                    </Typography>
+                    <form className={classes.form} noValidate onSubmit={this.submitHandler}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}></Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    name="firstName"
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    value = {firstName}
+                                    autoFocus
+                                    onChange={this.changeHandler}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    value = {lastName}
+                                    onChange={this.changeHandler}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    value = {email}
+                                    onChange={this.changeHandler}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    value = {password}
+                                    onChange={this.changeHandler}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="user_name"
+                                    label="user_name"
+                                    type="user_name"
+                                    id="user_name"
+                                    value = {user_name}
+                                    onChange={this.changeHandler}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    name="address"
+                                    label="address"
+                                    type="address"
+                                    id="address"
+                                    value = {address}
+                                    onChange={this.changeHandler}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                            </Grid>
+                        </Grid>
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Sign Up
+                        </Button>
+                    </form>
+                </div>
+            </Container>
         )
     }
 }
