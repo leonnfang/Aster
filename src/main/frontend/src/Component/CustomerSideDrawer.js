@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 
-import './SideDrawer.css'
+import '../Styles/SideDrawer.css'
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
