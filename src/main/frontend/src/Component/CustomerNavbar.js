@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Spring} from "react-spring/renderprops";
 import DrawerToggleButton from "./DrawerToggleButton";
 
-import './Toolbar.css'
+import '../Styles/Toolbar.css'
 
 export class CustomerNavbar extends Component {
     render() {
@@ -22,6 +22,7 @@ export class CustomerNavbar extends Component {
                                 <div className = 'spacer'></div>
                                 <div className = 'toolbar__navigation-items'>
                                     <ul>
+                                        <li><a href='/customer/login'>Login</a></li>
                                         <li><a href='https://github.com/leonnfang/Aster'>About</a> </li>
                                         <li><a href='/'>Home</a> </li>
                                     </ul>

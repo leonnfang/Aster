@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import '../Styles/Login.css'
-import { Form } from 'reactstrap'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from "@material-ui/core/styles";
@@ -28,14 +27,14 @@ const classes = makeStyles((theme) => ({
     },
 }));
 
-export class FloristLogin extends Component{
+export class CustomerLogin extends Component{
     render(){
         return(
-            <Form className="login-form">
+            <form className="login-form">
                 <h1>
                     <a href='/'>ASTER</a>
                 </h1>
-                <h2 className="text-center">Welcome to Aster</h2>
+                <h2 className="text-center">Welcome Customer</h2>
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -71,11 +70,11 @@ export class FloristLogin extends Component{
                     variant="contained"
                     color="secondary"
                     className={classes.submit}
-                    href= "/florist/register"
+                    href= "/customer/register"
                 >
                     Register
                 </Button>
-            </Form>
+            </form>
         )
     }
 }

@@ -30,7 +30,7 @@ const classes = makeStyles((theme) => ({
 }));
 
 
-export class FloristRegister extends Component{
+export class CustomerRegister extends Component{
     constructor(props) {
         super(props);
 
@@ -42,25 +42,29 @@ export class FloristRegister extends Component{
             password: '',
             address: ''
         }
+
     }
+
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
     submitHandler = (e) => {
         e.preventDefault()
         console.log(this.state)
-        axios.post('http://localhost:8080/florist/add', this.state)
+        axios.post('http://localhost:8080/customer/add', this.state)
             .then(response => {
                 console.log(response)
                 this.props.history.push('/customer/login');
-                })
+            })
             .catch(error => {
                 console.log(error)
                 alert(error.response.data.message)
             })
 
     }
+
     render(){
+
         const { user_name, firstName, lastName, email, password, address} = this.state
         return(
             <Container component="main" maxWidth="xs">
