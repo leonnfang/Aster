@@ -23,4 +23,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
     @Query("UPDATE Inventory i SET i.isEmpty = false WHERE i.Id = ?1")
     void isEmptyUpdateFalse(Long floristId);
 
+    @Query("SELECT i FROM Inventory i WHERE i.florist.email = ?1")
+    Inventory findInventoryByEmail(String email);
+
 }

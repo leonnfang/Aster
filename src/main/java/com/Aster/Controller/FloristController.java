@@ -30,7 +30,7 @@ public class FloristController{
     public Florist getFlorist(@RequestParam String floristEmail) throws Exception{
         return floristService.getFlorist(floristEmail);
     }
-    @PostMapping("/{florstEmail}/delete")
+    @DeleteMapping("/{florstEmail}/delete")
     public boolean deleteFlorist(@PathVariable String florstEmail) throws Exception{
         return floristService.deleteFlorist(florstEmail);
     }
