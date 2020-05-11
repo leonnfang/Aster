@@ -21,7 +21,7 @@ public class AuthenticationController {
     @Autowired
     private JwtUtil jwtTokenUtil;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws BadCredentialsException, EntityNotFoundException{
         try{
             authenticationManager.authenticate(
