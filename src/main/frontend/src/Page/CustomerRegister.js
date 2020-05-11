@@ -35,7 +35,7 @@ export class CustomerRegister extends Component{
         super(props);
 
         this.state = {
-            user_name: '',
+            username: '',
             firstName: '',
             lastName: '',
             email: '',
@@ -65,7 +65,7 @@ export class CustomerRegister extends Component{
 
     render(){
 
-        const { user_name, firstName, lastName, email, password, address} = this.state
+        const { username, firstName, lastName, email, password, address} = this.state
         return(
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -131,11 +131,11 @@ export class CustomerRegister extends Component{
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    name="user_name"
-                                    label="user_name"
-                                    type="user_name"
-                                    id="user_name"
-                                    value = {user_name}
+                                    name="username"
+                                    label="username"
+                                    type="username"
+                                    id="username"
+                                    value = {username}
                                     onChange={this.changeHandler}
                                 />
                             </Grid>

@@ -35,7 +35,7 @@ export class FloristRegister extends Component{
         super(props);
 
         this.state = {
-            user_name: '',
+            username: '',
             firstName: '',
             lastName: '',
             email: '',
@@ -52,7 +52,7 @@ export class FloristRegister extends Component{
         axios.post('http://localhost:8080/florist/add', this.state)
             .then(response => {
                 console.log(response)
-                this.props.history.push('/customer/login');
+                this.props.history.push('/florist/login');
                 })
             .catch(error => {
                 console.log(error)
@@ -61,7 +61,7 @@ export class FloristRegister extends Component{
 
     }
     render(){
-        const { user_name, firstName, lastName, email, password, address} = this.state
+        const { username, firstName, lastName, email, password, address} = this.state
         return(
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
@@ -127,11 +127,11 @@ export class FloristRegister extends Component{
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    name="user_name"
-                                    label="user_name"
-                                    type="user_name"
-                                    id="user_name"
-                                    value = {user_name}
+                                    name="username"
+                                    label="username"
+                                    type="username"
+                                    id="username"
+                                    value = {username}
                                     onChange={this.changeHandler}
                                 />
                             </Grid>
