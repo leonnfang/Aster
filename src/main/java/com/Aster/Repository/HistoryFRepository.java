@@ -11,4 +11,7 @@ public interface HistoryFRepository extends JpaRepository<HistoryF, Long> {
 
     @Query("SELECT h.Id FROM HistoryF h WHERE h.florist.email = ?1")
     Long findHistoryFIdByEmail(String email);
+
+    @Query("SELECT h FROM HistoryF h WHERE h.florist.email = ?1")
+    HistoryF findHistoryFByEmail(String email);
 }

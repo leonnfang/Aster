@@ -1,7 +1,6 @@
 package com.Aster.Security;
 
 import com.Aster.Model.Customer;
-import com.Aster.Model.Florist;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,19 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-public class AsterUserDetails implements UserDetails {
+public class CustomerDetails implements UserDetails {
 
     private Customer customer;
 
-    public AsterUserDetails(Customer customer){
+    public CustomerDetails(Customer customer){
         super();
         this.customer = customer;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //return null;
         return Collections.singleton(new SimpleGrantedAuthority("user"));
     }
 

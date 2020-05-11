@@ -2,7 +2,12 @@ package com.Aster.Service;
 
 import com.Aster.Model.*;
 import com.Aster.Repository.*;
+import com.Aster.Security.AsterUserDetailsService;
+import com.Aster.Security.AuthenticationResponse;
+import com.Aster.Security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +26,12 @@ public class FloristService {
     private HistoryFRepository historyFRepository;
     @Autowired
     private PurchaseRepository purchaseRepository;
+    @Autowired
+    private AsterUserDetailsService asterUserDetailsService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
-    public boolean addFlorist(Florist florist) throws Exception{
+    public AuthenticationResponse addFlorist(Florist florist) throws Exception{
         if(florist == null){
             throw new Exception("Invalid Florist");
         }
@@ -30,16 +39,23 @@ public class FloristService {
             throw new Exception("Florist Already Exists");
         }
 
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        Florist newFlorist = new Florist(florist.getUsername(), bCryptPasswordEncoder.encode(florist.getPassword()),
+                                         florist.getEmail(), florist.getAddress(),
+                                         florist.getLastName(), florist.getFirstName());
+
         Inventory inventory = new Inventory();
         HistoryF historyF = new HistoryF();
+        inventory.setFlorist(newFlorist);
+        newFlorist.setInventory(inventory);
+        historyF.setFlorist(newFlorist);
+        newFlorist.setHistoryF(historyF);
 
-        inventory.setFlorist(florist);
-        florist.setInventory(inventory);
-        historyF.setFlorist(florist);
-        florist.setHistoryF(historyF);
+        floristRepository.save(newFlorist);
 
-        floristRepository.save(florist);
-        return true;
+        final UserDetails userDetails = asterUserDetailsService.loadUserByUsername(newFlorist.getUsername());
+        final String jwt = jwtUtil.generateToken(userDetails);
+        return new AuthenticationResponse(jwt);
     }
     public boolean deleteFlorist(String floristEmail) throws Exception {
         if(floristEmail == null){
@@ -48,6 +64,8 @@ public class FloristService {
         if(!floristRepository.floristExists(floristEmail)){
             throw new Exception("Florist Does Not Exist");
         }
+        historyFRepository.delete(historyFRepository.findHistoryFByEmail(floristEmail));
+        inventoryRepository.delete(inventoryRepository.findInventoryByEmail(floristEmail));
         floristRepository.delete(floristRepository.findFloristByEmail(floristEmail));
         return true;
     }

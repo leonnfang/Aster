@@ -15,6 +15,9 @@ public interface FloristRepository extends JpaRepository<Florist, Long> {
 
     @Query("SELECT f FROM Florist f WHERE f.email = ?1")
     Florist findFloristByEmail(String email);
+    @Query("SELECT f FROM Florist f WHERE f.username = ?1")
+    Florist findFloristByUsername(String username);
+
 
     @Query("SELECT f.email FROM Florist f")
     List<String> findAllEmail();

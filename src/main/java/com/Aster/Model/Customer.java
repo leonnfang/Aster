@@ -12,7 +12,7 @@ public class Customer{
     private Long Id;
 
     @Column(nullable = false, unique = true)
-    private String user_name;
+    private String username;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false, unique = true)
@@ -31,14 +31,14 @@ public class Customer{
     @JoinColumn(name = "HISTORYC_ID")
     private HistoryC historyC;
 
-    public Customer(@JsonProperty("user_name") String user_name,
+    public Customer(@JsonProperty("username") String username,
                     @JsonProperty("password") String password,
                     @JsonProperty("email") String email,
                     @JsonProperty("address") String address,
                     @JsonProperty("lastName") String lastName,
                     @JsonProperty("firstName") String firstName
                     ) {
-        this.user_name = user_name;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
@@ -64,12 +64,12 @@ public class Customer{
         this.Id = Id;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

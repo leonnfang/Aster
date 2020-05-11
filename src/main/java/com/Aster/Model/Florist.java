@@ -13,7 +13,7 @@ public class Florist {
     private Long Id;
 
     @Column(nullable = false, unique = true)
-    private String user_name;
+    private String username;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false, unique = true)
@@ -33,14 +33,14 @@ public class Florist {
     private HistoryF historyF;
 
 
-    public Florist(@JsonProperty("user_name") String user_name,
+    public Florist(@JsonProperty("username") String username,
                    @JsonProperty("password") String password,
                    @JsonProperty("email") String email,
+                   @JsonProperty("address") String address,
                    @JsonProperty("lastName") String lastName,
-                   @JsonProperty("firstName") String firstName,
-                   @JsonProperty("address") String address
+                   @JsonProperty("firstName") String firstName
                    ) {
-        this.user_name = user_name;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.lastName = lastName;
@@ -52,12 +52,12 @@ public class Florist {
 
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
