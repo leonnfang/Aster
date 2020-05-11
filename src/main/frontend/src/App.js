@@ -17,8 +17,8 @@ class App extends Component {
                     <div className='container'>
                         <Switch>
                             <Route path = "/" exact component={Home}/>
-                            <Route path = "/customer" exact component={CustomerHome}/>
-                            <Route path = "/florist" exact component={FloristHome}/>
+                            <Route path = "/customer/:customerEmail?" exact component={CustomerHome}/>
+                            <Route path = "/florist/:floristEmail?" exact component={FloristHome}/>
                             <Route path = "/florist/login" component={FloristLogin}/>
                             <Route path = "/florist/register" component={FloristRegister}/>
                             <Route path = '/customer/login' component={CustomerLogin}/>
