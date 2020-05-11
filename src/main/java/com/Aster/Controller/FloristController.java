@@ -2,6 +2,8 @@ package com.Aster.Controller;
 import com.Aster.Model.*;
 import com.Aster.Service.FloristService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,8 @@ public class FloristController{
 
 
     @PostMapping("/add")
-    public boolean addFlorist(@RequestBody Florist florist) throws Exception {
-        return floristService.addFlorist(florist);
+    public ResponseEntity<?> addFlorist(@RequestBody Florist florist) throws Exception {
+        return new ResponseEntity<>(floristService.addFlorist(florist), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("/get")

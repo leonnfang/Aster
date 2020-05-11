@@ -3,6 +3,8 @@ import com.Aster.Model.Customer;
 import com.Aster.Model.Purchase;
 import com.Aster.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +22,8 @@ public class CustomerController {
     }
 
     @PostMapping("/add")
-    public boolean addCustomer(@RequestBody Customer customer) throws Exception{
-        return customerService.addCustomer(customer);
+    public ResponseEntity<?> addCustomer(@RequestBody Customer customer) throws Exception{
+        return new ResponseEntity<>(customerService.addCustomer(customer), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("/get")

@@ -2,7 +2,12 @@ package com.Aster.Service;
 
 import com.Aster.Model.*;
 import com.Aster.Repository.*;
+import com.Aster.Security.AsterUserDetailsService;
+import com.Aster.Security.AuthenticationResponse;
+import com.Aster.Security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +30,12 @@ public class CustomerService {
     private HistoryCRepository historyCRepository;
     @Autowired
     private InventoryRepository inventoryRepository;
+    @Autowired
+    private AsterUserDetailsService asterUserDetailsService;
+    @Autowired
+    private JwtUtil jwtUtil;
 
-    public boolean addCustomer(Customer customer) throws Exception{
+    public AuthenticationResponse addCustomer(Customer customer) throws Exception{
         if(customer == null){
             throw new Exception("Invalid Customer");
         }
@@ -34,16 +43,23 @@ public class CustomerService {
             throw new Exception("Customer Already Exists");
         }
 
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        Customer newCustomer = new Customer(customer.getUsername(), bCryptPasswordEncoder.encode(customer.getPassword()),
+                                            customer.getEmail(), customer.getAddress(),
+                                            customer.getLastName(), customer.getFirstName());
+
         Cart cart = new Cart();
         HistoryC historyC = new HistoryC();
+        cart.setCustomer(newCustomer);
+        newCustomer.setCart(cart);
+        historyC.setCustomer(newCustomer);
+        newCustomer.setHistoryC(historyC);
 
-        cart.setCustomer(customer);
-        customer.setCart(cart);
-        historyC.setCustomer(customer);
-        customer.setHistoryC(historyC);
+        customerRepository.save(newCustomer);
 
-        customerRepository.save(customer);
-        return true;
+        final UserDetails userDetails = asterUserDetailsService.loadUserByUsername(newCustomer.getUsername());
+        final String jwt = jwtUtil.generateToken(userDetails);
+        return new AuthenticationResponse(jwt);
     }
     public boolean deleteCustomer(String customerEmail) throws Exception{
         if(customerEmail == null){
@@ -52,6 +68,8 @@ public class CustomerService {
         if(!customerRepository.customerExists(customerEmail)){
             throw new Exception("Customer Does Not Exist");
         }
+        historyCRepository.delete(historyCRepository.findHistoryCByEmail(customerEmail));
+        cartRepository.delete(cartRepository.findCartByEmail(customerEmail));
         customerRepository.delete(customerRepository.findCustomerByEmail(customerEmail));
         return true;
     }
