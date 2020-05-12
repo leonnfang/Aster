@@ -29,8 +29,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/login", "/customer/add", "/florist/add").permitAll()
-                .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .antMatchers("/login", "/customer/add", "/florist/add").permitAll().anyRequest().authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
 
         http.cors();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -46,5 +47,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter{
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +20,11 @@ public class AsterUserDetailsService implements UserDetailsService {
         if(customerRepository.customerExistsByUsername(username)){
             return new CustomerDetails(customerRepository.findCustomerByUsername(username));
         }
-        else{
+        else if (floristRepository.floristExistsByUsername(username)){
             return new FloristDetails(floristRepository.findFloristByUsername(username));
+        }
+        else{
+            throw new UsernameNotFoundException("No User with username [" + username + "] was found");
         }
     }
 }

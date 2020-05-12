@@ -3,23 +3,9 @@ import '../Styles/Login.css'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from "@material-ui/core/styles";
+import axios from 'axios';
 
 const classes = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
     submit: {
         display: 'flex',
         margin: theme.spacing(3, 0, 2),
@@ -28,9 +14,32 @@ const classes = makeStyles((theme) => ({
 }));
 
 export class CustomerLogin extends Component{
+    constructor(props) {
+        super(props);
+
+        //redirect to home if already logged in
+    }
+
+    changeHandler = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+    login= (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        axios.post('http://localhost:8080/login', this.state)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+                alert(error.response.data.message)
+            })
+    }
+
+
     render(){
         return(
-            <form className="login-form">
+            <form className="login-form" onSubmit={this.login}>
                 <h1>
                     <a href='/'>ASTER</a>
                 </h1>
@@ -40,11 +49,12 @@ export class CustomerLogin extends Component{
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoComplete="username"
                     autoFocus
+                    onChange={this.changeHandler}
                 />
                 <TextField
                     variant="outlined"
@@ -56,6 +66,7 @@ export class CustomerLogin extends Component{
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={this.changeHandler}
                 />
                 <Button
                     type="submit"
@@ -66,7 +77,6 @@ export class CustomerLogin extends Component{
                     Sign In
                 </Button>
                 <Button
-                    type="submit"
                     variant="contained"
                     color="secondary"
                     className={classes.submit}

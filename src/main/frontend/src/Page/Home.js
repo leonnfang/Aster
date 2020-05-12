@@ -13,7 +13,7 @@ export class Home extends Component {
                         <ChooseCard
                             who = 'Customer'
                             discription = 'For those willing to find new flowers'
-                            path = '/customer'
+                            path = '/customer/login'
                             image = {require('../Image/customerPic.png')}
                         />
                     </Grid>
@@ -21,7 +21,7 @@ export class Home extends Component {
                         <ChooseCard
                             who = 'Florist'
                             discription = 'For those willing to share their flowers.'
-                            path = '/florist'
+                            path = '/florist/login'
                             image = {require('../Image/floristPic.png')}
                         />
                     </Grid>

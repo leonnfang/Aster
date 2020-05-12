@@ -32,6 +32,8 @@ public class FloristDetails implements UserDetails {
         return florist.getUsername();
     }
 
+    public String getEmail() { return florist.getEmail(); }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

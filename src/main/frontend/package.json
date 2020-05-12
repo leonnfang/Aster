@@ -14,12 +14,14 @@
     "react": "^16.13.1",
     "react-color": "^2.18.0",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-social-login-buttons": "^3.0.0",
     "react-spring": "^8.0.27",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",

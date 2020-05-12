@@ -12,6 +12,8 @@ import java.util.List;
 public interface FloristRepository extends JpaRepository<Florist, Long> {
     @Query("SELECT CASE WHEN count(f) > 0 THEN true ELSE false END FROM Florist f WHERE f.email = ?1")
     boolean floristExists(String email);
+    @Query("SELECT CASE WHEN count(f) > 0 THEN true ELSE false END FROM Florist f WHERE f.username = ?1")
+    boolean floristExistsByUsername(String username);
 
     @Query("SELECT f FROM Florist f WHERE f.email = ?1")
     Florist findFloristByEmail(String email);

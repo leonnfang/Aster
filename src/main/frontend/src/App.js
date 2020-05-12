@@ -10,6 +10,14 @@ import {CustomerRegister} from "./Page/CustomerRegister";
 
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentUser : null
+        }
+    }
+
     render() {
         return (
             <div>
@@ -17,12 +25,12 @@ class App extends Component {
                     <div className='container'>
                         <Switch>
                             <Route path = "/" exact component={Home}/>
-                            <Route path = "/customer/:customerEmail?" exact component={CustomerHome}/>
-                            <Route path = "/florist/:floristEmail?" exact component={FloristHome}/>
                             <Route path = "/florist/login" component={FloristLogin}/>
                             <Route path = "/florist/register" component={FloristRegister}/>
                             <Route path = '/customer/login' component={CustomerLogin}/>
                             <Route path = '/customer/register' component={CustomerRegister}/>
+                            <Route path = "/customer/:customerEmail?" exact component={CustomerHome}/>
+                            <Route path = "/florist/:floristEmail?" exact component={FloristHome}/>
                         </Switch>
                     </div>
                 </Router>
