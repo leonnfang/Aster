@@ -5,6 +5,11 @@ import DrawerToggleButton from "./DrawerToggleButton";
 import '../Styles/Toolbar.css'
 
 export class FloristNavbar extends Component {
+
+    handleLogout = (e) => {
+        localStorage.removeItem('AuthorizationHeader')
+    }
+
     render() {
         return (
             <Spring
@@ -22,9 +27,9 @@ export class FloristNavbar extends Component {
                                 <div className = 'spacer'></div>
                                 <div className = 'toolbar__navigation-items'>
                                     <ul>
-                                        <li><a href='/florist/login'>Login</a></li>
                                         <li><a href='https://github.com/leonnfang/Aster'>About</a> </li>
                                         <li><a href='/'>Home</a> </li>
+                                        <li><a href='#' onClick={this.handleLogout}>Logout</a></li>
                                     </ul>
                                 </div>
                             </nav>

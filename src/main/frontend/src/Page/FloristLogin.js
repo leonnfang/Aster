@@ -4,6 +4,7 @@ import { Form } from 'reactstrap'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from "@material-ui/core/styles";
+import axios from "axios";
 
 const classes = makeStyles((theme) => ({
     submit: {
@@ -14,9 +15,37 @@ const classes = makeStyles((theme) => ({
 }));
 
 export class FloristLogin extends Component{
+    constructor(props) {
+        super(props);
+
+        if(localStorage.getItem('AuthorizationHeader')){
+            this.props.history.push('/florist');
+        }
+    }
+
+    changeHandler = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+    login = (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        axios.post('http://localhost:8080/login', this.state)
+            .then(response => {
+                console.log(response)
+                const jwtToken = 'Bearer ' + response.data.jwt
+                localStorage.setItem('AuthorizationHeader', jwtToken)
+                this.props.history.push('/florist/')
+            })
+            .catch(error => {
+                console.log(error)
+                alert(error.response.data.message)
+            })
+    }
+
+
     render(){
         return(
-            <Form className="login-form">
+            <form className="login-form" onSubmit={this.login}>
                 <h1>
                     <a href='/'>ASTER</a>
                 </h1>
@@ -31,6 +60,7 @@ export class FloristLogin extends Component{
                     name="username"
                     autoComplete="username"
                     autoFocus
+                    onChange={this.changeHandler}
                 />
                 <TextField
                     variant="outlined"
@@ -42,6 +72,7 @@ export class FloristLogin extends Component{
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={this.changeHandler}
                 />
                 <Button
                     type="submit"
@@ -52,7 +83,6 @@ export class FloristLogin extends Component{
                     Sign In
                 </Button>
                 <Button
-                    type="submit"
                     variant="contained"
                     color="secondary"
                     className={classes.submit}
@@ -60,7 +90,7 @@ export class FloristLogin extends Component{
                 >
                     Register
                 </Button>
-            </Form>
+            </form>
         )
     }
 }

@@ -14,7 +14,6 @@ export class CustomerHome extends Component {
     }
 
 
-
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen}
@@ -23,7 +22,6 @@ export class CustomerHome extends Component {
     backdropClickHandler = () => {
         this.setState({sideDrawerOpen: false})
     }
-
 
 
     render() {
