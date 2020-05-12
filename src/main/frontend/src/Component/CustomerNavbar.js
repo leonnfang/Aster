@@ -8,6 +8,8 @@ export class CustomerNavbar extends Component {
 
     handleLogout = (e) => {
         localStorage.removeItem('AuthorizationHeader')
+        localStorage.removeItem('usertype')
+        localStorage.removeItem('currentUser')
     }
 
     render() {

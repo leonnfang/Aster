@@ -78,6 +78,15 @@ public class FloristService {
         }
         return floristRepository.findFloristByEmail(floristEmail);
     }
+    public Florist getFloristByUsername(String username) throws Exception{
+        if(username == null){
+            throw new Exception("Invalid Email");
+        }
+        if(!floristRepository.floristExistsByUsername(username)){
+            throw new Exception("Florist Does Not Exist");
+        }
+        return floristRepository.findFloristByUsername(username);
+    }
     public List<Florist> viewFlorists(){
         return floristRepository.findAllFlorists();
     }

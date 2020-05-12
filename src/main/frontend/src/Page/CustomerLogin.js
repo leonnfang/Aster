@@ -25,6 +25,23 @@ export class CustomerLogin extends Component{
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
+    saveUser = (jwtToken, username) => {
+        const myConfig = {
+            params:{
+                username: username
+            },
+            headers:{
+                Authorization: jwtToken
+            }
+        }
+        axios.get('http://localhost:8080/customer/getbyusername', myConfig)
+            .then(response => {
+                console.log(response.data)
+                localStorage.setItem('currentUser', response.data)
+            }).catch(error => {
+                console.log(error)
+            })
+    }
     login= (e) => {
         e.preventDefault()
         console.log(this.state)
@@ -33,6 +50,8 @@ export class CustomerLogin extends Component{
                 console.log(response)
                 const jwtToken = 'Bearer ' + response.data.jwt
                 localStorage.setItem('AuthorizationHeader', jwtToken)
+                localStorage.setItem('usertype', 'customer')
+                this.saveUser(jwtToken, this.state.username)
                 this.props.history.push('/customer/')
             })
             .catch(error => {
@@ -40,6 +59,7 @@ export class CustomerLogin extends Component{
                 alert(error.response.data.message)
             })
     }
+
 
 
     render(){

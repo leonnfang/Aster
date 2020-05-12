@@ -29,43 +29,49 @@ public class FloristController{
     @ResponseBody
     @GetMapping("/get")
     @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
-    public Florist getFlorist(@RequestParam String floristEmail) throws Exception{
-        return floristService.getFlorist(floristEmail);
+    public ResponseEntity<?> getFlorist(@RequestParam String floristEmail) throws Exception{
+        return new ResponseEntity<>(floristService.getFlorist(floristEmail), HttpStatus.OK);
+    }
+    @ResponseBody
+    @GetMapping("/getbyusername")
+    @PreAuthorize("#username == authentication.principal.getUsername()")
+    public ResponseEntity<?> getFloristByUsername(@RequestParam String username) throws Exception{
+        return new ResponseEntity<>(floristService.getFloristByUsername(username), HttpStatus.OK);
     }
     @DeleteMapping("/{florstEmail}/delete")
     @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
-    public boolean deleteFlorist(@PathVariable String florstEmail) throws Exception{
-        return floristService.deleteFlorist(florstEmail);
+    public ResponseEntity<?> deleteFlorist(@PathVariable String florstEmail) throws Exception{
+        return new ResponseEntity<>(floristService.deleteFlorist(florstEmail), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("/getAll")
-    public List<Florist> viewFlorists(){
-        return floristService.viewFlorists();
+    public ResponseEntity<?> viewFlorists(){
+        return new ResponseEntity<>(floristService.viewFlorists(), HttpStatus.OK);
     }
 
 
     @PostMapping("/{floristEmail}/inventory/add")
     @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
-    public boolean addInventory(@PathVariable String floristEmail,
+    public ResponseEntity<?> addInventory(@PathVariable String floristEmail,
                                 @RequestBody Product product) throws Exception{
-        return floristService.addInventory(floristEmail, product);
+        return new ResponseEntity<>(floristService.addInventory(floristEmail, product), HttpStatus.OK);
     }
     @DeleteMapping("/{floristEmail}/inventory/remove")
     @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
-    public boolean removeInventory(@PathVariable String floristEmail,
+    public ResponseEntity<?> removeInventory(@PathVariable String floristEmail,
                                    @RequestParam String productName) throws Exception{
-        return floristService.removeInventory(floristEmail, productName);
+        return new ResponseEntity<>(floristService.removeInventory(floristEmail, productName), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("/{floristEmail}/inventory/view")
     @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
-    public List<Product> viewInventory(@PathVariable String floristEmail) throws Exception {
-        return floristService.viewInventory(floristEmail);
+    public ResponseEntity<?> viewInventory(@PathVariable String floristEmail) throws Exception {
+        return new ResponseEntity<>(floristService.viewInventory(floristEmail), HttpStatus.OK);
     }
     @PostMapping("/{floristEmail}/inventory/empty")
     @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
-    public boolean emptyInventory(@PathVariable String floristEmail) throws Exception{
-        return floristService.emptyInventory(floristEmail);
+    public ResponseEntity<?> emptyInventory(@PathVariable String floristEmail) throws Exception{
+        return new ResponseEntity<>(floristService.emptyInventory(floristEmail), HttpStatus.OK);
     }
 
 

@@ -82,6 +82,15 @@ public class CustomerService {
         }
         return customerRepository.findCustomerByEmail(customerEmail);
     }
+    public Customer getCustomerByUsername(String username) throws Exception{
+        if(username == null){
+            throw new Exception("Invalid Email");
+        }
+        if(!customerRepository.customerExistsByUsername(username)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        return customerRepository.findCustomerByUsername(username);
+    }
     public List<Customer> viewCustomers(){
         return customerRepository.findAllCustomers();
     }

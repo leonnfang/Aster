@@ -8,6 +8,8 @@ export class FloristNavbar extends Component {
 
     handleLogout = (e) => {
         localStorage.removeItem('AuthorizationHeader')
+        localStorage.removeItem('usertype')
+        localStorage.removeItem('currentUser')
     }
 
     render() {
