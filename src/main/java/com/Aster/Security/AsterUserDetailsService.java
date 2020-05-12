@@ -20,19 +20,11 @@ public class AsterUserDetailsService implements UserDetailsService {
         if(customerRepository.customerExistsByUsername(username)){
             return new CustomerDetails(customerRepository.findCustomerByUsername(username));
         }
-        else{
+        else if (floristRepository.floristExistsByUsername(username)){
             return new FloristDetails(floristRepository.findFloristByUsername(username));
         }
-    }
-    /*
-    @Component("check")
-    public class check{
-        public boolean sameCustomer(String customerEmail, String principal){
-            System.out.println(customerEmail);
-            System.out.println(principal);
-            return true;
+        else{
+            throw new UsernameNotFoundException("No User with username [" + username + "] was found");
         }
     }
-
-     */
 }
