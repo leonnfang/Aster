@@ -4,6 +4,7 @@ import com.Aster.Service.FloristService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,10 +28,12 @@ public class FloristController{
     }
     @ResponseBody
     @GetMapping("/get")
+    @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
     public Florist getFlorist(@RequestParam String floristEmail) throws Exception{
         return floristService.getFlorist(floristEmail);
     }
     @DeleteMapping("/{florstEmail}/delete")
+    @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
     public boolean deleteFlorist(@PathVariable String florstEmail) throws Exception{
         return floristService.deleteFlorist(florstEmail);
     }
@@ -42,21 +45,25 @@ public class FloristController{
 
 
     @PostMapping("/{floristEmail}/inventory/add")
+    @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
     public boolean addInventory(@PathVariable String floristEmail,
                                 @RequestBody Product product) throws Exception{
         return floristService.addInventory(floristEmail, product);
     }
     @DeleteMapping("/{floristEmail}/inventory/remove")
+    @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
     public boolean removeInventory(@PathVariable String floristEmail,
                                    @RequestParam String productName) throws Exception{
         return floristService.removeInventory(floristEmail, productName);
     }
     @ResponseBody
     @GetMapping("/{floristEmail}/inventory/view")
+    @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
     public List<Product> viewInventory(@PathVariable String floristEmail) throws Exception {
         return floristService.viewInventory(floristEmail);
     }
     @PostMapping("/{floristEmail}/inventory/empty")
+    @PreAuthorize("#floristEmail == authentication.principal.getEmail()")
     public boolean emptyInventory(@PathVariable String floristEmail) throws Exception{
         return floristService.emptyInventory(floristEmail);
     }
