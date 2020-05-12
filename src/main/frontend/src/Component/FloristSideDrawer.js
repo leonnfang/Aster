@@ -14,19 +14,19 @@ const FloristSideDrawer = props => {
     return (
         <nav className={drawerClasses}>
             <List >
-                <ListItem button key='Store'>
+                <ListItem button key='Store' onClick={props.storeClick}>
                     <ListItemText primary='Store'/>
                 </ListItem>
-                <ListItem button key='Cart'>
+                <ListItem button key='Inventory' onClick={props.inventoryClick}>
                     <ListItemText primary='Inventory'/>
                 </ListItem>
-                <ListItem button key='History'>
+                <ListItem button key='History' onClick={props.historyClick}>
                     <ListItemText primary='History'/>
                 </ListItem>
                 <ListItem button key='Flowers'>
                     <ListItemText primary='Flowers'/>
                 </ListItem>
-                <ListItem button key='User'>
+                <ListItem button key='User' onClick={props.userClick}>
                     <ListItemText primary='User'/>
                 </ListItem>
             </List>

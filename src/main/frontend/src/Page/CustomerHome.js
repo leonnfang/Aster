@@ -2,35 +2,10 @@ import React, {Component} from "react";
 import {CustomerNavbar} from "../Component/CustomerNavbar";
 import CustomerSideDrawer from "../Component/CustomerSideDrawer";
 import BackDrop from "../Component/BackDrop";
-import {makeStyles} from "@material-ui/core/styles";
 import Cart from "../CustomerUtils/Cart";
-import Slide from "@material-ui/core/Slide";
 import HistoryC from "../CustomerUtils/HistoryC";
-import Store from "../CustomerUtils/Store";
+import Store from "../Component/Store";
 import Customer from "../CustomerUtils/Customer";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        height: 180,
-    },
-    wrapper: {
-        width: 100 + theme.spacing(2),
-    },
-    paper: {
-        zIndex: 1,
-        position: 'relative',
-        margin: theme.spacing(1),
-    },
-    svg: {
-        width: 100,
-        height: 100,
-    },
-    polygon: {
-        fill: theme.palette.common.white,
-        stroke: theme.palette.divider,
-        strokeWidth: 1,
-    },
-}));
 
 export class CustomerHome extends Component {
     constructor(props) {
