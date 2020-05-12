@@ -17,7 +17,9 @@ export class CustomerLogin extends Component{
     constructor(props) {
         super(props);
 
-        //redirect to home if already logged in
+        if(localStorage.getItem('AuthorizationHeader')){
+            this.props.history.push('/customer');
+        }
     }
 
     changeHandler = (e) => {
