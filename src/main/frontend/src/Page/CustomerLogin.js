@@ -29,6 +29,9 @@ export class CustomerLogin extends Component{
         axios.post('http://localhost:8080/login', this.state)
             .then(response => {
                 console.log(response)
+                const jwtToken = 'Bearer ' + response.data.jwt
+                localStorage.setItem('AuthorizationHeader', jwtToken)
+                this.props.history.push('/customer/')
             })
             .catch(error => {
                 console.log(error)

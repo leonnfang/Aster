@@ -4,23 +4,33 @@ import CustomerSideDrawer from "../Component/CustomerSideDrawer";
 import BackDrop from "../Component/BackDrop";
 
 export class CustomerHome extends Component {
-    state = {
-        sideDrawerOpen: false
+    constructor(props) {
+        super(props);
+
+        this.state ={
+            sideDrawerOpen: false
+        }
+
     }
+
+
 
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen}
         })
     }
-
     backdropClickHandler = () => {
         this.setState({sideDrawerOpen: false})
     }
 
+
+
     render() {
         let backDrop;
-
+        if(!localStorage.getItem('AuthorizationHeader')){
+            this.props.history.push('/');
+        }
         if(this.state.sideDrawerOpen){
             backDrop = <BackDrop click={this.backdropClickHandler}/>
         }
