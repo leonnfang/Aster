@@ -15,8 +15,8 @@ const CustomerSideDrawer = props => {
     return (
         <nav className={drawerClasses}>
             <List >
-                <ListItem button key='Store'>
-                    <ListItemText primary='Store' onClick={props.storeClick}/>
+                <ListItem button key='Store' onClick={props.storeClick}>
+                    <ListItemText primary='Store'/>
                 </ListItem>
                 <ListItem button key='Cart' onClick={props.cartClick}>
                     <ListItemText primary='Cart'/>
@@ -27,8 +27,8 @@ const CustomerSideDrawer = props => {
                 <ListItem button key='Flowers'>
                     <ListItemText primary='Flowers'/>
                 </ListItem>
-                <ListItem button key='User'>
-                    <ListItemText primary='User' onClick={props.userClick}/>
+                <ListItem button key='User' onClick={props.userClick}>
+                    <ListItemText primary='User'/>
                 </ListItem>
             </List>
         </nav>
