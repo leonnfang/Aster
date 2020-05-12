@@ -53,7 +53,6 @@ export class CustomerRegister extends Component{
                 this.props.history.push('/customer/login');
             })
             .catch(error => {
-                console.log(error)
                 alert(error.response.data.message)
             })
 
