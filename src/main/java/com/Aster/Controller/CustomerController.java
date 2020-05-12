@@ -1,4 +1,5 @@
 package com.Aster.Controller;
+import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.Aster.Model.Customer;
 import com.Aster.Model.Purchase;
 import com.Aster.Service.CustomerService;
@@ -28,58 +29,63 @@ public class CustomerController {
     }
     @ResponseBody
     @GetMapping("/get")
-    //@PreAuthorize("@check.sameCustomer(#customerEmail, authentication.principal.getEmail())")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public Customer getCustomer(@RequestParam String customerEmail) throws Exception{
-        return customerService.getCustomer(customerEmail);
+    public ResponseEntity<?> getCustomer(@RequestParam String customerEmail) throws Exception{
+        return new ResponseEntity<>(customerService.getCustomer(customerEmail), HttpStatus.OK);
+    }
+    @ResponseBody
+    @GetMapping("/getbyusername")
+    @PreAuthorize("#username == authentication.principal.getUsername()")
+    public ResponseEntity<?> getCustomerByUsername(@RequestParam String username) throws Exception{
+        return new ResponseEntity<>(customerService.getCustomerByUsername(username), HttpStatus.OK);
     }
     @DeleteMapping("/{customerEmail}/delete")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public boolean deleteCustomer(@PathVariable String customerEmail) throws Exception{
-        return customerService.deleteCustomer(customerEmail);
+    public ResponseEntity<?> deleteCustomer(@PathVariable String customerEmail) throws Exception{
+        return new ResponseEntity<>(customerService.deleteCustomer(customerEmail), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("/getAll")
-    public List<Customer> viewCustomers(){
-        return customerService.viewCustomers();
+    public ResponseEntity<?> viewCustomers(){
+        return new ResponseEntity<>(customerService.viewCustomers(), HttpStatus.OK);
     }
 
 
     @PostMapping("/{customerEmail}/cart/add")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public boolean addCart(@PathVariable String customerEmail,
+    public ResponseEntity<?> addCart(@PathVariable String customerEmail,
                            @RequestBody Purchase purchase) throws Exception{
-        return customerService.addCart(customerEmail, purchase);
+        return new ResponseEntity<>(customerService.addCart(customerEmail, purchase), HttpStatus.OK);
     }
     @DeleteMapping("/{customerEmail}/cart/remove")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public boolean removeCart(@PathVariable String customerEmail,
+    public ResponseEntity<?> removeCart(@PathVariable String customerEmail,
                               @RequestParam String orderID) throws Exception{
-        return customerService.removeCart(customerEmail, orderID);
+        return new ResponseEntity<>(customerService.removeCart(customerEmail, orderID), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("/{customerEmail}/cart/view")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public List<Purchase> viewCart(@PathVariable String customerEmail) throws Exception{
-        return customerService.viewCart(customerEmail);
+    public ResponseEntity<?> viewCart(@PathVariable String customerEmail) throws Exception{
+        return new ResponseEntity<>(customerService.viewCart(customerEmail), HttpStatus.OK);
     }
     @DeleteMapping("/{customerEmail}/cart/empty")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public boolean emptyCart(@PathVariable String customerEmail) throws Exception{
-        return customerService.emptyCart(customerEmail);
+    public ResponseEntity<?> emptyCart(@PathVariable String customerEmail) throws Exception{
+        return new ResponseEntity<>(customerService.emptyCart(customerEmail), HttpStatus.OK);
     }
 
 
     @PutMapping("/{customerEmail}/checkout")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public boolean checkout(@PathVariable String customerEmail) throws Exception {
-        return customerService.checkout(customerEmail);
+    public ResponseEntity<?> checkout(@PathVariable String customerEmail) throws Exception {
+        return new ResponseEntity<>(customerService.checkout(customerEmail), HttpStatus.OK);
     }
     @ResponseBody
     @GetMapping("{customerEmail}/history/view")
     @PreAuthorize("#customerEmail == authentication.principal.getEmail()")
-    public List<Purchase> viewHistory(@PathVariable String customerEmail) throws Exception{
-        return customerService.viewHistoryC(customerEmail);
+    public ResponseEntity<?> viewHistory(@PathVariable String customerEmail) throws Exception{
+        return new ResponseEntity<>(customerService.viewHistoryC(customerEmail), HttpStatus.OK);
     }
 
 

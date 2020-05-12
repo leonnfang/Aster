@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import '../Styles/Login.css'
-import { Form } from 'reactstrap'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {makeStyles} from "@material-ui/core/styles";
@@ -26,6 +25,23 @@ export class FloristLogin extends Component{
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
+    saveUser = (jwtToken, username) => {
+        const myConfig = {
+            params:{
+                username: username
+            },
+            headers:{
+                Authorization: jwtToken
+            }
+        }
+        axios.get('http://localhost:8080/florist/getbyusername', myConfig)
+            .then(response => {
+                console.log(response.data)
+                localStorage.setItem('currentUser', response.data)
+            }).catch(error => {
+                console.log(error)
+            })
+    }
     login = (e) => {
         e.preventDefault()
         console.log(this.state)
@@ -34,6 +50,8 @@ export class FloristLogin extends Component{
                 console.log(response)
                 const jwtToken = 'Bearer ' + response.data.jwt
                 localStorage.setItem('AuthorizationHeader', jwtToken)
+                localStorage.setItem('usertype', 'florist')
+                this.saveUser(jwtToken, this.state.username)
                 this.props.history.push('/florist/')
             })
             .catch(error => {
