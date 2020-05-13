@@ -38,6 +38,11 @@ export class FloristLogin extends Component{
             .then(response => {
                 console.log(response.data)
                 localStorage.setItem('currentUser', response.data)
+                localStorage.setItem('firstName', response.data.firstName)
+                localStorage.setItem('lastName', response.data.lastName)
+                localStorage.setItem('username', response.data.username)
+                localStorage.setItem('email', response.data.email)
+                localStorage.setItem('address', response.data.address)
             }).catch(error => {
                 console.log(error)
             })
