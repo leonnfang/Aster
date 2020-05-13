@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.rmi.server.ExportException;
 import java.util.List;
 
 @Service
@@ -93,6 +94,31 @@ public class CustomerService {
     }
     public List<Customer> viewCustomers(){
         return customerRepository.findAllCustomers();
+    }
+
+    public boolean updateCustomerUsername(String customerEmail, String username) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        return customerRepository.updateCustomerUsername(customerEmail, username);
+    }
+    public boolean updateCustomerFirstName(String customerEmail, String firstName) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        return customerRepository.updateCustomerFirstName(customerEmail, firstName);
+    }
+    public boolean updateCustomerLastName(String customerEmail, String lastName) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        return customerRepository.updateCustomerLastName(customerEmail, lastName);
+    }
+    public boolean updateCustomerAddress(String customerEmail, String address) throws Exception{
+        if(!customerRepository.customerExists(customerEmail)){
+            throw new Exception("Customer Does Not Exist");
+        }
+        return customerRepository.updateCustomerAddress(customerEmail, address);
     }
 
     public boolean addCart(String customerEmail, Purchase purchase) throws Exception{

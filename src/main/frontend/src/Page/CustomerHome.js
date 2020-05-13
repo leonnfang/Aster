@@ -6,6 +6,7 @@ import Cart from "../CustomerUtils/Cart";
 import HistoryC from "../CustomerUtils/HistoryC";
 import Store from "../Component/Store";
 import Customer from "../CustomerUtils/Customer";
+import axios from 'axios';
 
 export class CustomerHome extends Component {
     constructor(props) {
@@ -15,11 +16,13 @@ export class CustomerHome extends Component {
             cartOpen: false,
             historyOpen: false,
             storeOpen: false,
-            userOpen: false
+            userOpen: false,
+            customer: null
         }
-        if(localStorage.getItem('usertype')==='florist'){
-            this.props.history.push('/')
+        if(localStorage.getItem('email')){
+            this.props.history.push('/customer/'+localStorage.getItem('email'))
         }
+
     }
 
 
@@ -27,9 +30,6 @@ export class CustomerHome extends Component {
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen}
         })
-    }
-    backdropClickHandler = () => {
-        this.setState({sideDrawerOpen: false})
     }
     cartClickHandler = () => {
         this.setState((prevState) => {
@@ -51,6 +51,25 @@ export class CustomerHome extends Component {
             return {userOpen: !prevState.userOpen}
         })
     }
+    backdropClickHandler = () => {
+        this.setState({sideDrawerOpen: false})
+    }
+    getCustomer = () => {
+        const myConfig = {
+            params:{
+                customerEmail: localStorage.getItem('email')
+            },
+            headers:{
+                Authorization: localStorage.getItem('AuthorizationHeader')
+            }
+        }
+        axios.get('http://localhost:8080/customer/get', myConfig)
+            .then(response => {
+                console.log(response)
+                this.setState({customer: response.data})
+            })
+    }
+
 
     render() {
         let backDrop;
@@ -58,6 +77,10 @@ export class CustomerHome extends Component {
         let history;
         let store;
         let user;
+        if(localStorage.getItem('usertype')!='customer'){
+            this.props.history.push('/')
+            console.log('customertest')
+        }
         if(!localStorage.getItem('AuthorizationHeader')){
             this.props.history.push('/');
         }
@@ -74,11 +97,15 @@ export class CustomerHome extends Component {
             store = <Store/>
         }
         if(this.state.userOpen){
-            user = <Customer/>
+            user = <Customer {...this.state.customer}/>
         }
+
         return (
             <div style={{height: '100%', width: '100%'}}>
-                <CustomerNavbar drawerClickHandler={this.drawerToggleClickHandler}/>
+                <CustomerNavbar
+                    drawerClickHandler={this.drawerToggleClickHandler}
+                    updateUser={this.getCustomer}
+                />
                 <CustomerSideDrawer
                     show={this.state.sideDrawerOpen}
                     cartClick={this.cartClickHandler}
