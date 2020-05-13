@@ -26,6 +26,7 @@ export class CustomerNavbar extends Component {
                                     <DrawerToggleButton
                                         click1={this.props.drawerClickHandler}
                                         click2={this.props.updateUser}
+                                        click3={this.props.getFlorists}
                                     />
                                 </div>
                                 <div className = 'toolbar__logo'><a href='/'>ASTER</a> </div>

@@ -18,7 +18,8 @@ export class FloristHome extends Component {
             historyOpen: false,
             storeOpen: false,
             userOpen: false,
-            florist: null
+            florist: null,
+            florists: []
         }
 
         if(localStorage.getItem('email')){
@@ -69,6 +70,20 @@ export class FloristHome extends Component {
                 this.setState({florist: response.data})
             })
     }
+    getFlorists = () => {
+        const headers = {
+            'Authorization': localStorage.getItem('AuthorizationHeader'),
+        }
+        axios.get('http://localhost:8080/florist/getAll', {headers: headers})
+            .then(response => {
+                console.log(this.state.florists)
+                this.setState({florists: response.data})
+                console.log(this.state.florists)
+            })
+            .catch(error => {
+                console.log('ERROR')
+            })
+    }
 
 
     render() {
@@ -94,7 +109,7 @@ export class FloristHome extends Component {
             history = <HistoryF/>
         }
         if(this.state.storeOpen){
-            store = <Store/>
+            store = <Store florists={this.state.florists}/>
         }
         if(this.state.userOpen){
             user = <Florist {...this.state.florist}/>
@@ -104,6 +119,7 @@ export class FloristHome extends Component {
                 <FloristNavbar
                     drawerClickHandler={this.drawerToggleClickHandler}
                     updateUser={this.getFlorist}
+                    getflorists={this.getFlorists}
                 />
                 <FloristSideDrawer
                     show={this.state.sideDrawerOpen}
