@@ -9,7 +9,6 @@ const classes = makeStyles((theme) => ({
     submit: {
         display: 'flex',
         margin: theme.spacing(3, 0, 2),
-
     },
 }));
 
@@ -21,6 +20,7 @@ export class FloristLogin extends Component{
             this.props.history.push('/florist');
         }
     }
+
 
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value})

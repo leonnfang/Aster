@@ -95,6 +95,9 @@ public class FloristService {
         if(!floristRepository.floristExists(floristEmail)){
             throw new Exception("Florist Does Not Exist");
         }
+        if(product.getName()==null){
+            throw new Exception("Product Name Can Not be Empty");
+        }
 
         Florist florist = floristRepository.findFloristByEmail(floristEmail);
         if(productRepository.productExists(floristEmail, product.getName())){

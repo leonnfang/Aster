@@ -39,8 +39,6 @@ const useStyles = makeStyles((theme) => ({
 const Florist = (props) => {
     const classes = useStyles();
 
-
-
     return(
         <div className={classes.root}>
             <Paper elevation={3} className={classes.paper}>

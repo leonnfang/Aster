@@ -26,7 +26,6 @@ export class FloristHome extends Component {
         }
     }
 
-to
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen}
@@ -71,13 +70,14 @@ to
             })
     }
 
+
     render() {
         let backDrop;
         let inventory;
         let history;
         let store;
         let user;
-        if(localStorage.getItem('usertype')!='florist'){
+        if(localStorage.getItem('usertype')!=='florist'){
             this.props.history.push('/')
             console.log('floristtest')
         }
@@ -88,7 +88,7 @@ to
             backDrop = <BackDrop click={this.backdropClickHandler}/>
         }
         if(this.state.inventoryOpen){
-            inventory = <Inventory/>
+            inventory = <Inventory test={this.getFlorist}/>
         }
         if(this.state.historyOpen){
             history = <HistoryF/>
