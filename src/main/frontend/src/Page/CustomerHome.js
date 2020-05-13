@@ -77,7 +77,7 @@ export class CustomerHome extends Component {
         let history;
         let store;
         let user;
-        if(localStorage.getItem('usertype')!='customer'){
+        if(localStorage.getItem('usertype')!=='customer'){
             this.props.history.push('/')
             console.log('customertest')
         }
