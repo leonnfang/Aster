@@ -36,8 +36,7 @@ export class CustomerLogin extends Component{
         }
         axios.get('http://localhost:8080/customer/getbyusername', myConfig)
             .then(response => {
-                console.log(response.data)
-                localStorage.setItem('currentUser', response.data)
+                localStorage.setItem('email', response.data.email)
             }).catch(error => {
                 console.log(error)
             })

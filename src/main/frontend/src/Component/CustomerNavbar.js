@@ -9,7 +9,7 @@ export class CustomerNavbar extends Component {
     handleLogout = (e) => {
         localStorage.removeItem('AuthorizationHeader')
         localStorage.removeItem('usertype')
-        localStorage.removeItem('currentUser')
+        localStorage.removeItem('email')
     }
 
     render() {
@@ -23,7 +23,10 @@ export class CustomerNavbar extends Component {
                         <header className='toolbarCustomer'>
                             <nav className='toolbar__navigation'>
                                 <div>
-                                    <DrawerToggleButton click={this.props.drawerClickHandler}/>
+                                    <DrawerToggleButton
+                                        click1={this.props.drawerClickHandler}
+                                        click2={this.props.updateUser}
+                                    />
                                 </div>
                                 <div className = 'toolbar__logo'><a href='/'>ASTER</a> </div>
                                 <div className = 'spacer'></div>
@@ -31,7 +34,7 @@ export class CustomerNavbar extends Component {
                                     <ul>
                                         <li><a href='https://github.com/leonnfang/Aster'>About</a> </li>
                                         <li><a href='/'>Home</a> </li>
-                                        <li><a href='#' onClick={this.handleLogout}>Logout</a></li>
+                                        <li><a href="#" onClick={this.handleLogout}>Logout</a></li>
                                     </ul>
                                 </div>
                             </nav>

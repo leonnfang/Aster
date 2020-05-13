@@ -6,6 +6,7 @@ import Store from "../Component/Store";
 import Inventory from "../FloristUtils/Inventory";
 import Florist from "../FloristUtils/Florist";
 import HistoryF from "../FloristUtils/HistoryF";
+import axios from 'axios';
 
 export class FloristHome extends Component {
     constructor(props) {
@@ -16,14 +17,16 @@ export class FloristHome extends Component {
             inventoryOpen: false,
             historyOpen: false,
             storeOpen: false,
-            userOpen: false
+            userOpen: false,
+            florist: null
         }
-        if(localStorage.getItem('usertype')==='customer'){
-            this.props.history.push('/')
+
+        if(localStorage.getItem('email')){
+            this.props.history.push('/florist/'+localStorage.getItem('email'))
         }
     }
 
-
+to
     drawerToggleClickHandler = () => {
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen}
@@ -52,7 +55,21 @@ export class FloristHome extends Component {
             return {userOpen: !prevState.userOpen}
         })
     }
-
+    getFlorist = () => {
+        const myConfig = {
+            params:{
+                floristEmail: localStorage.getItem('email')
+            },
+            headers:{
+                Authorization: localStorage.getItem('AuthorizationHeader')
+            }
+        }
+        axios.get('http://localhost:8080/florist/get', myConfig)
+            .then(response => {
+                console.log(response)
+                this.setState({florist: response.data})
+            })
+    }
 
     render() {
         let backDrop;
@@ -60,6 +77,10 @@ export class FloristHome extends Component {
         let history;
         let store;
         let user;
+        if(localStorage.getItem('usertype')!='florist'){
+            this.props.history.push('/')
+            console.log('floristtest')
+        }
         if(!localStorage.getItem('AuthorizationHeader')){
             this.props.history.push('/');
         }
@@ -76,11 +97,14 @@ export class FloristHome extends Component {
             store = <Store/>
         }
         if(this.state.userOpen){
-            user = <Florist/>
+            user = <Florist {...this.state.florist}/>
         }
         return (
-            <div style={{height: '100%'}}>
-                <FloristNavbar drawerClickHandler={this.drawerToggleClickHandler}/>
+            <div style={{height: '100%', width: '100%'}}>
+                <FloristNavbar
+                    drawerClickHandler={this.drawerToggleClickHandler}
+                    updateUser={this.getFlorist}
+                />
                 <FloristSideDrawer
                     show={this.state.sideDrawerOpen}
                     inventoryClick={this.inventoryClickHandler}

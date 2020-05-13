@@ -9,7 +9,7 @@ export class FloristNavbar extends Component {
     handleLogout = (e) => {
         localStorage.removeItem('AuthorizationHeader')
         localStorage.removeItem('usertype')
-        localStorage.removeItem('currentUser')
+        localStorage.removeItem('email')
     }
 
     render() {
@@ -23,7 +23,10 @@ export class FloristNavbar extends Component {
                         <header className='toolbarFlorist'>
                             <nav className='toolbar__navigation'>
                                 <div>
-                                    <DrawerToggleButton click={this.props.drawerClickHandler}/>
+                                    <DrawerToggleButton
+                                        click1={this.props.drawerClickHandler}
+                                        click2={this.props.updateUser}
+                                    />
                                 </div>
                                 <div className = 'toolbar__logo'><a href='/'>ASTER</a> </div>
                                 <div className = 'spacer'></div>

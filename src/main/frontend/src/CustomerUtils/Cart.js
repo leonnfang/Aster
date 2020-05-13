@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         height: "100%",
         width: "100%",
+        background: '#4c5679',
     },
     wrapper: {
         height: 600,
