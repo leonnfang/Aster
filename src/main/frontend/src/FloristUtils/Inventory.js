@@ -83,6 +83,7 @@ const Inventory = (props) => {
     const showInventory = () => {
         console.log('show')
         setflower(null);
+
         const url = 'http://localhost:8080/florist/' + email + '/inventory/view'
         axios.get(url, {headers: headers})
             .then(response => {

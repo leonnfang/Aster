@@ -13,11 +13,12 @@ export class CustomerHome extends Component {
         super(props);
         this.state ={
             sideDrawerOpen: false,
-            cartOpen: false,
+            cartOpen: true,
             historyOpen: false,
             storeOpen: false,
             userOpen: false,
-            customer: null
+            customer: null,
+            florists: []
         }
         if(localStorage.getItem('email')){
             this.props.history.push('/customer/'+localStorage.getItem('email'))
@@ -69,6 +70,20 @@ export class CustomerHome extends Component {
                 this.setState({customer: response.data})
             })
     }
+    getFlorists = () => {
+        const headers = {
+            'Authorization': localStorage.getItem('AuthorizationHeader'),
+        }
+        axios.get('http://localhost:8080/florist/getAll', {headers: headers})
+            .then(response => {
+                console.log(this.state.florists)
+                this.setState({florists: response.data})
+                console.log(this.state.florists)
+            })
+            .catch(error => {
+                console.log('ERROR')
+            })
+    }
 
 
     render() {
@@ -94,7 +109,7 @@ export class CustomerHome extends Component {
             history = <HistoryC/>
         }
         if(this.state.storeOpen){
-            store = <Store/>
+            store = <Store florists={this.state.florists}/>
         }
         if(this.state.userOpen){
             user = <Customer {...this.state.customer}/>
@@ -105,6 +120,7 @@ export class CustomerHome extends Component {
                 <CustomerNavbar
                     drawerClickHandler={this.drawerToggleClickHandler}
                     updateUser={this.getCustomer}
+                    getFlorists={this.getFlorists}
                 />
                 <CustomerSideDrawer
                     show={this.state.sideDrawerOpen}
